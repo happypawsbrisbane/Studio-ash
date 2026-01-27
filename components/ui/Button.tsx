@@ -108,7 +108,10 @@ interface ButtonLinkProps {
   className?: string
   children: React.ReactNode
   external?: boolean
+  style?: React.CSSProperties
 }
+
+export type { ButtonLinkProps }
 
 export function ButtonLink({
   href,
@@ -117,6 +120,7 @@ export function ButtonLink({
   className,
   children,
   external = false,
+  style,
 }: ButtonLinkProps) {
   const linkClassName = cn(
     baseStyles,
@@ -132,6 +136,7 @@ export function ButtonLink({
         target="_blank"
         rel="noopener noreferrer"
         className={linkClassName}
+        style={style}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.2 }}
@@ -142,7 +147,7 @@ export function ButtonLink({
   }
 
   return (
-    <Link href={href} className={linkClassName}>
+    <Link href={href} className={linkClassName} style={style}>
       {children}
     </Link>
   )
