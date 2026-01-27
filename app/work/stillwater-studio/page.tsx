@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { ButtonLink } from '@/components/ui/Button'
+import { BrowserFrame } from '@/components/ui/BrowserFrame'
 import { smoothOut, fadeUp, staggerContainer, viewportSettings } from '@/lib/animations'
 
 const projectInfo = {
@@ -13,6 +14,8 @@ const projectInfo = {
   category: 'Brand Strategy & Website',
   year: '2023',
   services: ['Brand Strategy', 'Visual Identity', 'Website Design', 'Photography Direction'],
+  liveUrl: undefined,
+  displayUrl: 'www.stillwaterstudio.com.au',
   duration: '12 weeks',
   industry: 'Architecture & Interior Design',
 }
@@ -183,8 +186,39 @@ export default function StillwaterStudioPage() {
         </div>
       </section>
 
-      {/* Overview Section */}
+      {/* Live Website Preview */}
       <Section>
+        <div className="text-center mb-12">
+          <motion.span
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportSettings}
+            className="block text-caption uppercase tracking-widest text-[#4A7C6F] mb-4"
+          >
+            Live Website
+          </motion.span>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportSettings}
+            className="text-h2 font-serif text-charcoal"
+          >
+            Experience the design
+          </motion.h2>
+        </div>
+
+        <BrowserFrame
+          url={projectInfo.liveUrl}
+          displayUrl={projectInfo.displayUrl}
+          fallbackImage="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&h=750&fit=crop"
+          title={projectInfo.title}
+        />
+      </Section>
+
+      {/* Overview Section */}
+      <Section variant="cream">
         <div className="max-w-3xl mx-auto text-center">
           <motion.p
             variants={fadeUp}

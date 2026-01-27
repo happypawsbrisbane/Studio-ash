@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { ButtonLink } from '@/components/ui/Button'
+import { BrowserFrame } from '@/components/ui/BrowserFrame'
 import { smoothOut, fadeUp, staggerContainer, viewportSettings } from '@/lib/animations'
 
 const projectInfo = {
@@ -15,6 +16,8 @@ const projectInfo = {
   services: ['Brand Strategy', 'Visual Identity', 'Print Design', 'Environmental Graphics'],
   duration: '10 weeks',
   industry: 'Health & Wellness',
+  liveUrl: undefined,
+  displayUrl: 'www.sevawellness.com.au',
 }
 
 const challenges = [
@@ -161,8 +164,39 @@ export default function SevaWellnessPage() {
         </div>
       </section>
 
-      {/* Overview Section */}
+      {/* Live Website Preview */}
       <Section>
+        <div className="text-center mb-12">
+          <motion.span
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportSettings}
+            className="block text-caption uppercase tracking-widest text-[#9B7BB8] mb-4"
+          >
+            Live Website
+          </motion.span>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportSettings}
+            className="text-h2 font-serif text-charcoal"
+          >
+            Experience the design
+          </motion.h2>
+        </div>
+
+        <BrowserFrame
+          url={projectInfo.liveUrl}
+          displayUrl={projectInfo.displayUrl}
+          fallbackImage="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=750&fit=crop"
+          title={projectInfo.title}
+        />
+      </Section>
+
+      {/* Overview Section */}
+      <Section variant="cream">
         <div className="max-w-3xl mx-auto text-center">
           <motion.p
             variants={fadeUp}
