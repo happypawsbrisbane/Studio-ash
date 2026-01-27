@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
-import { Button } from '@/components/ui/Button'
+import { ButtonLink } from '@/components/ui/Button'
 import { smoothOut, fadeUp, staggerContainer, viewportSettings } from '@/lib/animations'
 
 const projectInfo = {
@@ -317,7 +317,7 @@ export default function HorizonAdvisoryPage() {
       </Section>
 
       {/* Challenge & Solution */}
-      <Section variant="charcoal" className="bg-[#0A1628]">
+      <Section variant="dark" className="bg-[#0A1628]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <motion.div
             variants={fadeUp}
@@ -495,7 +495,7 @@ export default function HorizonAdvisoryPage() {
       </Section>
 
       {/* Testimonial Section */}
-      <Section variant="charcoal" className="bg-[#0A1628]">
+      <Section variant="dark" className="bg-[#0A1628]">
         <motion.blockquote
           variants={fadeUp}
           initial="hidden"
@@ -542,9 +542,9 @@ export default function HorizonAdvisoryPage() {
             whileInView="visible"
             viewport={viewportSettings}
           >
-            <Button href="/work/paws-and-peace" variant="primary">
+            <ButtonLink href="/work/paws-and-peace" variant="primary">
               View Project
-            </Button>
+            </ButtonLink>
           </motion.div>
         </div>
       </Section>

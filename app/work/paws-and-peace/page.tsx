@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
-import { Button } from '@/components/ui/Button'
+import { ButtonLink } from '@/components/ui/Button'
 import { smoothOut, fadeUp, staggerContainer, viewportSettings } from '@/lib/animations'
 
 const projectInfo = {
@@ -252,7 +252,7 @@ export default function PawsAndPeacePage() {
       </Section>
 
       {/* Color Palette Section */}
-      <Section variant="charcoal">
+      <Section variant="dark">
         <div className="text-center mb-12">
           <motion.span
             variants={fadeUp}
@@ -384,9 +384,9 @@ export default function PawsAndPeacePage() {
             whileInView="visible"
             viewport={viewportSettings}
           >
-            <Button href="/work/seva-wellness" variant="primary">
+            <ButtonLink href="/work/seva-wellness" variant="primary">
               View Project
-            </Button>
+            </ButtonLink>
           </motion.div>
         </div>
       </Section>
