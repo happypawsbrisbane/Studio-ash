@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { ButtonLink } from '@/components/ui/Button'
+import { BrowserFrame } from '@/components/ui/BrowserFrame'
 import { smoothOut, fadeUp, staggerContainer, viewportSettings } from '@/lib/animations'
 
 const projectInfo = {
@@ -13,6 +14,8 @@ const projectInfo = {
   category: 'Brand Identity',
   year: '2023',
   services: ['Brand Strategy', 'Visual Identity', 'Website Design', 'Presentation System'],
+  liveUrl: undefined,
+  displayUrl: 'www.horizonadvisory.com.au',
   duration: '8 weeks',
   industry: 'Financial Advisory',
 }
@@ -183,8 +186,39 @@ export default function HorizonAdvisoryPage() {
         </div>
       </section>
 
-      {/* Overview Section */}
+      {/* Live Website Preview */}
       <Section>
+        <div className="text-center mb-12">
+          <motion.span
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportSettings}
+            className="block text-caption uppercase tracking-widest text-[#C9A227] mb-4"
+          >
+            Live Website
+          </motion.span>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportSettings}
+            className="text-h2 font-serif text-charcoal"
+          >
+            Experience the design
+          </motion.h2>
+        </div>
+
+        <BrowserFrame
+          url={projectInfo.liveUrl}
+          displayUrl={projectInfo.displayUrl}
+          fallbackImage="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=750&fit=crop"
+          title={projectInfo.title}
+        />
+      </Section>
+
+      {/* Overview Section */}
+      <Section variant="cream">
         <div className="max-w-3xl mx-auto text-center">
           <motion.p
             variants={fadeUp}

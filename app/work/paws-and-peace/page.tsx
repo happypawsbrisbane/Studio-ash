@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
 import { ButtonLink } from '@/components/ui/Button'
+import { BrowserFrame } from '@/components/ui/BrowserFrame'
 import { smoothOut, fadeUp, staggerContainer, viewportSettings } from '@/lib/animations'
 
 const projectInfo = {
@@ -15,6 +16,9 @@ const projectInfo = {
   services: ['Brand Strategy', 'Visual Identity', 'Website Design', 'Packaging'],
   duration: '8 weeks',
   industry: 'Pet Care & Wellness',
+  // Live project URL - update when available
+  liveUrl: undefined,
+  displayUrl: 'www.pawsandpeace.com.au',
 }
 
 const challenges = [
@@ -165,8 +169,39 @@ export default function PawsAndPeacePage() {
         </div>
       </section>
 
-      {/* Overview Section */}
+      {/* Live Website Preview */}
       <Section>
+        <div className="text-center mb-12">
+          <motion.span
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportSettings}
+            className="block text-caption uppercase tracking-widest text-[#C9A87C] mb-4"
+          >
+            Live Website
+          </motion.span>
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportSettings}
+            className="text-h2 font-serif text-charcoal"
+          >
+            Experience the design
+          </motion.h2>
+        </div>
+
+        <BrowserFrame
+          url={projectInfo.liveUrl}
+          displayUrl={projectInfo.displayUrl}
+          fallbackImage="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&h=750&fit=crop"
+          title={projectInfo.title}
+        />
+      </Section>
+
+      {/* Overview Section */}
+      <Section variant="cream">
         <div className="max-w-3xl mx-auto text-center">
           <motion.p
             variants={fadeUp}
