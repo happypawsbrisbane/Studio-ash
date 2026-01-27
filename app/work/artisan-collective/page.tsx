@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Section } from '@/components/ui/Section'
-import { Button } from '@/components/ui/Button'
+import { ButtonLink } from '@/components/ui/Button'
 import { smoothOut, fadeUp, staggerContainer, viewportSettings } from '@/lib/animations'
 
 const projectInfo = {
@@ -313,7 +313,7 @@ export default function ArtisanCollectivePage() {
       </Section>
 
       {/* Challenge & Solution */}
-      <Section variant="charcoal" className="bg-[#2C2416]">
+      <Section variant="dark" className="bg-[#2C2416]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <motion.div
             variants={fadeUp}
@@ -538,9 +538,9 @@ export default function ArtisanCollectivePage() {
             whileInView="visible"
             viewport={viewportSettings}
           >
-            <Button href="/work/horizon-advisory" variant="primary">
+            <ButtonLink href="/work/horizon-advisory" variant="primary">
               View Project
-            </Button>
+            </ButtonLink>
           </motion.div>
         </div>
       </Section>
