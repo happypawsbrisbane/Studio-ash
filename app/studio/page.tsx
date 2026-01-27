@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { ContactCTA } from '@/components/ContactCTA'
@@ -82,10 +83,14 @@ export default function StudioPage() {
               transition={{ duration: 0.8, delay: 0.2, ease: smoothOut }}
               className="relative aspect-[3/4] bg-line-grey rounded-t-[200px] rounded-b-[20px] overflow-hidden"
             >
-              {/* Placeholder for profile image */}
-              <div className="absolute inset-0 flex items-center justify-center text-stone">
-                <span className="text-body">Profile Photo</span>
-              </div>
+              <Image
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop"
+                alt="Ash, designer at Studio Ash"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
             </motion.div>
           </div>
         </div>
