@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Studio Ash</title>
+    <meta name="description" content="Custom brand identity and website design packages. From $1,200 for brand identity to $2,800 for full brand + website transformation.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Services page specific styles */
+        .services-intro {
+            padding: 0 5% 6rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .services-intro p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        /* Service packages */
+        .packages {
+            padding: 4rem 5% 10rem;
+            background: var(--color-white);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .package-card {
+            border: 1px solid var(--color-border);
+            padding: 3rem 2.5rem;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.06);
+        }
+
+        .package-card.featured {
+            border-color: var(--color-accent);
+            position: relative;
+        }
+
+        .package-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-accent);
+            color: white;
+            padding: 0.4rem 1rem;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .package-name {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .package-tagline {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .package-price {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--color-accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .package-price-note {
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .package-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            color: var(--color-accent);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .package-cta {
+            display: block;
+            text-align: center;
+            padding: 1.2rem 2rem;
+            background: var(--color-text);
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .package-cta:hover {
+            background: var(--color-accent);
+        }
+
+        /* Process section */
+        .process {
+            padding: 10rem 5%;
+            background: var(--color-cream);
+        }
+
+        .process-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 5rem;
+        }
+
+        .process-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .process-header h2 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .process-step h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Add-ons */
+        .addons {
+            padding: 8rem 5%;
+            background: var(--color-bg);
+        }
+
+        .addons-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .addons-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+        }
+
+        .addons-header h2 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .addon-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--color-border);
+            background: var(--color-white);
+        }
+
+        .addon-item span:first-child {
+            font-size: 0.95rem;
+        }
+
+        .addon-item span:last-child {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--color-accent);
+        }
+
+        /* CTA */
+        .services-cta {
+            padding: 10rem 5%;
+            background: var(--color-white);
+            text-align: center;
+        }
+
+        .services-cta h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .services-cta h2 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .services-cta p {
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* Portfolio Examples Section */
+        .portfolio-examples {
+            padding: 8rem 5%;
+            background: var(--color-cream);
+        }
+
+        .portfolio-examples-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .portfolio-examples-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-examples-header h2 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .portfolio-examples-header p {
+            color: var(--color-text-light);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .portfolio-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12);
+        }
+
+        .portfolio-preview {
+            aspect-ratio: 4/3;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-preview-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portfolio-card:hover .portfolio-preview-bg {
+            transform: scale(1.05);
+        }
+
+        /* Paws & Peace Preview */
+        .portfolio-card.paws-peace .portfolio-preview-bg {
+            background: linear-gradient(135deg, #8B9F82 0%, #6B7F62 100%);
+        }
+
+        /* Seva Wellness Preview */
+        .portfolio-card.seva-wellness .portfolio-preview-bg {
+            background: linear-gradient(135deg, #C4A38B 0%, #A88B73 100%);
+        }
+
+        .portfolio-preview-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .preview-logo {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .preview-logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .preview-brand {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-tagline {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .portfolio-preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.4s ease;
+        }
+
+        .portfolio-card:hover .portfolio-preview-overlay {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .preview-view-btn {
+            padding: 0.9rem 1.8rem;
+            background: white;
+            color: var(--color-text);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: 30px;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portfolio-card:hover .preview-view-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-info {
+            padding: 1.75rem 2rem;
+            background: var(--color-white);
+        }
+
+        .portfolio-info-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .portfolio-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--color-text);
+        }
+
+        .portfolio-arrow {
+            width: 24px;
+            height: 24px;
+            color: var(--color-accent);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card:hover .portfolio-arrow {
+            transform: translate(4px, -4px);
+        }
+
+        .portfolio-category {
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .additional-services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Additional Services Section */
+        .additional-services {
+            padding: 8rem 5%;
+            background: var(--color-white);
+        }
+
+        .additional-services-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .additional-services-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .additional-services-header h2 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .additional-services-header p {
+            color: var(--color-text-light);
+            font-weight: 300;
+        }
+
+        .additional-services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            padding: 2.5rem;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--color-accent);
+            transition: height 0.4s ease;
+        }
+
+        .service-item:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+        }
+
+        .service-item:hover::before {
+            height: 100%;
+        }
+
+        .service-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .service-item h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .service-item-price {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--color-accent);
+            white-space: nowrap;
+        }
+
+        .service-item p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+
+    <header>
+        <a href="index.html" class="logo">Studio Ash</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="shop.html">Shop</a>
+            <a href="work.html">Work</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html" onclick="closeMenu()">Home</a>
+        <a href="about.html" onclick="closeMenu()">About</a>
+        <a href="services.html" onclick="closeMenu()">Services</a>
+        <a href="shop.html" onclick="closeMenu()">Shop</a>
+        <a href="work.html" onclick="closeMenu()">Work</a>
+        <a href="contact.html" onclick="closeMenu()">Contact</a>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <p class="section-label reveal" style="justify-content: center;">Work With Me</p>
+        <h1 class="reveal">Custom <em>Design</em></h1>
+        <p class="reveal">Bespoke brand identity and website design, tailored to your business.</p>
+    </div>
+
+    <!-- Intro -->
+    <div class="services-intro">
+        <p class="reveal">Every project is different, but my process stays the same: understand your business deeply, design with intention, and deliver work that positions you as the premium choice in your market.</p>
+    </div>
+
+    <!-- Packages -->
+    <section class="packages">
+        <div class="packages-grid">
+            <!-- Brand Identity -->
+            <div class="package-card reveal">
+                <h3 class="package-name">Brand Identity</h3>
+                <p class="package-tagline">For businesses ready to look the part</p>
+                <div class="package-price">$1,200</div>
+                <p class="package-price-note">Starting price</p>
+                <ul class="package-features">
+                    <li>Logo design (primary + variations)</li>
+                    <li>Colour palette</li>
+                    <li>Typography selection</li>
+                    <li>Brand guidelines PDF</li>
+                    <li>Social media profile graphics</li>
+                    <li>2 rounds of revisions</li>
+                </ul>
+                <a href="mailto:hello@ashandhound.com?subject=Brand Identity Enquiry" class="package-cta">Enquire Now</a>
+            </div>
+
+            <!-- Full Package -->
+            <div class="package-card featured reveal">
+                <h3 class="package-name">Brand + Website</h3>
+                <p class="package-tagline">The full transformation</p>
+                <div class="package-price">$2,800</div>
+                <p class="package-price-note">Starting price</p>
+                <ul class="package-features">
+                    <li>Everything in Brand Identity</li>
+                    <li>5-page custom website</li>
+                    <li>Mobile-responsive design</li>
+                    <li>Contact form setup</li>
+                    <li>Basic SEO setup</li>
+                    <li>1 month post-launch support</li>
+                </ul>
+                <a href="mailto:hello@ashandhound.com?subject=Brand + Website Enquiry" class="package-cta">Enquire Now</a>
+            </div>
+
+            <!-- Website Only -->
+            <div class="package-card reveal">
+                <h3 class="package-name">Website Design</h3>
+                <p class="package-tagline">For brands that already have their identity</p>
+                <div class="package-price">$2,000</div>
+                <p class="package-price-note">Starting price</p>
+                <ul class="package-features">
+                    <li>5-page custom website</li>
+                    <li>Mobile-responsive design</li>
+                    <li>Built on Squarespace or custom</li>
+                    <li>Contact form setup</li>
+                    <li>Basic SEO setup</li>
+                    <li>Video walkthrough for editing</li>
+                </ul>
+                <a href="mailto:hello@ashandhound.com?subject=Website Design Enquiry" class="package-cta">Enquire Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Examples -->
+    <section class="portfolio-examples">
+        <div class="portfolio-examples-header">
+            <p class="section-label reveal" style="justify-content: center;">Web Development</p>
+            <h2 class="reveal">See what's <em>possible</em></h2>
+            <p class="reveal">Premium website design that elevates your brand and converts visitors into clients.</p>
+        </div>
+        <div class="portfolio-grid">
+            <!-- Paws & Peace -->
+            <a href="portfolio/paws-and-peace/index.html" class="portfolio-card paws-peace reveal" target="_blank">
+                <div class="portfolio-preview">
+                    <div class="portfolio-preview-bg"></div>
+                    <div class="portfolio-preview-content">
+                        <div class="preview-logo">
+                            <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M25 5C15 5 7 13 7 23C7 35 18 45 25 48C32 45 43 35 43 23C43 13 35 5 25 5Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <circle cx="18" cy="20" r="3" fill="currentColor"/>
+                                <circle cx="32" cy="20" r="3" fill="currentColor"/>
+                                <ellipse cx="25" cy="28" rx="5" ry="4" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="preview-brand">Paws & Peace</div>
+                        <div class="preview-tagline">Premium Pet Care</div>
+                    </div>
+                    <div class="portfolio-preview-overlay">
+                        <span class="preview-view-btn">View Live Site</span>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-info-top">
+                        <span class="portfolio-title">Paws & Peace</span>
+                        <svg class="portfolio-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                    <span class="portfolio-category">Pet Services • Brand + Website</span>
+                </div>
+            </a>
+
+            <!-- Seva Wellness -->
+            <a href="portfolio/seva-wellness/index.html" class="portfolio-card seva-wellness reveal" target="_blank">
+                <div class="portfolio-preview">
+                    <div class="portfolio-preview-bg"></div>
+                    <div class="portfolio-preview-content">
+                        <div class="preview-logo">
+                            <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M25 8 Q35 20 25 35 Q15 20 25 8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <circle cx="25" cy="20" r="4" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="preview-brand">Seva Wellness</div>
+                        <div class="preview-tagline">Therapeutic Massage</div>
+                    </div>
+                    <div class="portfolio-preview-overlay">
+                        <span class="preview-view-btn">View Live Site</span>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-info-top">
+                        <span class="portfolio-title">Seva Wellness</span>
+                        <svg class="portfolio-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                    <span class="portfolio-category">Wellness • Brand + Website</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process">
+        <div class="process-header">
+            <p class="section-label reveal" style="justify-content: center;">The Process</p>
+            <h2 class="reveal">From invisible to <em>unforgettable</em></h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-step reveal">
+                <div class="step-number">01</div>
+                <h3>Discovery</h3>
+                <p>We dig into your business, clients, and what makes you different. Understanding before creating.</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-number">02</div>
+                <h3>Strategy</h3>
+                <p>I develop the visual direction and positioning that will set you apart in your market.</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-number">03</div>
+                <h3>Design</h3>
+                <p>Bringing the strategy to life. You'll see concepts, give feedback, and watch it come together.</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-number">04</div>
+                <h3>Launch</h3>
+                <p>Final files delivered, website live, and you're ready to show up like the premium brand you are.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services -->
+    <section class="additional-services">
+        <div class="additional-services-header">
+            <p class="section-label reveal" style="justify-content: center;">More Services</p>
+            <h2 class="reveal">Beyond brand & <em>web</em></h2>
+            <p class="reveal">Standalone design services for businesses that need specific deliverables.</p>
+        </div>
+        <div class="additional-services-grid">
+            <div class="service-item reveal">
+                <div class="service-item-header">
+                    <h3>Social Media Design</h3>
+                    <span class="service-item-price">from $300/mo</span>
+                </div>
+                <p>Consistent, scroll-stopping content designed for your brand. Monthly packages include Instagram posts, stories, and templates you can reuse. No more staring at a blank Canva screen.</p>
+            </div>
+            <div class="service-item reveal">
+                <div class="service-item-header">
+                    <h3>Pitch Deck Design</h3>
+                    <span class="service-item-price">from $600</span>
+                </div>
+                <p>Investor presentations, client proposals, and sales decks that actually look impressive. Clear structure, polished visuals, designed to help you close.</p>
+            </div>
+            <div class="service-item reveal">
+                <div class="service-item-header">
+                    <h3>Email Template Design</h3>
+                    <span class="service-item-price">from $200</span>
+                </div>
+                <p>Welcome sequences, newsletters, and promotional emails that match your brand. Designed for Mailchimp, Flodesk, or whatever platform you use.</p>
+            </div>
+            <div class="service-item reveal">
+                <div class="service-item-header">
+                    <h3>UI/UX Design</h3>
+                    <span class="service-item-price">from $1,500</span>
+                </div>
+                <p>App screens, dashboards, and digital product interfaces. User-friendly design that looks beautiful and actually works.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-ons -->
+    <section class="addons">
+        <div class="addons-header">
+            <p class="section-label reveal" style="justify-content: center;">Add-Ons</p>
+            <h2 class="reveal">Need something <em>extra?</em></h2>
+        </div>
+        <div class="addons-grid">
+            <div class="addon-item reveal">
+                <span>Business card design</span>
+                <span>$150</span>
+            </div>
+            <div class="addon-item reveal">
+                <span>Email signature</span>
+                <span>$75</span>
+            </div>
+            <div class="addon-item reveal">
+                <span>Social media templates (10)</span>
+                <span>$200</span>
+            </div>
+            <div class="addon-item reveal">
+                <span>Additional website page</span>
+                <span>$250</span>
+            </div>
+            <div class="addon-item reveal">
+                <span>Letterhead design</span>
+                <span>$100</span>
+            </div>
+            <div class="addon-item reveal">
+                <span>Rush delivery (under 2 weeks)</span>
+                <span>+30%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="services-cta">
+        <h2 class="reveal">Ready to <em>get started?</em></h2>
+        <p class="reveal">Tell me about your project. I'll get back to you within 48 hours with next steps.</p>
+        <a href="contact.html" class="btn btn-primary reveal"><span>Send an Enquiry</span></a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">Studio Ash</div>
+                <p class="footer-tagline">Brands that make people stop scrolling</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigate</h4>
+                <a href="services.html">Services</a>
+                <a href="shop.html">Shop</a>
+                <a href="work.html">Work</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-right">
+                <div class="footer-social">
+                    <a href="https://instagram.com/studio.ash" target="_blank">IG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileNav = document.getElementById('mobileNav');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = cursorX - 20 + 'px';
+            cursor.style.top = cursorY - 20 + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.querySelectorAll('a, button, .package-card, .portfolio-card, .service-item').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

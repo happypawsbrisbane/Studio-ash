@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ash & Hound Business Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sage: #9CAF88;
+            --sage-light: #b8caa5;
+            --sage-dark: #7a9066;
+            --cream: #FAF8F5;
+            --cream-dark: #f0ebe4;
+            --charcoal: #333333;
+            --charcoal-light: #555555;
+            --white: #ffffff;
+            --error: #e74c3c;
+            --warning: #f39c12;
+            --success: #27ae60;
+            --info: #3498db;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--cream);
+            color: var(--charcoal);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--cream-dark);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--sage);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--charcoal);
+        }
+
+        .logo span {
+            font-size: 0.75rem;
+            color: var(--charcoal-light);
+            font-family: sans-serif;
+        }
+
+        .sync-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--charcoal-light);
+            padding: 0.5rem 1rem;
+            background: var(--cream);
+            border-radius: 20px;
+        }
+
+        .sync-status.synced { color: var(--success); }
+        .sync-status.syncing { color: var(--warning); }
+        .sync-status.error { color: var(--error); }
+
+        .sync-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--cream-dark);
+            padding: 0 2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0;
+            list-style: none;
+        }
+
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--charcoal-light);
+            transition: all 0.2s;
+        }
+
+        .nav-tab:hover {
+            color: var(--charcoal);
+            background: var(--cream);
+        }
+
+        .nav-tab.active {
+            color: var(--sage-dark);
+            border-bottom-color: var(--sage);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Dashboard Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .stat-card h3 {
+            font-size: 0.875rem;
+            color: var(--charcoal-light);
+            font-family: sans-serif;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .stat-change {
+            font-size: 0.75rem;
+            color: var(--success);
+            margin-top: 0.25rem;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--sage);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: var(--sage-dark);
+            transform: translateY(-1px);
+        }
+
+        .action-btn.secondary {
+            background: var(--white);
+            color: var(--charcoal);
+            border: 1px solid var(--cream-dark);
+        }
+
+        .action-btn.secondary:hover {
+            background: var(--cream);
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--charcoal);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: var(--charcoal-light);
+            margin-top: 0.25rem;
+        }
+
+        .card-body {
+            font-size: 0.875rem;
+            color: var(--charcoal-light);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--cream-dark);
+        }
+
+        .card-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--cream-dark);
+            background: var(--white);
+            color: var(--charcoal);
+            cursor: pointer;
+            font-size: 0.8125rem;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            transition: all 0.2s;
+        }
+
+        .card-btn:hover {
+            background: var(--cream);
+        }
+
+        .card-btn.primary {
+            background: var(--sage);
+            color: white;
+            border-color: var(--sage);
+        }
+
+        .card-btn.primary:hover {
+            background: var(--sage-dark);
+        }
+
+        /* Pet Tags */
+        .pet-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .pet-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            background: var(--cream);
+            border-radius: 20px;
+            font-size: 0.8125rem;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge.confirmed { background: #d4edda; color: #155724; }
+        .badge.pending { background: #fff3cd; color: #856404; }
+        .badge.completed { background: #cce5ff; color: #004085; }
+        .badge.cancelled { background: #f8d7da; color: #721c24; }
+        .badge.paid { background: #d4edda; color: #155724; }
+        .badge.partial { background: #fff3cd; color: #856404; }
+        .badge.unpaid { background: #f8d7da; color: #721c24; }
+
+        /* Table Styles */
+        .table-container {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        th {
+            background: var(--cream);
+            font-weight: 600;
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--charcoal-light);
+        }
+
+        tr:hover {
+            background: var(--cream);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: all 0.2s;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--cream-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 1.25rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--charcoal-light);
+            padding: 0.5rem;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--cream-dark);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--cream-dark);
+            border-radius: 8px;
+            font-size: 0.9375rem;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--sage);
+            box-shadow: 0 0 0 3px rgba(156, 175, 136, 0.2);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Pet Input Section */
+        .pets-section {
+            background: var(--cream);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .pet-entry {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            align-items: end;
+        }
+
+        .pet-entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .add-pet-btn {
+            background: none;
+            border: 1px dashed var(--sage);
+            color: var(--sage-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            margin-top: 0.75rem;
+        }
+
+        .remove-pet-btn {
+            background: none;
+            border: none;
+            color: var(--error);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Line Items */
+        .line-items {
+            background: var(--cream);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .line-item {
+            display: grid;
+            grid-template-columns: 1fr 120px auto;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            align-items: end;
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .toast {
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.success { border-left: 4px solid var(--success); }
+        .toast.error { border-left: 4px solid var(--error); }
+        .toast.info { border-left: 4px solid var(--info); }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Search Input */
+        .search-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            border: 1px solid var(--cream-dark);
+            border-radius: 8px;
+            font-size: 0.9375rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--charcoal-light);
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--cream-dark);
+            border-top-color: var(--sage);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Contact Links */
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            color: var(--sage-dark);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Invoice Preview */
+        .invoice-preview {
+            background: var(--white);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--sage);
+        }
+
+        .invoice-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .invoice-table {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .invoice-table th {
+            background: var(--cream);
+            text-align: left;
+            padding: 0.75rem;
+        }
+
+        .invoice-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .invoice-totals {
+            text-align: right;
+            margin-bottom: 2rem;
+        }
+
+        .invoice-totals p {
+            margin-bottom: 0.5rem;
+        }
+
+        .invoice-totals .total {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--sage-dark);
+        }
+
+        /* Print Styles */
+        @media print {
+            .header, .nav, .no-print { display: none !important; }
+            .main { padding: 0; }
+            .invoice-preview { box-shadow: none; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header { padding: 1rem; }
+            .nav { padding: 0 1rem; }
+            .nav-tab { padding: 0.75rem 1rem; }
+            .nav-tab span { display: none; }
+            .main { padding: 1rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-row { grid-template-columns: 1fr; }
+            .pet-entry { grid-template-columns: 1fr 1fr; }
+            .line-item { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--charcoal-light);
+        }
+
+        .empty-state i {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <i data-lucide="paw-print" style="width:24px;height:24px"></i>
+            </div>
+            <div>
+                <h1>Ash & Hound</h1>
+                <span>Business Hub</span>
+            </div>
+        </div>
+        <div id="syncStatus" class="sync-status synced">
+            <span class="sync-dot"></span>
+            <span>Connected to Cloud</span>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul class="nav-tabs">
+            <li class="nav-tab active" data-view="dashboard">
+                <i data-lucide="layout-dashboard" style="width:18px;height:18px"></i>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-tab" data-view="clients">
+                <i data-lucide="users" style="width:18px;height:18px"></i>
+                <span>Clients</span>
+            </li>
+            <li class="nav-tab" data-view="bookings">
+                <i data-lucide="calendar" style="width:18px;height:18px"></i>
+                <span>Bookings</span>
+            </li>
+            <li class="nav-tab" data-view="invoices">
+                <i data-lucide="file-text" style="width:18px;height:18px"></i>
+                <span>Invoices</span>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Dashboard View -->
+        <div id="dashboardView" class="view">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Clients</h3>
+                    <div id="statClients" class="stat-value">-</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Bookings</h3>
+                    <div id="statBookings" class="stat-value">-</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending Invoices</h3>
+                    <div id="statInvoices" class="stat-value">-</div>
+                </div>
+                <div class="stat-card">
+                    <h3>This Month</h3>
+                    <div id="statRevenue" class="stat-value">-</div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <button class="action-btn" onclick="openModal('clientModal')">
+                    <i data-lucide="user-plus" style="width:18px;height:18px"></i>
+                    New Client
+                </button>
+                <button class="action-btn" onclick="openModal('bookingModal')">
+                    <i data-lucide="calendar-plus" style="width:18px;height:18px"></i>
+                    New Booking
+                </button>
+                <button class="action-btn" onclick="openModal('invoiceModal')">
+                    <i data-lucide="file-plus" style="width:18px;height:18px"></i>
+                    New Invoice
+                </button>
+            </div>
+
+            <div class="section-header">
+                <h2>Upcoming Bookings</h2>
+            </div>
+            <div id="upcomingBookings" class="cards-grid">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- Clients View -->
+        <div id="clientsView" class="view" style="display:none">
+            <div class="section-header">
+                <h2>Clients</h2>
+                <button class="action-btn" onclick="openModal('clientModal')">
+                    <i data-lucide="user-plus" style="width:18px;height:18px"></i>
+                    Add Client
+                </button>
+            </div>
+            <div class="search-container">
+                <i data-lucide="search" class="search-icon" style="width:18px;height:18px"></i>
+                <input type="text" id="clientSearch" class="search-input" placeholder="Search clients or pets..." oninput="filterClients()">
+            </div>
+            <div id="clientsGrid" class="cards-grid">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- Bookings View -->
+        <div id="bookingsView" class="view" style="display:none">
+            <div class="section-header">
+                <h2>Bookings</h2>
+                <button class="action-btn" onclick="openModal('bookingModal')">
+                    <i data-lucide="calendar-plus" style="width:18px;height:18px"></i>
+                    Add Booking
+                </button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Service</th>
+                            <th>Dates</th>
+                            <th>Assigned</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable">
+                        <tr><td colspan="7" class="loading"><div class="spinner"></div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Invoices View -->
+        <div id="invoicesView" class="view" style="display:none">
+            <div class="section-header">
+                <h2>Invoices</h2>
+                <button class="action-btn" onclick="openModal('invoiceModal')">
+                    <i data-lucide="file-plus" style="width:18px;height:18px"></i>
+                    Create Invoice
+                </button>
+            </div>
+            <div id="invoicesGrid" class="cards-grid">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Client Modal -->
+    <div id="clientModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="clientModalTitle">Add New Client</h2>
+                <button class="modal-close" onclick="closeModal('clientModal')">
+                    <i data-lucide="x" style="width:24px;height:24px"></i>
+                </button>
+            </div>
+            <form id="clientForm" onsubmit="saveClient(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="clientId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Client Name *</label>
+                            <input type="text" id="clientName" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" id="clientPhone" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="clientEmail" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input type="text" id="clientAddress" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Pets</label>
+                        <div id="petsContainer" class="pets-section">
+                            <!-- Pet entries added dynamically -->
+                        </div>
+                        <button type="button" class="add-pet-btn" onclick="addPetEntry()">
+                            <i data-lucide="plus" style="width:16px;height:16px"></i>
+                            Add Pet
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea id="clientNotes" class="form-textarea" placeholder="Special instructions, key codes, vet details..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="action-btn secondary" onclick="closeModal('clientModal')">Cancel</button>
+                    <button type="submit" class="action-btn">Save Client</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="bookingModalTitle">Add New Booking</h2>
+                <button class="modal-close" onclick="closeModal('bookingModal')">
+                    <i data-lucide="x" style="width:24px;height:24px"></i>
+                </button>
+            </div>
+            <form id="bookingForm" onsubmit="saveBooking(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="bookingId">
+                    <div class="form-group">
+                        <label class="form-label">Client *</label>
+                        <select id="bookingClient" class="form-select" required>
+                            <option value="">Select client...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Service *</label>
+                        <select id="bookingService" class="form-select" required onchange="updateBookingPrice()">
+                            <option value="">Select service...</option>
+                            <option value="Pop In & Play" data-price="45">Pop In & Play - $45</option>
+                            <option value="Extended Visit" data-price="60">Extended Visit (1hr) - $60</option>
+                            <option value="Overnight Stay" data-price="120">Overnight Stay - $120</option>
+                            <option value="24hr Care" data-price="140">24hr Care - $140</option>
+                            <option value="Dog Walk 30min" data-price="30">Dog Walk 30min - $30</option>
+                            <option value="Dog Walk 60min" data-price="45">Dog Walk 60min - $45</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Start Date *</label>
+                            <input type="date" id="bookingStart" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">End Date</label>
+                            <input type="date" id="bookingEnd" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Assigned To</label>
+                            <select id="bookingAssigned" class="form-select">
+                                <option value="Ash">Ash</option>
+                                <option value="Lauren">Lauren</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Price ($)</label>
+                            <input type="number" id="bookingPrice" class="form-input" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <select id="bookingStatus" class="form-select">
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea id="bookingNotes" class="form-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="action-btn secondary" onclick="closeModal('bookingModal')">Cancel</button>
+                    <button type="submit" class="action-btn">Save Booking</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Invoice Modal -->
+    <div id="invoiceModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="invoiceModalTitle">Create Invoice</h2>
+                <button class="modal-close" onclick="closeModal('invoiceModal')">
+                    <i data-lucide="x" style="width:24px;height:24px"></i>
+                </button>
+            </div>
+            <form id="invoiceForm" onsubmit="saveInvoice(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="invoiceId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Client *</label>
+                            <select id="invoiceClient" class="form-select" required>
+                                <option value="">Select client...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Due Date</label>
+                            <input type="date" id="invoiceDue" class="form-input">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Line Items</label>
+                        <div id="lineItemsContainer" class="line-items">
+                            <!-- Line items added dynamically -->
+                        </div>
+                        <button type="button" class="add-pet-btn" onclick="addLineItem()">
+                            <i data-lucide="plus" style="width:16px;height:16px"></i>
+                            Add Item
+                        </button>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Deposit Paid ($)</label>
+                            <input type="number" id="invoiceDeposit" class="form-input" step="0.01" value="0" oninput="updateInvoiceTotal()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select id="invoiceStatus" class="form-select">
+                                <option value="unpaid">Unpaid</option>
+                                <option value="partial">Partial</option>
+                                <option value="paid">Paid</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align:right; font-size:1.125rem; margin-top:1rem;">
+                        <p>Total: <strong id="invoiceTotal">$0.00</strong></p>
+                        <p>Balance Due: <strong id="invoiceBalance">$0.00</strong></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="action-btn secondary" onclick="closeModal('invoiceModal')">Cancel</button>
+                    <button type="submit" class="action-btn">Save Invoice</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Invoice Preview Modal -->
+    <div id="invoicePreviewModal" class="modal-overlay">
+        <div class="modal" style="max-width:800px">
+            <div class="modal-header no-print">
+                <h2>Invoice Preview</h2>
+                <button class="modal-close" onclick="closeModal('invoicePreviewModal')">
+                    <i data-lucide="x" style="width:24px;height:24px"></i>
+                </button>
+            </div>
+            <div id="invoicePreviewContent" class="invoice-preview">
+                <!-- Invoice preview content -->
+            </div>
+            <div class="modal-footer no-print">
+                <button class="action-btn secondary" onclick="closeModal('invoicePreviewModal')">Close</button>
+                <button class="action-btn" onclick="window.print()">
+                    <i data-lucide="printer" style="width:18px;height:18px"></i>
+                    Print
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script>
+        // ============================================
+        // SUPABASE CONFIGURATION
+        // ============================================
+        const SUPABASE_URL = 'https://yencoihtrfeuamzzdydb.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InllbmNvaWh0cmZldWFtenpkeWRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQzOTM3MzQsImV4cCI6MjA3OTk2OTczNH0.ylVLEfshAmpMwFip4x-OHM63eLK9Le2ZvXxYV-qxtOQ';
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // ============================================
+        // DATA STORAGE
+        // ============================================
+        let clients = [];
+        let bookings = [];
+        let invoices = [];
+        let currentView = 'dashboard';
+
+        // ============================================
+        // INITIALIZE APP
+        // ============================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            lucide.createIcons();
+            await initializeDatabase();
+            await loadAllData();
+            setupNavigation();
+            renderDashboard();
+        });
+
+        // ============================================
+        // DATABASE INITIALIZATION
+        // ============================================
+        async function initializeDatabase() {
+            updateSyncStatus('syncing', 'Connecting...');
+            
+            try {
+                // Check if tables exist by trying to select from them
+                const { data: testClients, error: clientsError } = await supabase
+                    .from('clients')
+                    .select('id')
+                    .limit(1);
+                
+                if (clientsError && clientsError.code === '42P01') {
+                    // Tables don't exist - we need to create them
+                    showToast('Database tables need to be created. Please run the setup SQL.', 'error');
+                    updateSyncStatus('error', 'Setup Required');
+                    return;
+                }
+                
+                updateSyncStatus('synced', 'Connected to Cloud');
+            } catch (error) {
+                console.error('Database init error:', error);
+                updateSyncStatus('error', 'Connection Error');
+                // Fall back to localStorage
+                loadFromLocalStorage();
+            }
+        }
+
+        // ============================================
+        // DATA LOADING
+        // ============================================
+        async function loadAllData() {
+            try {
+                await Promise.all([
+                    loadClients(),
+                    loadBookings(),
+                    loadInvoices()
+                ]);
+                updateStats();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                loadFromLocalStorage();
+            }
+        }
+
+        async function loadClients() {
+            const { data, error } = await supabase
+                .from('clients')
+                .select('*')
+                .order('name');
+            
+            if (error) throw error;
+            clients = data || [];
+            renderClients();
+            populateClientDropdowns();
+        }
+
+        async function loadBookings() {
+            const { data, error } = await supabase
+                .from('bookings')
+                .select('*, clients(name)')
+                .order('start_date', { ascending: true });
+            
+            if (error) throw error;
+            bookings = data || [];
+            renderBookings();
+        }
+
+        async function loadInvoices() {
+            const { data, error } = await supabase
+                .from('invoices')
+                .select('*, clients(name)')
+                .order('created_at', { ascending: false });
+            
+            if (error) throw error;
+            invoices = data || [];
+            renderInvoices();
+        }
+
+        function loadFromLocalStorage() {
+            clients = JSON.parse(localStorage.getItem('ashHoundClients') || '[]');
+            bookings = JSON.parse(localStorage.getItem('ashHoundBookings') || '[]');
+            invoices = JSON.parse(localStorage.getItem('ashHoundInvoices') || '[]');
+            
+            renderClients();
+            renderBookings();
+            renderInvoices();
+            populateClientDropdowns();
+            updateStats();
+            
+            updateSyncStatus('error', 'Offline Mode');
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('ashHoundClients', JSON.stringify(clients));
+            localStorage.setItem('ashHoundBookings', JSON.stringify(bookings));
+            localStorage.setItem('ashHoundInvoices', JSON.stringify(invoices));
+        }
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
+        function setupNavigation() {
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const view = tab.dataset.view;
+                    switchView(view);
+                });
+            });
+        }
+
+        function switchView(view) {
+            currentView = view;
+            
+            // Update nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.view === view);
+            });
+            
+            // Update views
+            document.querySelectorAll('.view').forEach(v => {
+                v.style.display = 'none';
+            });
+            document.getElementById(view + 'View').style.display = 'block';
+            
+            // Re-render icons
+            lucide.createIcons();
+        }
+
+        // ============================================
+        // RENDER FUNCTIONS
+        // ============================================
+        function renderDashboard() {
+            updateStats();
+            renderUpcomingBookings();
+        }
+
+        function updateStats() {
+            document.getElementById('statClients').textContent = clients.length;
+            
+            const activeBookings = bookings.filter(b => 
+                b.status === 'confirmed' || b.status === 'pending'
+            ).length;
+            document.getElementById('statBookings').textContent = activeBookings;
+            
+            const pendingInvoices = invoices.filter(i => 
+                i.status === 'unpaid' || i.status === 'partial'
+            ).length;
+            document.getElementById('statInvoices').textContent = pendingInvoices;
+            
+            // Calculate this month's revenue
+            const now = new Date();
+            const thisMonth = invoices
+                .filter(i => {
+                    const date = new Date(i.created_at);
+                    return date.getMonth() === now.getMonth() && 
+                           date.getFullYear() === now.getFullYear();
+                })
+                .reduce((sum, i) => sum + (i.amount || 0), 0);
+            document.getElementById('statRevenue').textContent = '$' + thisMonth.toFixed(0);
+        }
+
+        function renderUpcomingBookings() {
+            const container = document.getElementById('upcomingBookings');
+            const today = new Date().toISOString().split('T')[0];
+            
+            const upcoming = bookings
+                .filter(b => b.start_date >= today && b.status !== 'cancelled')
+                .slice(0, 5);
+            
+            if (upcoming.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i data-lucide="calendar" style="width:64px;height:64px"></i>
+                        <h3>No Upcoming Bookings</h3>
+                        <p>Your schedule is clear!</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+            
+            container.innerHTML = upcoming.map(b => {
+                const client = clients.find(c => c.id === b.client_id) || b.clients || {};
+                return `
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">${client.name || 'Unknown'}</div>
+                                <div class="card-subtitle">${b.service}</div>
+                            </div>
+                            <span class="badge ${b.status}">${b.status}</span>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>${formatDate(b.start_date)}</strong>${b.end_date ? ' → ' + formatDate(b.end_date) : ''}</p>
+                            <p>Assigned to: ${b.assigned_to || 'Ash'}</p>
+                            <p>$${b.price || 0}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            lucide.createIcons();
+        }
+
+        function renderClients() {
+            const container = document.getElementById('clientsGrid');
+            
+            if (clients.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i data-lucide="users" style="width:64px;height:64px"></i>
+                        <h3>No Clients Yet</h3>
+                        <p>Add your first client to get started!</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+            
+            container.innerHTML = clients.map(c => {
+                const pets = c.pets || [];
+                return `
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">${c.name}</div>
+                                <div class="card-subtitle">${c.address || ''}</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            ${c.phone ? `<a href="tel:${c.phone}" class="contact-link"><i data-lucide="phone" style="width:14px;height:14px"></i> ${c.phone}</a><br>` : ''}
+                            ${c.email ? `<a href="mailto:${c.email}" class="contact-link"><i data-lucide="mail" style="width:14px;height:14px"></i> ${c.email}</a>` : ''}
+                            ${pets.length > 0 ? `
+                                <div class="pet-tags">
+                                    ${pets.map(p => `<span class="pet-tag"><i data-lucide="${p.type === 'Cat' ? 'cat' : 'dog'}" style="width:14px;height:14px"></i> ${p.name}${p.breed ? ' (' + p.breed + ')' : ''}</span>`).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="card-actions">
+                            <button class="card-btn" onclick="editClient('${c.id}')">
+                                <i data-lucide="edit" style="width:14px;height:14px"></i> Edit
+                            </button>
+                            <button class="card-btn" onclick="deleteClient('${c.id}')">
+                                <i data-lucide="trash-2" style="width:14px;height:14px"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            lucide.createIcons();
+        }
+
+        function filterClients() {
+            const search = document.getElementById('clientSearch').value.toLowerCase();
+            const container = document.getElementById('clientsGrid');
+            
+            const filtered = clients.filter(c => {
+                const petNames = (c.pets || []).map(p => p.name.toLowerCase()).join(' ');
+                return c.name.toLowerCase().includes(search) || 
+                       petNames.includes(search) ||
+                       (c.address || '').toLowerCase().includes(search);
+            });
+            
+            // Re-render with filtered list
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No Results</h3>
+                        <p>No clients match your search.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filtered.map(c => {
+                const pets = c.pets || [];
+                return `
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">${c.name}</div>
+                                <div class="card-subtitle">${c.address || ''}</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            ${c.phone ? `<a href="tel:${c.phone}" class="contact-link"><i data-lucide="phone" style="width:14px;height:14px"></i> ${c.phone}</a><br>` : ''}
+                            ${c.email ? `<a href="mailto:${c.email}" class="contact-link"><i data-lucide="mail" style="width:14px;height:14px"></i> ${c.email}</a>` : ''}
+                            ${pets.length > 0 ? `
+                                <div class="pet-tags">
+                                    ${pets.map(p => `<span class="pet-tag"><i data-lucide="${p.type === 'Cat' ? 'cat' : 'dog'}" style="width:14px;height:14px"></i> ${p.name}${p.breed ? ' (' + p.breed + ')' : ''}</span>`).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="card-actions">
+                            <button class="card-btn" onclick="editClient('${c.id}')">
+                                <i data-lucide="edit" style="width:14px;height:14px"></i> Edit
+                            </button>
+                            <button class="card-btn" onclick="deleteClient('${c.id}')">
+                                <i data-lucide="trash-2" style="width:14px;height:14px"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            lucide.createIcons();
+        }
+
+        function renderBookings() {
+            const tbody = document.getElementById('bookingsTable');
+            
+            if (bookings.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="empty-state">
+                            <h3>No Bookings Yet</h3>
+                            <p>Create your first booking!</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = bookings.map(b => {
+                const client = clients.find(c => c.id === b.client_id) || b.clients || {};
+                return `
+                    <tr>
+                        <td><strong>${client.name || 'Unknown'}</strong></td>
+                        <td>${b.service}</td>
+                        <td>${formatDate(b.start_date)}${b.end_date ? ' → ' + formatDate(b.end_date) : ''}</td>
+                        <td>${b.assigned_to || 'Ash'}</td>
+                        <td>$${b.price || 0}</td>
+                        <td><span class="badge ${b.status}">${b.status}</span></td>
+                        <td>
+                            <button class="card-btn" onclick="editBooking('${b.id}')">
+                                <i data-lucide="edit" style="width:14px;height:14px"></i>
+                            </button>
+                            <button class="card-btn" onclick="deleteBooking('${b.id}')">
+                                <i data-lucide="trash-2" style="width:14px;height:14px"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            
+            lucide.createIcons();
+        }
+
+        function renderInvoices() {
+            const container = document.getElementById('invoicesGrid');
+            
+            if (invoices.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i data-lucide="file-text" style="width:64px;height:64px"></i>
+                        <h3>No Invoices Yet</h3>
+                        <p>Create your first invoice!</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+            
+            container.innerHTML = invoices.map(inv => {
+                const client = clients.find(c => c.id === inv.client_id) || inv.clients || {};
+                const balance = (inv.amount || 0) - (inv.deposit_paid || 0);
+                return `
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Invoice #${String(inv.invoice_number || '').padStart(5, '0')}</div>
+                                <div class="card-subtitle">${client.name || 'Unknown'}</div>
+                            </div>
+                            <span class="badge ${inv.status}">${inv.status}</span>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Total:</strong> $${(inv.amount || 0).toFixed(2)}</p>
+                            <p><strong>Deposit:</strong> $${(inv.deposit_paid || 0).toFixed(2)}</p>
+                            <p><strong>Balance:</strong> $${balance.toFixed(2)}</p>
+                            ${inv.due_date ? `<p><strong>Due:</strong> ${formatDate(inv.due_date)}</p>` : ''}
+                        </div>
+                        <div class="card-actions">
+                            <button class="card-btn primary" onclick="previewInvoice('${inv.id}')">
+                                <i data-lucide="eye" style="width:14px;height:14px"></i> View
+                            </button>
+                            <button class="card-btn" onclick="editInvoice('${inv.id}')">
+                                <i data-lucide="edit" style="width:14px;height:14px"></i> Edit
+                            </button>
+                            <button class="card-btn" onclick="markInvoicePaid('${inv.id}')">
+                                <i data-lucide="check" style="width:14px;height:14px"></i> Paid
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            lucide.createIcons();
+        }
+
+        // ============================================
+        // CLIENT CRUD
+        // ============================================
+        async function saveClient(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('clientId').value;
+            const pets = [];
+            document.querySelectorAll('.pet-entry').forEach(entry => {
+                const name = entry.querySelector('.pet-name')?.value;
+                if (name) {
+                    pets.push({
+                        name: name,
+                        type: entry.querySelector('.pet-type')?.value || 'Dog',
+                        breed: entry.querySelector('.pet-breed')?.value || ''
+                    });
+                }
+            });
+            
+            const clientData = {
+                name: document.getElementById('clientName').value,
+                email: document.getElementById('clientEmail').value,
+                phone: document.getElementById('clientPhone').value,
+                address: document.getElementById('clientAddress').value,
+                pets: pets,
+                notes: document.getElementById('clientNotes').value
+            };
+            
+            try {
+                if (id) {
+                    // Update existing
+                    const { error } = await supabase
+                        .from('clients')
+                        .update(clientData)
+                        .eq('id', id);
+                    if (error) throw error;
+                    showToast('Client updated!', 'success');
+                } else {
+                    // Create new
+                    const { error } = await supabase
+                        .from('clients')
+                        .insert([clientData]);
+                    if (error) throw error;
+                    showToast('Client added!', 'success');
+                }
+                
+                await loadClients();
+                closeModal('clientModal');
+                updateStats();
+            } catch (error) {
+                console.error('Error saving client:', error);
+                showToast('Error saving client: ' + error.message, 'error');
+            }
+        }
+
+        function editClient(id) {
+            const client = clients.find(c => c.id === id);
+            if (!client) return;
+            
+            document.getElementById('clientId').value = client.id;
+            document.getElementById('clientName').value = client.name || '';
+            document.getElementById('clientEmail').value = client.email || '';
+            document.getElementById('clientPhone').value = client.phone || '';
+            document.getElementById('clientAddress').value = client.address || '';
+            document.getElementById('clientNotes').value = client.notes || '';
+            document.getElementById('clientModalTitle').textContent = 'Edit Client';
+            
+            // Load pets
+            const petsContainer = document.getElementById('petsContainer');
+            petsContainer.innerHTML = '';
+            (client.pets || []).forEach(pet => addPetEntry(pet));
+            if ((client.pets || []).length === 0) addPetEntry();
+            
+            openModal('clientModal');
+        }
+
+        async function deleteClient(id) {
+            if (!confirm('Delete this client? This cannot be undone.')) return;
+            
+            try {
+                const { error } = await supabase
+                    .from('clients')
+                    .delete()
+                    .eq('id', id);
+                if (error) throw error;
+                
+                await loadClients();
+                updateStats();
+                showToast('Client deleted', 'success');
+            } catch (error) {
+                showToast('Error deleting client: ' + error.message, 'error');
+            }
+        }
+
+        // ============================================
+        // BOOKING CRUD
+        // ============================================
+        async function saveBooking(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('bookingId').value;
+            const bookingData = {
+                client_id: document.getElementById('bookingClient').value,
+                service: document.getElementById('bookingService').value,
+                start_date: document.getElementById('bookingStart').value,
+                end_date: document.getElementById('bookingEnd').value || null,
+                assigned_to: document.getElementById('bookingAssigned').value,
+                price: parseFloat(document.getElementById('bookingPrice').value) || 0,
+                status: document.getElementById('bookingStatus').value,
+                notes: document.getElementById('bookingNotes').value
+            };
+            
+            try {
+                if (id) {
+                    const { error } = await supabase
+                        .from('bookings')
+                        .update(bookingData)
+                        .eq('id', id);
+                    if (error) throw error;
+                    showToast('Booking updated!', 'success');
+                } else {
+                    const { error } = await supabase
+                        .from('bookings')
+                        .insert([bookingData]);
+                    if (error) throw error;
+                    showToast('Booking created!', 'success');
+                }
+                
+                await loadBookings();
+                closeModal('bookingModal');
+                renderDashboard();
+            } catch (error) {
+                console.error('Error saving booking:', error);
+                showToast('Error saving booking: ' + error.message, 'error');
+            }
+        }
+
+        function editBooking(id) {
+            const booking = bookings.find(b => b.id === id);
+            if (!booking) return;
+            
+            document.getElementById('bookingId').value = booking.id;
+            document.getElementById('bookingClient').value = booking.client_id;
+            document.getElementById('bookingService').value = booking.service;
+            document.getElementById('bookingStart').value = booking.start_date;
+            document.getElementById('bookingEnd').value = booking.end_date || '';
+            document.getElementById('bookingAssigned').value = booking.assigned_to || 'Ash';
+            document.getElementById('bookingPrice').value = booking.price || 0;
+            document.getElementById('bookingStatus').value = booking.status;
+            document.getElementById('bookingNotes').value = booking.notes || '';
+            document.getElementById('bookingModalTitle').textContent = 'Edit Booking';
+            
+            openModal('bookingModal');
+        }
+
+        async function deleteBooking(id) {
+            if (!confirm('Delete this booking?')) return;
+            
+            try {
+                const { error } = await supabase
+                    .from('bookings')
+                    .delete()
+                    .eq('id', id);
+                if (error) throw error;
+                
+                await loadBookings();
+                renderDashboard();
+                showToast('Booking deleted', 'success');
+            } catch (error) {
+                showToast('Error deleting booking: ' + error.message, 'error');
+            }
+        }
+
+        function updateBookingPrice() {
+            const select = document.getElementById('bookingService');
+            const option = select.options[select.selectedIndex];
+            const price = option.dataset.price;
+            if (price) {
+                document.getElementById('bookingPrice').value = price;
+            }
+        }
+
+        // ============================================
+        // INVOICE CRUD
+        // ============================================
+        async function saveInvoice(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('invoiceId').value;
+            const items = [];
+            document.querySelectorAll('.line-item').forEach(item => {
+                const desc = item.querySelector('.item-desc')?.value;
+                const amount = parseFloat(item.querySelector('.item-amount')?.value) || 0;
+                if (desc) {
+                    items.push({ description: desc, amount: amount });
+                }
+            });
+            
+            const total = items.reduce((sum, i) => sum + i.amount, 0);
+            const deposit = parseFloat(document.getElementById('invoiceDeposit').value) || 0;
+            
+            // Generate invoice number
+            const maxNum = invoices.reduce((max, i) => Math.max(max, i.invoice_number || 0), 920);
+            
+            const invoiceData = {
+                client_id: document.getElementById('invoiceClient').value,
+                amount: total,
+                deposit_paid: deposit,
+                status: document.getElementById('invoiceStatus').value,
+                due_date: document.getElementById('invoiceDue').value || null,
+                items: items,
+                invoice_number: id ? undefined : maxNum + 1
+            };
+            
+            // Remove undefined fields
+            Object.keys(invoiceData).forEach(key => 
+                invoiceData[key] === undefined && delete invoiceData[key]
+            );
+            
+            try {
+                if (id) {
+                    const { error } = await supabase
+                        .from('invoices')
+                        .update(invoiceData)
+                        .eq('id', id);
+                    if (error) throw error;
+                    showToast('Invoice updated!', 'success');
+                } else {
+                    const { error } = await supabase
+                        .from('invoices')
+                        .insert([invoiceData]);
+                    if (error) throw error;
+                    showToast('Invoice created!', 'success');
+                }
+                
+                await loadInvoices();
+                closeModal('invoiceModal');
+                updateStats();
+            } catch (error) {
+                console.error('Error saving invoice:', error);
+                showToast('Error saving invoice: ' + error.message, 'error');
+            }
+        }
+
+        function editInvoice(id) {
+            const invoice = invoices.find(i => i.id === id);
+            if (!invoice) return;
+            
+            document.getElementById('invoiceId').value = invoice.id;
+            document.getElementById('invoiceClient').value = invoice.client_id;
+            document.getElementById('invoiceDue').value = invoice.due_date || '';
+            document.getElementById('invoiceDeposit').value = invoice.deposit_paid || 0;
+            document.getElementById('invoiceStatus').value = invoice.status;
+            document.getElementById('invoiceModalTitle').textContent = 'Edit Invoice';
+            
+            // Load line items
+            const container = document.getElementById('lineItemsContainer');
+            container.innerHTML = '';
+            (invoice.items || []).forEach(item => addLineItem(item));
+            if ((invoice.items || []).length === 0) addLineItem();
+            
+            updateInvoiceTotal();
+            openModal('invoiceModal');
+        }
+
+        async function markInvoicePaid(id) {
+            try {
+                const invoice = invoices.find(i => i.id === id);
+                const { error } = await supabase
+                    .from('invoices')
+                    .update({ 
+                        status: 'paid',
+                        deposit_paid: invoice.amount
+                    })
+                    .eq('id', id);
+                if (error) throw error;
+                
+                await loadInvoices();
+                updateStats();
+                showToast('Invoice marked as paid!', 'success');
+            } catch (error) {
+                showToast('Error: ' + error.message, 'error');
+            }
+        }
+
+        function previewInvoice(id) {
+            const invoice = invoices.find(i => i.id === id);
+            if (!invoice) return;
+            
+            const client = clients.find(c => c.id === invoice.client_id) || invoice.clients || {};
+            const balance = (invoice.amount || 0) - (invoice.deposit_paid || 0);
+            
+            const content = document.getElementById('invoicePreviewContent');
+            content.innerHTML = `
+                <div class="invoice-header">
+                    <div>
+                        <h1 style="font-size:2rem;margin-bottom:0.5rem">Ash & Hound</h1>
+                        <p>Premium Pet Care, Brisbane</p>
+                        <p>ABN: 18 456 316 527</p>
+                        <p>hello@ashandhound.com | 0401 606 603</p>
+                    </div>
+                    <div style="text-align:right">
+                        <h2 style="color:var(--sage);font-size:1.5rem">INVOICE</h2>
+                        <p><strong>#${String(invoice.invoice_number || '').padStart(5, '0')}</strong></p>
+                        <p>Date: ${formatDate(invoice.created_at)}</p>
+                        ${invoice.due_date ? `<p>Due: ${formatDate(invoice.due_date)}</p>` : ''}
+                    </div>
+                </div>
+                
+                <div class="invoice-details">
+                    <div>
+                        <h3>Bill To:</h3>
+                        <p><strong>${client.name || 'Client'}</strong></p>
+                        ${client.address ? `<p>${client.address}</p>` : ''}
+                        ${client.email ? `<p>${client.email}</p>` : ''}
+                        ${client.phone ? `<p>${client.phone}</p>` : ''}
+                    </div>
+                </div>
+                
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th style="text-align:right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${(invoice.items || []).map(item => `
+                            <tr>
+                                <td>${item.description}</td>
+                                <td style="text-align:right">$${item.amount.toFixed(2)}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+                
+                <div class="invoice-totals">
+                    <p>Subtotal: $${(invoice.amount || 0).toFixed(2)}</p>
+                    <p>Deposit Paid: -$${(invoice.deposit_paid || 0).toFixed(2)}</p>
+                    <p class="total">Balance Due: $${balance.toFixed(2)}</p>
+                </div>
+                
+                <div style="background:var(--cream);padding:1rem;border-radius:8px;margin-top:2rem">
+                    <h4>Payment Details</h4>
+                    <p>Bank Transfer: Ash & Hound | BSB: 064-000 | ACC: 1234 5678</p>
+                    <p>PayID: hello@ashandhound.com</p>
+                </div>
+                
+                <p style="text-align:center;margin-top:2rem;color:var(--charcoal-light)">
+                    Thank you for trusting us with your fur babies! 🐾
+                </p>
+            `;
+            
+            openModal('invoicePreviewModal');
+        }
+
+        function updateInvoiceTotal() {
+            let total = 0;
+            document.querySelectorAll('.line-item .item-amount').forEach(input => {
+                total += parseFloat(input.value) || 0;
+            });
+            
+            const deposit = parseFloat(document.getElementById('invoiceDeposit').value) || 0;
+            const balance = total - deposit;
+            
+            document.getElementById('invoiceTotal').textContent = '$' + total.toFixed(2);
+            document.getElementById('invoiceBalance').textContent = '$' + balance.toFixed(2);
+        }
+
+        // ============================================
+        // HELPER FUNCTIONS
+        // ============================================
+        function populateClientDropdowns() {
+            const options = clients.map(c => 
+                `<option value="${c.id}">${c.name}</option>`
+            ).join('');
+            
+            document.getElementById('bookingClient').innerHTML = 
+                '<option value="">Select client...</option>' + options;
+            document.getElementById('invoiceClient').innerHTML = 
+                '<option value="">Select client...</option>' + options;
+        }
+
+        function addPetEntry(pet = {}) {
+            const container = document.getElementById('petsContainer');
+            const entry = document.createElement('div');
+            entry.className = 'pet-entry';
+            entry.innerHTML = `
+                <div class="form-group" style="margin:0">
+                    <input type="text" class="form-input pet-name" placeholder="Pet name" value="${pet.name || ''}">
+                </div>
+                <div class="form-group" style="margin:0">
+                    <select class="form-select pet-type">
+                        <option value="Dog" ${pet.type === 'Dog' ? 'selected' : ''}>Dog</option>
+                        <option value="Cat" ${pet.type === 'Cat' ? 'selected' : ''}>Cat</option>
+                        <option value="Other" ${pet.type === 'Other' ? 'selected' : ''}>Other</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin:0">
+                    <input type="text" class="form-input pet-breed" placeholder="Breed" value="${pet.breed || ''}">
+                </div>
+                <button type="button" class="remove-pet-btn" onclick="this.parentElement.remove()">
+                    <i data-lucide="x" style="width:18px;height:18px"></i>
+                </button>
+            `;
+            container.appendChild(entry);
+            lucide.createIcons();
+        }
+
+        function addLineItem(item = {}) {
+            const container = document.getElementById('lineItemsContainer');
+            const entry = document.createElement('div');
+            entry.className = 'line-item';
+            entry.innerHTML = `
+                <div class="form-group" style="margin:0">
+                    <input type="text" class="form-input item-desc" placeholder="Description" value="${item.description || ''}" oninput="updateInvoiceTotal()">
+                </div>
+                <div class="form-group" style="margin:0">
+                    <input type="number" class="form-input item-amount" placeholder="$0.00" step="0.01" value="${item.amount || ''}" oninput="updateInvoiceTotal()">
+                </div>
+                <button type="button" class="remove-pet-btn" onclick="this.parentElement.remove(); updateInvoiceTotal()">
+                    <i data-lucide="x" style="width:18px;height:18px"></i>
+                </button>
+            `;
+            container.appendChild(entry);
+            lucide.createIcons();
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-AU', { 
+                day: 'numeric', 
+                month: 'short',
+                year: 'numeric'
+            });
+        }
+
+        // ============================================
+        // MODAL FUNCTIONS
+        // ============================================
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            
+            // Reset form if it's a new entry
+            if (modalId === 'clientModal' && !document.getElementById('clientId').value) {
+                document.getElementById('clientForm').reset();
+                document.getElementById('petsContainer').innerHTML = '';
+                addPetEntry();
+                document.getElementById('clientModalTitle').textContent = 'Add New Client';
+            }
+            if (modalId === 'bookingModal' && !document.getElementById('bookingId').value) {
+                document.getElementById('bookingForm').reset();
+                document.getElementById('bookingModalTitle').textContent = 'Add New Booking';
+            }
+            if (modalId === 'invoiceModal' && !document.getElementById('invoiceId').value) {
+                document.getElementById('invoiceForm').reset();
+                document.getElementById('lineItemsContainer').innerHTML = '';
+                addLineItem();
+                document.getElementById('invoiceModalTitle').textContent = 'Create Invoice';
+                updateInvoiceTotal();
+            }
+            
+            lucide.createIcons();
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            
+            // Clear IDs
+            if (modalId === 'clientModal') document.getElementById('clientId').value = '';
+            if (modalId === 'bookingModal') document.getElementById('bookingId').value = '';
+            if (modalId === 'invoiceModal') document.getElementById('invoiceId').value = '';
+        }
+
+        // Close modal on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+
+        // ============================================
+        // UI HELPERS
+        // ============================================
+        function updateSyncStatus(status, text) {
+            const el = document.getElementById('syncStatus');
+            el.className = 'sync-status ' + status;
+            el.querySelector('span:last-child').textContent = text;
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            toast.innerHTML = `
+                <i data-lucide="${type === 'success' ? 'check-circle' : type === 'error' ? 'alert-circle' : 'info'}" style="width:20px;height:20px"></i>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
