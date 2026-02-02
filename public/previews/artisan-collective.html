@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Artisan Collective</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cream:#F7E8D4;--terracotta:#A0522D;--bark:#3D2E1C;--sand:#EDCFA7;--clay:#C4956A;--linen:#FFF8F0}
+body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--bark);overflow-x:hidden;width:1440px;margin:0 auto}
+nav{display:flex;align-items:center;justify-content:space-between;padding:32px 80px;position:relative;z-index:10}
+.logo{font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--bark);display:flex;align-items:center;gap:14px}
+.logo-mark{width:32px;height:32px;border:2px solid var(--terracotta);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--terracotta)}
+.nav-links{display:flex;gap:36px;font-size:14px;letter-spacing:0.03em;font-weight:400}
+.nav-links a{text-decoration:none;color:var(--bark);opacity:0.55;transition:opacity 0.3s}
+.nav-btn{background:var(--terracotta);color:var(--linen);padding:14px 32px;border-radius:100px;text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.03em;transition:all 0.3s}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:85vh;padding:0 80px;align-items:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--linen);border:1px solid rgba(61,46,28,0.1);border-radius:100px;padding:8px 20px;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--clay);margin-bottom:32px}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terracotta)}
+.hero-text h1{font-family:'Fraunces',serif;font-size:68px;line-height:1.08;font-weight:400;color:var(--bark);margin-bottom:24px}
+.hero-text h1 em{font-style:italic;color:var(--terracotta)}
+.hero-desc{font-size:17px;line-height:1.8;color:var(--bark);opacity:0.5;max-width:440px;margin-bottom:44px}
+.hero-ctas{display:flex;gap:20px;align-items:center}
+.cta-primary{background:var(--bark);color:var(--cream);padding:18px 40px;border-radius:100px;text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.03em;transition:transform 0.3s}
+.cta-outline{border:1.5px solid var(--bark);color:var(--bark);padding:16px 36px;border-radius:100px;text-decoration:none;font-size:14px;font-weight:400;letter-spacing:0.03em;opacity:0.6}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:480px}
+.mosaic-tile{border-radius:20px;overflow:hidden;position:relative}
+.tile-tall{height:280px}
+.tile-short{height:180px}
+.mosaic-tile .fill{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:60px;opacity:0.3}
+.tile-1 .fill{background:linear-gradient(135deg,var(--sand),var(--clay))}
+.tile-2 .fill{background:linear-gradient(135deg,var(--terracotta),var(--bark))}
+.tile-3 .fill{background:linear-gradient(135deg,var(--clay),var(--sand))}
+.tile-4 .fill{background:linear-gradient(135deg,var(--bark),var(--terracotta))}
+.floating-card{position:absolute;background:white;border-radius:16px;padding:18px 24px;box-shadow:0 16px 48px rgba(0,0,0,0.08);z-index:2;animation:float 6s ease-in-out infinite}
+.card-1{top:-10px;right:-20px;animation-delay:0s}
+.card-2{bottom:20px;left:-30px;animation-delay:2.5s}
+.card-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--clay);margin-bottom:4px}
+.card-value{font-family:'Fraunces',serif;font-size:22px;font-weight:500;color:var(--bark)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.marquee{padding:52px 0;border-top:1px solid rgba(61,46,28,0.08);border-bottom:1px solid rgba(61,46,28,0.08);overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-flex;gap:60px;animation:scroll 22s linear infinite;font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:var(--clay);opacity:0.35}
+.marquee-inner span{display:flex;align-items:center;gap:20px}
+.marquee-inner span::after{content:'✦';font-size:10px}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.categories{padding:120px 80px}
+.categories-header{text-align:center;margin-bottom:72px}
+.categories-header h2{font-family:'Fraunces',serif;font-size:42px;font-weight:400;color:var(--bark)}
+.categories-header p{font-size:15px;color:var(--bark);opacity:0.45;margin-top:14px}
+.categories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.cat-card{background:var(--linen);border-radius:24px;padding:44px 32px;text-align:center;border:1px solid rgba(61,46,28,0.04);transition:transform 0.4s}
+.cat-icon{font-size:40px;margin-bottom:20px}
+.cat-card h3{font-family:'Fraunces',serif;font-size:22px;font-weight:500;color:var(--bark);margin-bottom:12px}
+.cat-card p{font-size:14px;line-height:1.7;opacity:0.5}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo"><div class="logo-mark">✦</div>Artisan Collective</div>
+<div class="nav-links"><a href="#">Makers</a><a href="#">Market</a><a href="#">Stories</a><a href="#">About</a></div>
+<a href="#" class="nav-btn">Explore Makers</a>
+</nav>
+<section class="hero">
+<div class="hero-text">
+<div class="hero-badge">Curated Marketplace</div>
+<h1>Handcrafted with <em>intention</em></h1>
+<p class="hero-desc">A curated marketplace celebrating Brisbane's finest makers. Every piece tells a story of craft, care, and community.</p>
+<div class="hero-ctas"><a href="#" class="cta-primary">Shop Collection</a><a href="#" class="cta-outline">Meet the Makers</a></div>
+</div>
+<div class="hero-visual">
+<div class="mosaic">
+<div class="mosaic-tile tile-1 tile-tall"><div class="fill">🏺</div></div>
+<div class="mosaic-tile tile-2 tile-short"><div class="fill">🧶</div></div>
+<div class="mosaic-tile tile-3 tile-short"><div class="fill">🪵</div></div>
+<div class="mosaic-tile tile-4 tile-tall"><div class="fill">🎨</div></div>
+</div>
+<div class="floating-card card-1">
+<div class="card-label">Local Makers</div>
+<div class="card-value">120+ Artisans</div>
+</div>
+<div class="floating-card card-2">
+<div class="card-label">Handmade</div>
+<div class="card-value">2,800+ Products</div>
+</div>
+</div>
+</section>
+<div class="marquee"><div class="marquee-inner"><span>Ceramics</span><span>Woodwork</span><span>Textiles</span><span>Jewellery</span><span>Leather Goods</span><span>Candles & Scent</span><span>Ceramics</span><span>Woodwork</span><span>Textiles</span><span>Jewellery</span><span>Leather Goods</span><span>Candles & Scent</span></div></div>
+<section class="categories">
+<div class="categories-header">
+<h2>Explore by Craft</h2>
+<p>Discover makers across every discipline</p>
+</div>
+<div class="categories-grid">
+<div class="cat-card"><div class="cat-icon">🏺</div><h3>Ceramics & Pottery</h3><p>Handthrown vessels, tableware, and sculptural pieces from Brisbane's most talented potters.</p></div>
+<div class="cat-card"><div class="cat-icon">🪵</div><h3>Woodcraft</h3><p>Sustainably sourced timber transformed into furniture, homewares, and art by master woodworkers.</p></div>
+<div class="cat-card"><div class="cat-icon">🧵</div><h3>Textiles & Fibre</h3><p>From hand-woven tapestries to naturally dyed garments — slow fashion at its finest.</p></div>
+</div>
+</section>
+</body>
+</html>

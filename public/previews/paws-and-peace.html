@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Paws & Peace</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cream:#FDF6EE;--rust:#C4653A;--forest:#2D4A3E;--sand:#E8D5BC;--charcoal:#2B2926;--sage:#8FA68A}
+body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--charcoal);overflow-x:hidden;width:1440px;margin:0 auto}
+nav{display:flex;align-items:center;justify-content:space-between;padding:32px 80px;position:relative;z-index:10}
+.logo{font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--forest);display:flex;align-items:center;gap:12px}
+.logo-paw{width:36px;height:36px;background:var(--rust);border-radius:50%;position:relative}
+.logo-paw::before,.logo-paw::after{content:'';position:absolute;background:var(--rust);border-radius:50%}
+.logo-paw::before{width:14px;height:14px;top:-8px;left:2px}
+.logo-paw::after{width:14px;height:14px;top:-8px;right:2px}
+.nav-links{display:flex;gap:40px;font-size:15px;letter-spacing:0.02em;font-weight:400}
+.nav-links a{text-decoration:none;color:var(--charcoal);opacity:0.7;transition:opacity 0.3s}
+.nav-btn{background:var(--forest);color:#fff;padding:14px 32px;border-radius:100px;text-decoration:none;font-size:14px;font-weight:500;letter-spacing:0.03em}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:85vh;padding:0 80px;align-items:center;position:relative}
+.hero-text h1{font-family:'Fraunces',serif;font-size:72px;line-height:1.05;font-weight:700;color:var(--forest);margin-bottom:24px}
+.hero-text h1 span{color:var(--rust);font-style:italic}
+.hero-text p{font-size:18px;line-height:1.7;color:var(--charcoal);opacity:0.65;max-width:440px;margin-bottom:40px}
+.hero-ctas{display:flex;gap:16px;align-items:center}
+.cta-primary{background:var(--rust);color:#fff;padding:18px 40px;border-radius:100px;text-decoration:none;font-size:15px;font-weight:500;letter-spacing:0.02em;transition:transform 0.3s}
+.cta-secondary{color:var(--forest);text-decoration:none;font-size:15px;font-weight:500;display:flex;align-items:center;gap:8px}
+.cta-secondary span{width:32px;height:32px;border:2px solid var(--forest);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-img-main{width:480px;height:580px;background:var(--sand);border-radius:240px 240px 40px 40px;overflow:hidden;position:relative}
+.hero-img-main::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(45,74,62,0.15));z-index:1}
+.dog-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--sand) 0%,#d4b896 50%,var(--sage) 100%);display:flex;align-items:center;justify-content:center;font-size:200px;opacity:0.3}
+.floating-badge{position:absolute;background:#fff;border-radius:20px;padding:20px 28px;box-shadow:0 20px 60px rgba(0,0,0,0.08);display:flex;align-items:center;gap:14px}
+.badge-1{top:60px;right:-20px;animation:float 6s ease-in-out infinite}
+.badge-2{bottom:100px;left:-40px;animation:float 6s ease-in-out infinite 2s}
+.badge-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.badge-icon.green{background:rgba(143,166,138,0.2)}
+.badge-icon.orange{background:rgba(196,101,58,0.15)}
+.badge-text{font-size:13px;font-weight:500;color:var(--charcoal)}
+.badge-text small{display:block;opacity:0.5;font-weight:400;margin-top:2px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.marquee{padding:60px 0;border-top:1px solid rgba(0,0,0,0.06);border-bottom:1px solid rgba(0,0,0,0.06);overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-flex;gap:60px;animation:scroll 20s linear infinite;font-family:'Fraunces',serif;font-size:20px;color:var(--charcoal);opacity:0.25}
+.marquee-inner span{display:flex;align-items:center;gap:20px}
+.marquee-inner span::after{content:'✦';font-size:12px}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.services{padding:120px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.service-card{background:#fff;border-radius:28px;padding:48px 36px;position:relative;overflow:hidden;transition:transform 0.4s}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--rust);opacity:0;transition:opacity 0.4s}
+.service-num{font-family:'Fraunces',serif;font-size:64px;font-weight:300;color:var(--sand);line-height:1;margin-bottom:20px}
+.service-card h3{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--forest);margin-bottom:12px}
+.service-card p{font-size:15px;line-height:1.7;opacity:0.6}
+.blob-bg{position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:0.15;pointer-events:none}
+.blob-1{background:var(--rust);top:-200px;right:-100px}
+.blob-2{background:var(--sage);bottom:-200px;left:-100px}
+</style>
+</head>
+<body>
+<div class="blob-bg blob-1"></div>
+<div class="blob-bg blob-2"></div>
+<nav>
+<div class="logo"><div class="logo-paw"></div>Paws & Peace</div>
+<div class="nav-links"><a href="#">About</a><a href="#">Services</a><a href="#">Stories</a><a href="#">Blog</a></div>
+<a href="#" class="nav-btn">Book a Stay</a>
+</nav>
+<section class="hero">
+<div class="hero-text">
+<h1>They're family. We get it.</h1>
+<p>Premium pet care rooted in calm, connection, and compassion. Because your best friend deserves more than a kennel — they deserve a sanctuary.</p>
+<div class="hero-ctas"><a href="#" class="cta-primary">Explore Our Care</a><a href="#" class="cta-secondary"><span>▶</span> Watch Our Story</a></div>
+</div>
+<div class="hero-visual">
+<div class="hero-img-main"><div class="dog-placeholder">🐾</div></div>
+<div class="floating-badge badge-1"><div class="badge-icon green">🌿</div><div class="badge-text">Stress-Free Stays<small>Vet-approved methods</small></div></div>
+<div class="floating-badge badge-2"><div class="badge-icon orange">♥</div><div class="badge-text">500+ Happy Pups<small>5-star reviews</small></div></div>
+</div>
+</section>
+<div class="marquee"><div class="marquee-inner"><span>Cage-Free Care</span><span>One-on-One Attention</span><span>Anxiety Specialists</span><span>Daily Photo Updates</span><span>Luxury Grooming</span><span>Behavioural Support</span><span>Cage-Free Care</span><span>One-on-One Attention</span><span>Anxiety Specialists</span><span>Daily Photo Updates</span><span>Luxury Grooming</span><span>Behavioural Support</span></div></div>
+<section class="services">
+<div class="service-card"><div class="service-num">01</div><h3>Boutique Boarding</h3><p>Intimate, home-based stays with round-the-clock care tailored to your pet's unique needs and temperament.</p></div>
+<div class="service-card"><div class="service-num">02</div><h3>Anxiety Support</h3><p>Specialised programs for nervous pets using gentle desensitisation and trust-building techniques.</p></div>
+<div class="service-card"><div class="service-num">03</div><h3>Wellness Walks</h3><p>Enrichment-focused outdoor sessions designed around your dog's energy, breed, and social preferences.</p></div>
+</section>
+</body>
+</html>
