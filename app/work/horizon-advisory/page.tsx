@@ -171,7 +171,7 @@ export default function HorizonAdvisoryPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: smoothOut }}
-              className="relative aspect-[4/3] rounded-sm overflow-hidden shadow-2xl"
+              className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl"
             >
               <Image
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=900&fit=crop"
@@ -235,7 +235,7 @@ export default function HorizonAdvisoryPage() {
       </Section>
 
       {/* Brand Principles */}
-      <Section variant="cream">
+      <Section>
         <div className="text-center mb-16">
           <motion.span
             variants={fadeUp}

@@ -47,7 +47,9 @@ export function Navigation() {
       <header
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled ? 'bg-off-white/95 backdrop-blur-sm' : 'bg-transparent',
+          isScrolled
+            ? 'bg-off-white/95 backdrop-blur-sm shadow-sm'
+            : 'bg-gradient-to-b from-off-white/80 to-transparent backdrop-blur-[2px]',
           isScrolled ? 'py-4' : 'py-6'
         )}
       >

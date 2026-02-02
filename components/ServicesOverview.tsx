@@ -30,6 +30,7 @@ export function ServicesOverview() {
         eyebrow="Services"
         title="From strategic foundation to creative execution."
         description="We deliver comprehensive brand solutions that transform how businesses present themselves to the world."
+        dark
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-12">

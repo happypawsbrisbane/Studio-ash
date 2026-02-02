@@ -117,20 +117,9 @@ export function Footer() {
             <p className="text-small text-off-white/50">
               © {currentYear} Studio Ash. All rights reserved.
             </p>
-            <div className="flex gap-6">
-              <Link
-                href="/privacy"
-                className="text-small text-off-white/50 hover:text-off-white transition-colors duration-300"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-small text-off-white/50 hover:text-off-white transition-colors duration-300"
-              >
-                Terms of Service
-              </Link>
-            </div>
+            <p className="text-small text-off-white/30">
+              Brisbane, Australia
+            </p>
           </motion.div>
         </div>
       </motion.div>
