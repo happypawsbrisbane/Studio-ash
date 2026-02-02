@@ -7,6 +7,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ContactCTA } from '@/components/ContactCTA'
 import { smoothOut, fadeUp, staggerContainer, viewportSettings } from '@/lib/animations'
 
+interface ProjectHero {
+  bg: string
+  textColor: string
+  tagline: string
+  ctaLabel: string
+  ctaBg: string
+  ctaText: string
+  overlayImage?: string
+  style?: 'bold' | 'minimal' | 'dark' | 'elegant' | 'warm' | 'corporate'
+}
+
 const projects = [
   {
     client: 'Paws & Peace',
@@ -14,10 +25,18 @@ const projects = [
     category: 'Branding',
     year: '2024',
     image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&h=600&fit=crop',
-    previewImage: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&h=750&fit=crop',
     href: '/work/paws-and-peace',
-    displayUrl: 'www.pawsandpeace.com.au',
     description: 'A complete brand transformation for Brisbane\'s premier pet care and wellness destination.',
+    hero: {
+      bg: 'linear-gradient(135deg, #F3ECF7 0%, #E8D5F5 50%, #F3ECF7 100%)',
+      textColor: '#3D2C4E',
+      tagline: 'Where pets find their happy place',
+      ctaLabel: 'Book a Visit',
+      ctaBg: '#E8864B',
+      ctaText: '#FFFFFF',
+      overlayImage: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=400&fit=crop',
+      style: 'bold' as const,
+    },
   },
   {
     client: 'Seva Wellness',
@@ -25,10 +44,18 @@ const projects = [
     category: 'Identity',
     year: '2024',
     image: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&h=600&fit=crop',
-    previewImage: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&h=750&fit=crop',
     href: '/work/seva-wellness',
-    displayUrl: 'www.sevawellness.com.au',
     description: 'Crafting a serene, trustworthy brand for a holistic health and wellness practice.',
+    hero: {
+      bg: 'linear-gradient(180deg, #F0F4F1 0%, #D8E4DB 100%)',
+      textColor: '#2D3B30',
+      tagline: 'Holistic health, rooted in care',
+      ctaLabel: 'Begin Your Journey',
+      ctaBg: '#2D3B30',
+      ctaText: '#F0F4F1',
+      overlayImage: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&h=400&fit=crop',
+      style: 'minimal' as const,
+    },
   },
   {
     client: 'Stillwater Studio',
@@ -36,10 +63,18 @@ const projects = [
     category: 'Strategy',
     year: '2023',
     image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=600&fit=crop',
-    previewImage: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&h=750&fit=crop',
     href: '/work/stillwater-studio',
-    displayUrl: 'www.stillwaterstudio.com.au',
     description: 'Strategic positioning and digital presence for an architecture and interior design firm.',
+    hero: {
+      bg: 'linear-gradient(160deg, #1A1A1A 0%, #2C2C2C 100%)',
+      textColor: '#F5F0EB',
+      tagline: 'Architecture that breathes',
+      ctaLabel: 'View Projects',
+      ctaBg: '#F5F0EB',
+      ctaText: '#1A1A1A',
+      overlayImage: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&h=400&fit=crop',
+      style: 'dark' as const,
+    },
   },
   {
     client: 'Bloom Floristry',
@@ -47,10 +82,18 @@ const projects = [
     category: 'Branding',
     year: '2023',
     image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=800&h=600&fit=crop',
-    previewImage: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1200&h=750&fit=crop',
     href: '/work/bloom-floristry',
-    displayUrl: 'www.bloomfloristry.com.au',
     description: 'A fresh, modern identity for an established Brisbane florist.',
+    hero: {
+      bg: '#F5F0EB',
+      textColor: '#2B2B2B',
+      tagline: 'Where nature tells your story',
+      ctaLabel: 'Shop Collection',
+      ctaBg: '#2B2B2B',
+      ctaText: '#F5F0EB',
+      overlayImage: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=600&h=400&fit=crop',
+      style: 'elegant' as const,
+    },
   },
   {
     client: 'Artisan Collective',
@@ -58,10 +101,18 @@ const projects = [
     category: 'Digital',
     year: '2023',
     image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
-    previewImage: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&h=750&fit=crop',
     href: '/work/artisan-collective',
-    displayUrl: 'www.artisancollective.com.au',
     description: 'A curated online marketplace celebrating local makers and craftspeople.',
+    hero: {
+      bg: 'linear-gradient(135deg, #F7E8D4 0%, #EDCFA7 100%)',
+      textColor: '#3D2E1C',
+      tagline: 'Handcrafted with intention',
+      ctaLabel: 'Explore Makers',
+      ctaBg: '#3D2E1C',
+      ctaText: '#F7E8D4',
+      overlayImage: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&h=400&fit=crop',
+      style: 'warm' as const,
+    },
   },
   {
     client: 'Horizon Advisory',
@@ -69,12 +120,114 @@ const projects = [
     category: 'Identity',
     year: '2023',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
-    previewImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=750&fit=crop',
     href: '/work/horizon-advisory',
-    displayUrl: 'www.horizonadvisory.com.au',
     description: 'Professional identity for a boutique financial advisory firm.',
+    hero: {
+      bg: 'linear-gradient(160deg, #0A1628 0%, #1A2744 100%)',
+      textColor: '#D4B896',
+      tagline: 'Navigating your financial future',
+      ctaLabel: 'Get in Touch',
+      ctaBg: '#D4B896',
+      ctaText: '#0A1628',
+      overlayImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop',
+      style: 'corporate' as const,
+    },
   },
 ]
+
+function ProjectLandingPreview({ project }: { project: typeof projects[0] }) {
+  const { hero } = project
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4, delay: 0.15 }}
+      className="relative w-full overflow-hidden rounded-2xl"
+      style={{ background: hero.bg }}
+    >
+      <div className="relative min-h-[420px] md:min-h-[520px] lg:min-h-[600px] flex">
+        {/* Left content */}
+        <div className="relative z-10 flex flex-col justify-between p-8 md:p-12 lg:p-16 w-full lg:w-3/5">
+          <div>
+            {/* Nav mock */}
+            <div className="flex items-center gap-6 mb-16 md:mb-24">
+              <span
+                className="text-h4 font-serif font-semibold"
+                style={{ color: hero.textColor }}
+              >
+                {project.client.split(' ')[0]}
+              </span>
+              <div className="hidden sm:flex items-center gap-5">
+                {['About', 'Services', 'Contact'].map((item) => (
+                  <span
+                    key={item}
+                    className="text-small uppercase tracking-wider opacity-50"
+                    style={{ color: hero.textColor }}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Main display heading */}
+            <h3
+              className="font-serif leading-[0.95] tracking-tight mb-6"
+              style={{
+                color: hero.textColor,
+                fontSize: 'clamp(2.5rem, 6vw, 5.5rem)',
+              }}
+            >
+              {project.client.split(' ').map((word, i) => (
+                <span key={i} className="block">{word}</span>
+              ))}
+            </h3>
+
+            <p
+              className="text-body-lg max-w-md mb-8 opacity-70"
+              style={{ color: hero.textColor }}
+            >
+              {hero.tagline}
+            </p>
+          </div>
+
+          {/* CTA */}
+          <div>
+            <span
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-small font-medium tracking-wide uppercase"
+              style={{ backgroundColor: hero.ctaBg, color: hero.ctaText }}
+            >
+              {hero.ctaLabel}
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        {/* Right image */}
+        {hero.overlayImage && (
+          <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-2/5">
+            <div className="relative w-full h-full">
+              <Image
+                src={hero.overlayImage}
+                alt=""
+                fill
+                className="object-cover"
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent, black 30%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent, black 30%)',
+                }}
+                sizes="40vw"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </motion.div>
+  )
+}
 
 export default function WorkPage() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
@@ -86,7 +239,6 @@ export default function WorkPage() {
       return
     }
     setSelectedProject(project)
-    // Scroll to preview panel after a brief delay for animation
     setTimeout(() => {
       previewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 100)
@@ -111,7 +263,7 @@ export default function WorkPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: smoothOut }}
             className="text-h1 md:text-display font-serif text-charcoal max-w-4xl"
           >
-            Brands we've had the privilege to shape.
+            Brands we&rsquo;ve had the privilege to shape.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -140,14 +292,11 @@ export default function WorkPage() {
               <div className="px-6 md:px-12 lg:px-20 pb-12">
                 <div className="container-wide">
                   {/* Header row */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                    <div>
-                      <h2 className="text-h2 md:text-h1 font-serif text-charcoal">
-                        {selectedProject.client}
-                      </h2>
-                      <p className="text-body text-stone mt-1">{selectedProject.title}</p>
-                    </div>
-                    <div className="flex items-center gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                    <h2 className="text-h2 md:text-h1 font-serif text-charcoal">
+                      {selectedProject.client}
+                    </h2>
+                    <div className="flex items-center gap-3">
                       <Link
                         href={selectedProject.href}
                         className="inline-flex items-center gap-2 bg-charcoal text-off-white px-6 py-3 text-small font-medium hover:bg-charcoal/90 transition-colors rounded-full"
@@ -159,7 +308,7 @@ export default function WorkPage() {
                       </Link>
                       <button
                         onClick={() => setSelectedProject(null)}
-                        className="p-2 hover:bg-line-grey rounded-full transition-colors"
+                        className="p-2.5 hover:bg-line-grey rounded-full transition-colors"
                         aria-label="Close preview"
                       >
                         <svg className="w-5 h-5 text-stone" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -169,45 +318,12 @@ export default function WorkPage() {
                     </div>
                   </div>
 
-                  {/* Browser Frame Preview */}
-                  <div className="rounded-xl overflow-hidden shadow-2xl bg-[#F5F5F4]">
-                    {/* Browser Chrome */}
-                    <div className="flex items-center gap-3 px-4 py-3 border-b border-[#E7E5E4]">
-                      <div className="flex gap-2">
-                        <span className="w-3 h-3 rounded-full bg-[#EF4444]" />
-                        <span className="w-3 h-3 rounded-full bg-[#F59E0B]" />
-                        <span className="w-3 h-3 rounded-full bg-[#22C55E]" />
-                      </div>
-                      <div className="flex-1 bg-white rounded-md px-3 py-1.5 flex items-center gap-2">
-                        <svg className="w-4 h-4 text-stone/50 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
-                        </svg>
-                        <span className="text-sm text-stone/70 font-mono truncate">
-                          {selectedProject.displayUrl}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Preview Content */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: 0.2 }}
-                      className="relative w-full bg-white"
-                      style={{ paddingBottom: '62.5%' }}
-                    >
-                      <Image
-                        src={selectedProject.previewImage}
-                        alt={`${selectedProject.client} website preview`}
-                        fill
-                        className="object-cover object-top"
-                        sizes="(max-width: 1440px) 100vw, 1440px"
-                        priority
-                      />
-                    </motion.div>
+                  {/* Landing page card */}
+                  <div className="bg-white rounded-3xl p-3 md:p-4 shadow-2xl">
+                    <ProjectLandingPreview project={selectedProject} />
                   </div>
 
-                  {/* Description */}
+                  {/* Description below */}
                   <p className="text-body text-stone mt-6 max-w-2xl">
                     {selectedProject.description}
                   </p>
@@ -238,11 +354,10 @@ export default function WorkPage() {
                 <div className={`
                   relative rounded-xl overflow-hidden transition-all duration-300
                   ${selectedProject?.href === project.href
-                    ? 'ring-2 ring-charcoal shadow-xl'
+                    ? 'ring-2 ring-charcoal shadow-xl scale-[0.98]'
                     : 'shadow-md hover:shadow-xl'
                   }
                 `}>
-                  {/* Thumbnail */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-line-grey">
                     <Image
                       src={project.image}
@@ -254,7 +369,6 @@ export default function WorkPage() {
                   </div>
                 </div>
 
-                {/* Label below card */}
                 <div className="mt-4 flex items-center justify-between">
                   <h3 className="text-body font-medium text-charcoal group-hover:text-stone transition-colors">
                     {project.client}
