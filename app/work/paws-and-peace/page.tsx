@@ -16,7 +16,6 @@ const projectInfo = {
   services: ['Brand Strategy', 'Visual Identity', 'Website Design', 'Packaging'],
   duration: '8 weeks',
   industry: 'Pet Care & Wellness',
-  // Live project URL - update when available
   liveUrl: undefined,
   displayUrl: 'www.pawsandpeace.com.au',
 }
@@ -25,14 +24,14 @@ const challenges = [
   'Stand out in a crowded pet care market dominated by clinical, corporate brands',
   'Appeal to premium pet owners who treat their pets as family members',
   'Create a cohesive brand that works across physical locations and digital touchpoints',
-  'Balance professionalism with warmth and approachability',
+  'Balance playfulness with trustworthiness and professionalism',
 ]
 
 const solutions = [
-  'Developed a warm, earthy color palette that evokes comfort and natural care',
-  'Created a custom wordmark with subtle paw-inspired letterforms',
-  'Designed an illustration system featuring gentle, hand-drawn pet portraits',
-  'Built a website experience that mirrors the calm, welcoming atmosphere of their facilities',
+  'Developed a vibrant, playful color palette of lavender, tangerine, and golden yellow',
+  'Created a custom wordmark with subtle paw-inspired letterforms and a bold monogram',
+  'Designed a rich illustration system with hand-drawn pet characters and pattern tiles',
+  'Built a packaging suite — boxes, stickers, care cards — that delights at every touchpoint',
 ]
 
 const results = [
@@ -76,11 +75,17 @@ const galleryImages = [
   },
 ]
 
+// Playful palette inspired by the Flossie & Floof design direction
+const accent = '#E8864B' // tangerine orange
+const accentAlt = '#C4A0D6' // soft lavender
+const heroBg = '#F3ECF7' // light lavender
+const palette = ['#3D2C4E', '#C4A0D6', '#E8864B', '#D4A84A', '#F3ECF7']
+
 export default function PawsAndPeacePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-12 lg:px-20 bg-[#FDF8F3]">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-12 lg:px-20" style={{ backgroundColor: heroBg }}>
         <div className="container-wide">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -105,7 +110,8 @@ export default function PawsAndPeacePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: smoothOut }}
-                className="block text-caption uppercase tracking-widest text-[#C9A87C] mb-4"
+                className="block text-caption uppercase tracking-widest mb-4"
+                style={{ color: accent }}
               >
                 {projectInfo.category}
               </motion.span>
@@ -177,7 +183,8 @@ export default function PawsAndPeacePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-[#C9A87C] mb-4"
+            className="block text-caption uppercase tracking-widest mb-4"
+            style={{ color: accent }}
           >
             Live Website
           </motion.span>
@@ -226,12 +233,12 @@ export default function PawsAndPeacePage() {
             whileInView="visible"
             viewport={viewportSettings}
           >
-            <span className="block text-caption uppercase tracking-widest text-[#C9A87C] mb-4">The Challenge</span>
+            <span className="block text-caption uppercase tracking-widest mb-4" style={{ color: accent }}>The Challenge</span>
             <h2 className="text-h2 font-serif text-charcoal mb-6">Breaking through the noise</h2>
             <ul className="space-y-4">
               {challenges.map((challenge, index) => (
                 <li key={index} className="flex items-start gap-3 text-body text-stone">
-                  <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#C9A87C] flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 mt-2 rounded-full flex-shrink-0" style={{ backgroundColor: accent }} />
                   {challenge}
                 </li>
               ))}
@@ -244,12 +251,12 @@ export default function PawsAndPeacePage() {
             whileInView="visible"
             viewport={viewportSettings}
           >
-            <span className="block text-caption uppercase tracking-widest text-[#C9A87C] mb-4">The Solution</span>
-            <h2 className="text-h2 font-serif text-charcoal mb-6">A brand with heart</h2>
+            <span className="block text-caption uppercase tracking-widest mb-4" style={{ color: accentAlt }}>The Solution</span>
+            <h2 className="text-h2 font-serif text-charcoal mb-6">Playful, bold, unmistakable</h2>
             <ul className="space-y-4">
               {solutions.map((solution, index) => (
                 <li key={index} className="flex items-start gap-3 text-body text-stone">
-                  <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#C9A87C] flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 mt-2 rounded-full flex-shrink-0" style={{ backgroundColor: accentAlt }} />
                   {solution}
                 </li>
               ))}
@@ -294,7 +301,8 @@ export default function PawsAndPeacePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-[#C9A87C] mb-4"
+            className="block text-caption uppercase tracking-widest mb-4"
+            style={{ color: accentAlt }}
           >
             Visual Identity
           </motion.span>
@@ -305,7 +313,7 @@ export default function PawsAndPeacePage() {
             viewport={viewportSettings}
             className="text-h2 font-serif text-off-white"
           >
-            A warm, inviting palette
+            A playful, vibrant palette
           </motion.h2>
         </div>
 
@@ -316,7 +324,7 @@ export default function PawsAndPeacePage() {
           viewport={viewportSettings}
           className="flex flex-wrap justify-center gap-6"
         >
-          {['#2C2416', '#C9A87C', '#E8DDD1', '#FDF8F3', '#8B7355'].map((color, index) => (
+          {palette.map((color) => (
             <motion.div key={color} variants={fadeUp} className="text-center">
               <div
                 className="w-24 h-24 rounded-full mb-3 border-4 border-off-white/10"
@@ -336,7 +344,8 @@ export default function PawsAndPeacePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-[#C9A87C] mb-4"
+            className="block text-caption uppercase tracking-widest mb-4"
+            style={{ color: accent }}
           >
             The Results
           </motion.span>
@@ -360,7 +369,7 @@ export default function PawsAndPeacePage() {
         >
           {results.map((result) => (
             <motion.div key={result.description} variants={fadeUp} className="text-center">
-              <span className="block text-display font-serif text-[#C9A87C] mb-2">
+              <span className="block text-display font-serif mb-2" style={{ color: accent }}>
                 {result.metric}
               </span>
               <span className="text-small text-stone uppercase tracking-wider">
@@ -381,7 +390,7 @@ export default function PawsAndPeacePage() {
           className="max-w-4xl mx-auto text-center"
         >
           <p className="text-h2 md:text-h1 font-serif text-charcoal leading-tight mb-8">
-            "{testimonial.quote}"
+            &ldquo;{testimonial.quote}&rdquo;
           </p>
           <footer>
             <cite className="not-italic">

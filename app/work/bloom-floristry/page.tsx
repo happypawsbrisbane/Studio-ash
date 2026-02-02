@@ -28,10 +28,10 @@ const challenges = [
 ]
 
 const solutions = [
-  'Developed an elegant, romantic identity that honors the brand\'s heritage',
-  'Created a rich, warm palette inspired by dried florals and golden hour light',
-  'Designed custom botanical illustrations as signature brand elements',
-  'Crafted luxury packaging that becomes part of the gift experience',
+  'Crafted a refined cream-and-charcoal identity with generous whitespace',
+  'Commissioned custom botanical line drawings as signature brand motifs',
+  'Paired an elegant serif wordmark with restrained, minimal layout principles',
+  'Designed packaging and collateral that lets the flowers remain the hero',
 ]
 
 const results = [
@@ -73,23 +73,29 @@ const galleryImages = [
 const brandElements = [
   {
     title: 'Typography',
-    description: 'A pairing of elegant serif for headlines with a refined sans-serif for body text creates a balance of romance and readability.',
+    description: 'A clean serif for headlines paired with a minimal sans-serif for body copy — elegant and understated, never loud.',
   },
   {
-    title: 'Illustration',
-    description: 'Custom botanical line drawings add an artisanal, hand-crafted feel that celebrates the natural beauty of each stem.',
+    title: 'Line Illustration',
+    description: 'Delicate botanical line drawings add an artisanal, hand-crafted signature without competing with real florals.',
   },
   {
     title: 'Photography',
-    description: 'A warm, golden-hour aesthetic with soft focus and natural light that evokes emotion and timeless elegance.',
+    description: 'Natural light, muted tones, and generous negative space. The flowers are always the hero — the brand steps back.',
   },
 ]
+
+// Minimal, warm palette inspired by the Blom design direction
+const accent = '#3D3D3D'     // charcoal — muted accent
+const accentSoft = '#8B7D6B' // warm taupe
+const heroBg = '#F5F0EB'     // warm cream
+const palette = ['#2B2B2B', '#8B7D6B', '#C4B9AB', '#E8E2DA', '#F5F0EB']
 
 export default function BloomFloristryPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-12 lg:px-20 bg-[#FAF6F1]">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-12 lg:px-20" style={{ backgroundColor: heroBg }}>
         <div className="container-wide">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -114,7 +120,8 @@ export default function BloomFloristryPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: smoothOut }}
-                className="block text-caption uppercase tracking-widest text-[#B8860B] mb-4"
+                className="block text-caption uppercase tracking-widest mb-4"
+                style={{ color: accentSoft }}
               >
                 {projectInfo.category}
               </motion.span>
@@ -186,7 +193,8 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-[#B8860B] mb-4"
+            className="block text-caption uppercase tracking-widest mb-4"
+            style={{ color: accentSoft }}
           >
             Live Website
           </motion.span>
@@ -219,7 +227,7 @@ export default function BloomFloristryPage() {
             viewport={viewportSettings}
             className="text-h3 font-serif text-charcoal leading-relaxed"
           >
-            For 15 years, Bloom Floristry has been creating stunning arrangements for Brisbane's
+            For 15 years, Bloom Floristry has been creating stunning arrangements for Brisbane&rsquo;s
             most memorable moments. When they came to us, they needed a brand refresh that would
             attract a new generation of clients while honoring their established reputation.
           </motion.p>
@@ -253,7 +261,8 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-[#B8860B] mb-4"
+            className="block text-caption uppercase tracking-widest mb-4"
+            style={{ color: accentSoft }}
           >
             Brand Elements
           </motion.span>
@@ -278,6 +287,7 @@ export default function BloomFloristryPage() {
           {brandElements.map((element) => (
             <motion.div key={element.title} variants={fadeUp} className="text-center">
               <h3 className="text-h4 font-serif text-charcoal mb-4">{element.title}</h3>
+              <div className="w-12 h-px mx-auto mb-4" style={{ backgroundColor: accentSoft }} />
               <p className="text-body text-stone">{element.description}</p>
             </motion.div>
           ))}
@@ -285,7 +295,7 @@ export default function BloomFloristryPage() {
       </Section>
 
       {/* Challenge & Solution */}
-      <Section variant="dark" className="bg-[#2C2416]">
+      <Section variant="dark" className="bg-[#2B2B2B]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <motion.div
             variants={fadeUp}
@@ -293,12 +303,12 @@ export default function BloomFloristryPage() {
             whileInView="visible"
             viewport={viewportSettings}
           >
-            <span className="block text-caption uppercase tracking-widest text-[#D4A84B] mb-4">The Challenge</span>
+            <span className="block text-caption uppercase tracking-widest text-off-white/40 mb-4">The Challenge</span>
             <h2 className="text-h2 font-serif text-off-white mb-6">Honoring heritage</h2>
             <ul className="space-y-4">
               {challenges.map((challenge, index) => (
                 <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
-                  <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#D4A84B] flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 mt-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#C4B9AB' }} />
                   {challenge}
                 </li>
               ))}
@@ -311,12 +321,12 @@ export default function BloomFloristryPage() {
             whileInView="visible"
             viewport={viewportSettings}
           >
-            <span className="block text-caption uppercase tracking-widest text-[#D4A84B] mb-4">The Solution</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Timeless elegance</h2>
+            <span className="block text-caption uppercase tracking-widest text-off-white/40 mb-4">The Solution</span>
+            <h2 className="text-h2 font-serif text-off-white mb-6">Quiet elegance</h2>
             <ul className="space-y-4">
               {solutions.map((solution, index) => (
                 <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
-                  <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#D4A84B] flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 mt-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#C4B9AB' }} />
                   {solution}
                 </li>
               ))}
@@ -385,7 +395,8 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-[#B8860B] mb-4"
+            className="block text-caption uppercase tracking-widest mb-4"
+            style={{ color: accentSoft }}
           >
             Visual Identity
           </motion.span>
@@ -396,7 +407,7 @@ export default function BloomFloristryPage() {
             viewport={viewportSettings}
             className="text-h2 font-serif text-charcoal"
           >
-            A palette of warmth
+            A palette of quiet warmth
           </motion.h2>
         </div>
 
@@ -407,7 +418,7 @@ export default function BloomFloristryPage() {
           viewport={viewportSettings}
           className="flex flex-wrap justify-center gap-6"
         >
-          {['#2C2416', '#B8860B', '#D4A84B', '#E8D5B5', '#FAF6F1'].map((color) => (
+          {palette.map((color) => (
             <motion.div key={color} variants={fadeUp} className="text-center">
               <div
                 className="w-24 h-24 rounded-full mb-3 shadow-lg"
@@ -427,7 +438,8 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-[#B8860B] mb-4"
+            className="block text-caption uppercase tracking-widest mb-4"
+            style={{ color: accentSoft }}
           >
             The Results
           </motion.span>
@@ -451,7 +463,7 @@ export default function BloomFloristryPage() {
         >
           {results.map((result) => (
             <motion.div key={result.description} variants={fadeUp} className="text-center">
-              <span className="block text-display font-serif text-[#B8860B] mb-2">
+              <span className="block text-display font-serif mb-2" style={{ color: accent }}>
                 {result.metric}
               </span>
               <span className="text-small text-stone uppercase tracking-wider">
@@ -472,7 +484,7 @@ export default function BloomFloristryPage() {
           className="max-w-4xl mx-auto text-center"
         >
           <p className="text-h2 md:text-h1 font-serif text-charcoal leading-tight mb-8">
-            "{testimonial.quote}"
+            &ldquo;{testimonial.quote}&rdquo;
           </p>
           <footer>
             <cite className="not-italic">
