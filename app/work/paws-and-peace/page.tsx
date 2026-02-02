@@ -218,7 +218,7 @@ export default function PawsAndPeacePage() {
       </Section>
 
       {/* Challenge & Solution */}
-      <Section variant="cream">
+      <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <motion.div
             variants={fadeUp}

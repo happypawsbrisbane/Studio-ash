@@ -502,7 +502,7 @@ export default function BloomFloristryPage() {
             viewport={viewportSettings}
             className="text-h1 font-serif text-charcoal mb-8"
           >
-            Paws & Peace
+            Artisan Collective
           </motion.h2>
           <motion.div
             variants={fadeUp}
@@ -510,7 +510,7 @@ export default function BloomFloristryPage() {
             whileInView="visible"
             viewport={viewportSettings}
           >
-            <ButtonLink href="/work/paws-and-peace" variant="primary">
+            <ButtonLink href="/work/artisan-collective" variant="primary">
               View Project
             </ButtonLink>
           </motion.div>

@@ -131,7 +131,7 @@ export default function StudioPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="prose prose-lg text-stone text-center"
+            className="space-y-6 text-body-lg text-stone text-center"
           >
             <p>
               Design wasn't always the plan. I started out studying something completely

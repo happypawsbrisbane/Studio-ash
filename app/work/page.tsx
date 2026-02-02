@@ -1,6 +1,5 @@
 'use client'
 
-import type { Metadata } from 'next'
 import { motion } from 'framer-motion'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { ProjectCard } from '@/components/ui/Card'

@@ -69,6 +69,7 @@ interface SectionHeaderProps {
   title: string
   description?: string
   align?: 'left' | 'center'
+  dark?: boolean
   className?: string
 }
 
@@ -77,6 +78,7 @@ export function SectionHeader({
   title,
   description,
   align = 'left',
+  dark = false,
   className,
 }: SectionHeaderProps) {
   return (
@@ -92,13 +94,19 @@ export function SectionHeader({
       )}
     >
       {eyebrow && (
-        <span className="block text-caption uppercase tracking-wider text-stone mb-4">
+        <span className={cn(
+          'block text-caption uppercase tracking-widest mb-4',
+          dark ? 'text-off-white/50' : 'text-stone'
+        )}>
           {eyebrow}
         </span>
       )}
       <h2 className="text-h2 md:text-h1 font-serif text-balance">{title}</h2>
       {description && (
-        <p className="mt-4 text-body-lg text-stone max-w-2xl">
+        <p className={cn(
+          'mt-4 text-body-lg max-w-2xl',
+          dark ? 'text-off-white/70' : 'text-stone'
+        )}>
           {description}
         </p>
       )}

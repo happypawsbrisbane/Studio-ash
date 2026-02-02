@@ -213,7 +213,7 @@ export default function SevaWellnessPage() {
       </Section>
 
       {/* Brand Philosophy */}
-      <Section variant="cream">
+      <Section>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <motion.div
             variants={fadeUp}
