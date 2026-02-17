@@ -42,7 +42,7 @@ const results = [
 ]
 
 const testimonial = {
-  quote: "Working with Studio Ash was a transformative experience. They didn't just create a logo — they captured the very essence of what Seva means to us and our community.",
+  quote: "Working with HexStudio was a transformative experience. They didn't just create a logo — they captured the very essence of what Seva means to us and our community.",
   author: 'Dr. Maya Chen',
   role: 'Founder & Lead Practitioner, Seva Wellness',
 }
@@ -84,7 +84,7 @@ export default function SevaWellnessPage() {
           >
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 text-stone hover:text-charcoal transition-colors"
+              className="inline-flex items-center gap-2 text-subtle hover:text-white transition-colors"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -107,7 +107,7 @@ export default function SevaWellnessPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: smoothOut }}
-                className="text-h1 md:text-display font-serif text-charcoal mb-4"
+                className="text-h1 md:text-display font-serif text-white mb-4"
               >
                 {projectInfo.title}
               </motion.h1>
@@ -115,7 +115,7 @@ export default function SevaWellnessPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
-                className="text-h3 font-serif text-stone italic mb-8"
+                className="text-h3 font-serif text-subtle italic mb-8"
               >
                 {projectInfo.tagline}
               </motion.p>
@@ -127,20 +127,20 @@ export default function SevaWellnessPage() {
                 className="grid grid-cols-2 gap-6"
               >
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Year</span>
-                  <span className="text-body text-charcoal">{projectInfo.year}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Year</span>
+                  <span className="text-body text-white">{projectInfo.year}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Duration</span>
-                  <span className="text-body text-charcoal">{projectInfo.duration}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Duration</span>
+                  <span className="text-body text-white">{projectInfo.duration}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Industry</span>
-                  <span className="text-body text-charcoal">{projectInfo.industry}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Industry</span>
+                  <span className="text-body text-white">{projectInfo.industry}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Services</span>
-                  <span className="text-body text-charcoal">{projectInfo.services.slice(0, 2).join(', ')}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Services</span>
+                  <span className="text-body text-white">{projectInfo.services.slice(0, 2).join(', ')}</span>
                 </div>
               </motion.div>
             </div>
@@ -181,7 +181,7 @@ export default function SevaWellnessPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Experience the design
           </motion.h2>
@@ -196,14 +196,14 @@ export default function SevaWellnessPage() {
       </Section>
 
       {/* Overview Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="max-w-3xl mx-auto text-center">
           <motion.p
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h3 font-serif text-charcoal leading-relaxed"
+            className="text-h3 font-serif text-white leading-relaxed"
           >
             Seva — meaning "selfless service" in Sanskrit — approached us to create a brand identity
             that would honor their holistic approach to wellness while positioning them as
@@ -223,7 +223,7 @@ export default function SevaWellnessPage() {
             className="lg:col-span-1"
           >
             <span className="block text-caption uppercase tracking-widest text-[#9B7BB8] mb-4">Brand Philosophy</span>
-            <h2 className="text-h2 font-serif text-charcoal">Rooted in purpose</h2>
+            <h2 className="text-h2 font-serif text-white">Rooted in purpose</h2>
           </motion.div>
           <motion.div
             variants={fadeUp}
@@ -232,12 +232,12 @@ export default function SevaWellnessPage() {
             viewport={viewportSettings}
             className="lg:col-span-2"
           >
-            <p className="text-body-lg text-stone mb-6">
+            <p className="text-body-lg text-subtle mb-6">
               The Seva brand needed to embody the delicate balance between ancient wisdom and modern wellness.
               We drew inspiration from the lotus flower — a symbol of purity and enlightenment that rises
               from muddy waters to bloom in pristine beauty.
             </p>
-            <p className="text-body-lg text-stone">
+            <p className="text-body-lg text-subtle">
               Every element of the identity was crafted to evoke a sense of calm and transformation,
               from the flowing typography to the soft, ethereal color palette that shifts like
               the colors of dawn.
@@ -290,10 +290,10 @@ export default function SevaWellnessPage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#C9A8E2] mb-4">The Challenge</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Beyond the ordinary</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Beyond the ordinary</h2>
             <ul className="space-y-4">
               {challenges.map((challenge, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#C9A8E2] flex-shrink-0" />
                   {challenge}
                 </li>
@@ -308,10 +308,10 @@ export default function SevaWellnessPage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#C9A8E2] mb-4">The Solution</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Elevated serenity</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Elevated serenity</h2>
             <ul className="space-y-4">
               {solutions.map((solution, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#C9A8E2] flex-shrink-0" />
                   {solution}
                 </li>
@@ -338,7 +338,7 @@ export default function SevaWellnessPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Colors of transformation
           </motion.h2>
@@ -357,14 +357,14 @@ export default function SevaWellnessPage() {
                 className="w-24 h-24 rounded-full mb-3 shadow-lg"
                 style={{ backgroundColor: color }}
               />
-              <span className="text-small text-stone uppercase tracking-wider">{color}</span>
+              <span className="text-small text-subtle uppercase tracking-wider">{color}</span>
             </motion.div>
           ))}
         </motion.div>
       </Section>
 
       {/* Results Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="text-center mb-12">
           <motion.span
             variants={fadeUp}
@@ -380,7 +380,7 @@ export default function SevaWellnessPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Measurable transformation
           </motion.h2>
@@ -398,7 +398,7 @@ export default function SevaWellnessPage() {
               <span className="block text-display font-serif text-[#9B7BB8] mb-2">
                 {result.metric}
               </span>
-              <span className="text-small text-stone uppercase tracking-wider">
+              <span className="text-small text-subtle uppercase tracking-wider">
                 {result.description}
               </span>
             </motion.div>
@@ -415,27 +415,27 @@ export default function SevaWellnessPage() {
           viewport={viewportSettings}
           className="max-w-4xl mx-auto text-center"
         >
-          <p className="text-h2 md:text-h1 font-serif text-charcoal leading-tight mb-8">
+          <p className="text-h2 md:text-h1 font-serif text-white leading-tight mb-8">
             "{testimonial.quote}"
           </p>
           <footer>
             <cite className="not-italic">
-              <span className="block text-body font-medium text-charcoal">{testimonial.author}</span>
-              <span className="text-small text-stone">{testimonial.role}</span>
+              <span className="block text-body font-medium text-white">{testimonial.author}</span>
+              <span className="text-small text-subtle">{testimonial.role}</span>
             </cite>
           </footer>
         </motion.blockquote>
       </Section>
 
       {/* Next Project CTA */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="text-center">
           <motion.span
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-stone mb-4"
+            className="block text-caption uppercase tracking-widest text-subtle mb-4"
           >
             Next Project
           </motion.span>
@@ -444,7 +444,7 @@ export default function SevaWellnessPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h1 font-serif text-charcoal mb-8"
+            className="text-h1 font-serif text-white mb-8"
           >
             Stillwater Studio
           </motion.h2>

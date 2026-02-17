@@ -20,38 +20,38 @@ const inter = Inter({
   display: 'swap',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studioash.com.au'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hexstudio.com.au'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Studio Ash — Premium Brand Studio, Brisbane',
-    template: '%s | Studio Ash — Premium Brand Studio, Brisbane',
+    default: 'HexStudio — Brand & Design Studio, Brisbane',
+    template: '%s | HexStudio',
   },
-  description: 'Studio Ash is a premium creative and brand studio based in Brisbane, Australia. We craft extraordinary brands for extraordinary people through strategy, design, and digital experiences.',
-  keywords: ['brand studio', 'creative agency', 'branding', 'Brisbane', 'design', 'digital experience'],
-  authors: [{ name: 'Studio Ash' }],
-  creator: 'Studio Ash',
+  description: 'HexStudio is a premium brand and design studio in Brisbane. We craft brands that command attention through strategy, design, and digital experiences.',
+  keywords: ['brand studio', 'creative agency', 'branding', 'Brisbane', 'design', 'digital experience', 'hex studio'],
+  authors: [{ name: 'HexStudio' }],
+  creator: 'HexStudio',
   openGraph: {
     type: 'website',
     locale: 'en_AU',
     url: siteUrl,
-    siteName: 'Studio Ash',
-    title: 'Studio Ash — Premium Brand Studio, Brisbane',
-    description: 'We craft extraordinary brands for extraordinary people through strategy, design, and digital experiences.',
+    siteName: 'HexStudio',
+    title: 'HexStudio — Brand & Design Studio, Brisbane',
+    description: 'We craft brands that command attention through strategy, design, and digital experiences.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Studio Ash - Premium Brand Studio',
+        alt: 'HexStudio - Brand & Design Studio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Studio Ash — Premium Brand Studio, Brisbane',
-    description: 'We craft extraordinary brands for extraordinary people.',
+    title: 'HexStudio — Brand & Design Studio, Brisbane',
+    description: 'We craft brands that command attention.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#FAFAF9',
+  themeColor: '#06060A',
 }
 
 export default function RootLayout({
@@ -80,7 +80,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
-      <body className="min-h-screen flex flex-col bg-off-white text-charcoal antialiased">
+      <body className="min-h-screen flex flex-col bg-void text-white antialiased">
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

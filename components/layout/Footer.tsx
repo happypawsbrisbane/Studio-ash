@@ -12,9 +12,9 @@ const footerLinks = {
     { href: '/contact', label: 'Contact' },
   ],
   social: [
-    { href: 'https://instagram.com/studioash', label: 'Instagram' },
-    { href: 'https://linkedin.com/company/studioash', label: 'LinkedIn' },
-    { href: 'https://behance.net/studioash', label: 'Behance' },
+    { href: 'https://instagram.com/hexstudio', label: 'Instagram' },
+    { href: 'https://linkedin.com/company/hexstudio', label: 'LinkedIn' },
+    { href: 'https://behance.net/hexstudio', label: 'Behance' },
   ],
 }
 
@@ -22,7 +22,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-charcoal text-off-white">
+    <footer className="bg-surface border-t border-white/[0.04]">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -31,33 +31,35 @@ export function Footer() {
         className="section"
       >
         <div className="container-wide">
-          {/* Main footer content */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-            {/* Brand column */}
             <motion.div variants={fadeUp} className="lg:col-span-2">
-              <Link href="/" className="text-h3 font-serif inline-block mb-4">
-                Studio Ash
+              <Link href="/" className="flex items-center gap-2 mb-6 group">
+                <span className="w-7 h-7 rounded-md bg-gradient-accent flex items-center justify-center text-white text-micro font-mono font-bold">
+                  H
+                </span>
+                <span className="text-h4 font-sans font-medium text-white tracking-tight">
+                  Hex<span className="text-subtle group-hover:text-violet transition-colors duration-300">Studio</span>
+                </span>
               </Link>
-              <p className="text-body text-off-white/70 max-w-md mb-6">
-                A premium creative and brand studio based in Brisbane, Australia.
-                We craft extraordinary brands for extraordinary people.
+              <p className="text-body text-subtle max-w-md mb-4">
+                Brand and design studio, Brisbane. We craft brands
+                that command attention.
               </p>
-              <p className="text-small text-off-white/50">
-                Currently accepting new projects for Q2 2026
+              <p className="font-mono text-micro text-muted tracking-widest">
+                #DESIGN #BUILD #BRAND
               </p>
             </motion.div>
 
-            {/* Navigation column */}
             <motion.div variants={fadeUp}>
-              <h4 className="text-small font-medium uppercase tracking-wider mb-4 text-off-white/50">
-                Navigation
+              <h4 className="font-mono text-micro uppercase tracking-widest text-muted mb-6">
+                Navigate
               </h4>
               <ul className="space-y-3">
                 {footerLinks.navigation.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-body text-off-white/70 hover:text-off-white transition-colors duration-300"
+                      className="text-body text-subtle hover:text-white transition-colors duration-300"
                     >
                       {link.label}
                     </Link>
@@ -66,29 +68,28 @@ export function Footer() {
               </ul>
             </motion.div>
 
-            {/* Contact column */}
             <motion.div variants={fadeUp}>
-              <h4 className="text-small font-medium uppercase tracking-wider mb-4 text-off-white/50">
-                Get in touch
+              <h4 className="font-mono text-micro uppercase tracking-widest text-muted mb-6">
+                Connect
               </h4>
               <address className="not-italic space-y-3">
                 <p>
                   <a
-                    href="mailto:hello@studioash.com.au"
-                    className="text-body text-off-white/70 hover:text-off-white transition-colors duration-300"
+                    href="mailto:hello@hexstudio.com.au"
+                    className="text-body text-subtle hover:text-white transition-colors duration-300"
                   >
-                    hello@studioash.com.au
+                    hello@hexstudio.com.au
                   </a>
                 </p>
                 <p>
                   <a
                     href="tel:+61412345678"
-                    className="text-body text-off-white/70 hover:text-off-white transition-colors duration-300"
+                    className="text-body text-subtle hover:text-white transition-colors duration-300"
                   >
                     +61 412 345 678
                   </a>
                 </p>
-                <p className="text-body text-off-white/70">
+                <p className="text-body text-subtle">
                   Brisbane, Australia
                 </p>
               </address>
@@ -99,7 +100,7 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-small text-off-white/50 hover:text-off-white transition-colors duration-300"
+                    className="text-small text-muted hover:text-violet transition-colors duration-300"
                     aria-label={`Follow us on ${link.label}`}
                   >
                     {link.label}
@@ -109,15 +110,14 @@ export function Footer() {
             </motion.div>
           </div>
 
-          {/* Bottom bar */}
           <motion.div
             variants={fadeUp}
-            className="pt-8 border-t border-off-white/10 flex flex-col md:flex-row justify-between items-center gap-4"
+            className="pt-8 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-4"
           >
-            <p className="text-small text-off-white/50">
-              © {currentYear} Studio Ash. All rights reserved.
+            <p className="text-small text-muted">
+              &copy; {currentYear} HexStudio. All rights reserved.
             </p>
-            <p className="text-small text-off-white/30">
+            <p className="font-mono text-micro text-muted/50">
               Brisbane, Australia
             </p>
           </motion.div>

@@ -58,7 +58,7 @@ export function ContactPageContent() {
     if (!formData.message.trim()) {
       newErrors.message = 'Please enter a message'
     } else if (formData.message.trim().length < 20) {
-      newErrors.message = 'Please provide a bit more detail about your project'
+      newErrors.message = 'Please provide a bit more detail'
     }
 
     setErrors(newErrors)
@@ -72,7 +72,6 @@ export function ContactPageContent() {
 
     setIsSubmitting(true)
 
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500))
 
     setIsSubmitting(false)
@@ -84,7 +83,6 @@ export function ContactPageContent() {
   ) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }))
     }
@@ -99,9 +97,9 @@ export function ContactPageContent() {
           transition={{ duration: 0.6, ease: smoothOut }}
           className="text-center max-w-xl"
         >
-          <div className="w-16 h-16 mx-auto mb-8 rounded-full bg-gold/20 flex items-center justify-center">
+          <div className="w-16 h-16 mx-auto mb-8 rounded-2xl bg-violet/20 flex items-center justify-center">
             <svg
-              className="w-8 h-8 text-gold"
+              className="w-8 h-8 text-violet"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -114,12 +112,11 @@ export function ContactPageContent() {
               />
             </svg>
           </div>
-          <h1 className="text-h2 md:text-h1 font-serif text-charcoal mb-4">
+          <h1 className="text-h2 md:text-h1 font-serif text-white mb-4">
             Message received.
           </h1>
-          <p className="text-body-lg text-stone mb-8">
-            Thank you for reaching out. We'll review your message and get back to you
-            within 1-2 business days.
+          <p className="text-body-lg text-subtle mb-8">
+            We&apos;ll review your message and respond within 1-2 business days.
           </p>
           <Button
             onClick={() => {
@@ -144,7 +141,7 @@ export function ContactPageContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: smoothOut }}
-            className="block text-caption uppercase tracking-widest text-stone mb-6"
+            className="block font-mono text-micro uppercase tracking-[0.15em] text-muted mb-6"
           >
             Contact
           </motion.span>
@@ -152,18 +149,17 @@ export function ContactPageContent() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: smoothOut }}
-            className="text-h1 md:text-display font-serif text-charcoal max-w-3xl"
+            className="text-h1 md:text-display font-serif text-white max-w-3xl"
           >
-            Let's create something extraordinary together.
+            Let&apos;s build something <span className="text-gradient">together.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
-            className="mt-6 text-body-lg text-stone max-w-xl"
+            className="mt-6 text-body-lg text-subtle max-w-xl"
           >
-            Ready to discuss your project? Fill out the form below or reach out
-            directly. We respond to every enquiry within 1-2 business days.
+            Ready to discuss your project? We respond to every enquiry within 1-2 business days.
           </motion.p>
         </div>
       </section>
@@ -171,7 +167,6 @@ export function ContactPageContent() {
       {/* Form Section */}
       <Section animate={false}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          {/* Form */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -223,12 +218,12 @@ export function ContactPageContent() {
               </div>
 
               <TextArea
-                label="Tell us about your project"
+                label="About your project"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 error={errors.message}
-                placeholder="What are you looking to achieve? What's the timeline? Any other details that would help us understand your needs..."
+                placeholder="What are you looking to achieve? Timeline? Any key details..."
                 required
               />
 
@@ -236,87 +231,82 @@ export function ContactPageContent() {
                 <Button type="submit" size="lg" isLoading={isSubmitting}>
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
-                <p className="text-small text-stone">
-                  We'll respond within 1-2 business days.
+                <p className="text-small text-muted">
+                  We respond within 1-2 business days.
                 </p>
               </div>
             </form>
           </motion.div>
 
-          {/* Contact Info */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="lg:col-span-5 lg:pl-12 lg:border-l border-line-grey"
+            className="lg:col-span-5 lg:pl-12 lg:border-l border-white/[0.06]"
           >
             <div className="space-y-10">
-              {/* Direct Contact */}
               <div>
-                <h3 className="text-small font-medium uppercase tracking-wider text-stone mb-4">
+                <h3 className="font-mono text-micro uppercase tracking-widest text-muted mb-4">
                   Direct Contact
                 </h3>
                 <div className="space-y-3">
                   <a
-                    href="mailto:hello@studioash.com.au"
-                    className="block text-body text-charcoal hover:text-bronze transition-colors duration-300"
+                    href="mailto:hello@hexstudio.com.au"
+                    className="block text-body text-white hover:text-violet transition-colors duration-300"
                   >
-                    hello@studioash.com.au
+                    hello@hexstudio.com.au
                   </a>
                   <a
                     href="tel:+61412345678"
-                    className="block text-body text-charcoal hover:text-bronze transition-colors duration-300"
+                    className="block text-body text-white hover:text-violet transition-colors duration-300"
                   >
                     +61 412 345 678
                   </a>
                 </div>
               </div>
 
-              {/* Location */}
               <div>
-                <h3 className="text-small font-medium uppercase tracking-wider text-stone mb-4">
+                <h3 className="font-mono text-micro uppercase tracking-widest text-muted mb-4">
                   Location
                 </h3>
-                <address className="not-italic text-body text-charcoal">
+                <address className="not-italic text-body text-white">
                   Brisbane, Australia
                   <br />
-                  <span className="text-stone">
+                  <span className="text-subtle">
                     Working with clients worldwide
                   </span>
                 </address>
               </div>
 
-              {/* Availability */}
               <div>
-                <h3 className="text-small font-medium uppercase tracking-wider text-stone mb-4">
+                <h3 className="font-mono text-micro uppercase tracking-widest text-muted mb-4">
                   Availability
                 </h3>
                 <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-body text-charcoal">
-                    Currently accepting new projects for Q2 2026
+                  <span className="w-2 h-2 rounded-full bg-emerald animate-pulse" />
+                  <span className="text-body text-white">
+                    Accepting new projects
                   </span>
                 </div>
               </div>
 
-              {/* Social */}
               <div>
-                <h3 className="text-small font-medium uppercase tracking-wider text-stone mb-4">
+                <h3 className="font-mono text-micro uppercase tracking-widest text-muted mb-4">
                   Connect
                 </h3>
                 <div className="flex gap-4">
                   {[
-                    { href: 'https://instagram.com/studioash', label: 'Instagram' },
-                    { href: 'https://linkedin.com/company/studioash', label: 'LinkedIn' },
-                    { href: 'https://behance.net/studioash', label: 'Behance' },
+                    { href: 'https://instagram.com/hexstudio', label: 'Instagram' },
+                    { href: 'https://linkedin.com/company/hexstudio', label: 'LinkedIn' },
+                    { href: 'https://behance.net/hexstudio', label: 'Behance' },
                   ].map((link) => (
                     <a
                       key={link.label}
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-small text-stone hover:text-charcoal transition-colors duration-300"
+                      className="text-small text-muted hover:text-violet transition-colors duration-300"
                     >
                       {link.label}
                     </a>
@@ -329,7 +319,7 @@ export function ContactPageContent() {
       </Section>
 
       {/* FAQ */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -337,33 +327,33 @@ export function ContactPageContent() {
           viewport={viewportSettings}
           className="max-w-3xl mx-auto"
         >
-          <h2 className="text-h2 font-serif text-charcoal text-center mb-12">
+          <h2 className="text-h2 font-serif text-white text-center mb-12">
             Common questions
           </h2>
           <div className="space-y-8">
             {[
               {
-                question: "What's your typical process?",
-                answer: 'We follow a four-phase approach: Discovery, Strategy, Creation, and Launch. Each project begins with deep research and strategic thinking before any design work begins.',
+                question: "What's your process?",
+                answer: 'Four phases: Discovery, Strategy, Creation, and Launch. Research and strategy before any design.',
               },
               {
-                question: 'How long does a typical project take?',
-                answer: "Brand identity projects typically take 8-12 weeks. Website projects range from 10-16 weeks depending on complexity. We'll provide a detailed timeline during our initial conversation.",
+                question: 'How long do projects take?',
+                answer: 'Brand identity: 8-12 weeks. Websites: 10-16 weeks. Detailed timeline provided after initial conversation.',
               },
               {
-                question: 'Do you work with clients outside Australia?',
-                answer: "Absolutely. While we're based in Brisbane, we regularly work with clients across Australia and internationally. Modern tools make remote collaboration seamless.",
+                question: 'Do you work internationally?',
+                answer: 'Yes. Based in Brisbane, we work with clients across Australia and globally.',
               },
               {
-                question: "What's the investment for a brand project?",
-                answer: 'Brand identity projects start from $15,000. Complete brand and website packages start from $35,000. We provide detailed proposals after understanding your specific needs.',
+                question: "What's the investment?",
+                answer: 'Brand identity from $15,000. Complete brand and website packages from $35,000. Detailed proposals after understanding your needs.',
               },
             ].map((faq) => (
-              <div key={faq.question} className="border-b border-line-grey pb-8">
-                <h3 className="text-h4 font-serif text-charcoal mb-3">
+              <div key={faq.question} className="border-b border-white/[0.06] pb-8">
+                <h3 className="text-h4 font-serif text-white mb-3">
                   {faq.question}
                 </h3>
-                <p className="text-body text-stone">{faq.answer}</p>
+                <p className="text-body text-subtle">{faq.answer}</p>
               </div>
             ))}
           </div>

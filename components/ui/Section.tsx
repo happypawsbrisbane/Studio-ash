@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { staggerContainer, viewportSettings } from '@/lib/animations'
 
-type SectionVariant = 'default' | 'dark' | 'cream'
+type SectionVariant = 'default' | 'dark' | 'elevated'
 
 interface SectionProps {
   variant?: SectionVariant
@@ -16,9 +16,9 @@ interface SectionProps {
 }
 
 const variantStyles: Record<SectionVariant, string> = {
-  default: 'bg-off-white text-charcoal',
-  dark: 'bg-charcoal text-off-white',
-  cream: 'bg-line-grey/30 text-charcoal',
+  default: 'bg-void text-white',
+  dark: 'bg-surface text-white',
+  elevated: 'bg-elevated text-white',
 }
 
 const sizeStyles = {
@@ -95,8 +95,8 @@ export function SectionHeader({
     >
       {eyebrow && (
         <span className={cn(
-          'block text-caption uppercase tracking-widest mb-4',
-          dark ? 'text-off-white/50' : 'text-stone'
+          'block font-mono text-micro uppercase tracking-[0.15em] mb-4',
+          dark ? 'text-muted' : 'text-muted'
         )}>
           {eyebrow}
         </span>
@@ -105,7 +105,7 @@ export function SectionHeader({
       {description && (
         <p className={cn(
           'mt-4 text-body-lg max-w-2xl',
-          dark ? 'text-off-white/70' : 'text-stone'
+          dark ? 'text-subtle' : 'text-subtle'
         )}>
           {description}
         </p>

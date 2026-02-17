@@ -25,12 +25,10 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false)
   }, [pathname])
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -46,23 +44,22 @@ export function Navigation() {
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
           isScrolled
-            ? 'bg-off-white/95 backdrop-blur-sm shadow-sm'
-            : 'bg-gradient-to-b from-off-white/80 to-transparent backdrop-blur-[2px]',
-          isScrolled ? 'py-4' : 'py-6'
+            ? 'glass-strong py-3'
+            : 'bg-transparent py-5'
         )}
       >
         <nav className="px-6 md:px-12 lg:px-20 flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="text-h4 font-serif text-charcoal hover:text-stone transition-colors duration-300"
-          >
-            Studio Ash
+          <Link href="/" className="flex items-center gap-2 group">
+            <span className="w-7 h-7 rounded-md bg-gradient-accent flex items-center justify-center text-white text-micro font-mono font-bold">
+              H
+            </span>
+            <span className="text-h4 font-sans font-medium text-white tracking-tight">
+              Hex<span className="text-subtle group-hover:text-violet transition-colors duration-300">Studio</span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <NavLink
@@ -76,17 +73,16 @@ export function Navigation() {
             <Link
               href="/contact"
               className={cn(
-                'px-5 py-2.5 text-small font-medium transition-colors duration-300',
+                'px-5 py-2 text-small font-medium rounded-full transition-all duration-300',
                 pathname === '/contact'
-                  ? 'bg-charcoal text-off-white'
-                  : 'border border-charcoal text-charcoal hover:bg-charcoal hover:text-off-white'
+                  ? 'bg-violet text-white'
+                  : 'border border-white/10 text-white/80 hover:border-violet/50 hover:text-white hover:bg-violet/10'
               )}
             >
               Contact
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden relative w-8 h-8 flex items-center justify-center"
@@ -97,19 +93,19 @@ export function Navigation() {
             <div className="relative w-6 h-4">
               <span
                 className={cn(
-                  'absolute left-0 h-0.5 w-6 bg-charcoal transition-all duration-300',
+                  'absolute left-0 h-px w-6 bg-white transition-all duration-300',
                   isMobileMenuOpen ? 'top-1.5 rotate-45' : 'top-0'
                 )}
               />
               <span
                 className={cn(
-                  'absolute left-0 top-1.5 h-0.5 w-6 bg-charcoal transition-opacity duration-300',
+                  'absolute left-0 top-1.5 h-px w-6 bg-white transition-opacity duration-300',
                   isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
                 )}
               />
               <span
                 className={cn(
-                  'absolute left-0 h-0.5 w-6 bg-charcoal transition-all duration-300',
+                  'absolute left-0 h-px w-6 bg-white transition-all duration-300',
                   isMobileMenuOpen ? 'top-1.5 -rotate-45' : 'top-3'
                 )}
               />
@@ -118,15 +114,14 @@ export function Navigation() {
         </nav>
       </header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-off-white md:hidden"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-void md:hidden"
           >
             <nav className="flex flex-col items-center justify-center h-full gap-8">
               {navLinks.map((link, index) => (
@@ -141,8 +136,8 @@ export function Navigation() {
                     className={cn(
                       'text-h2 font-serif transition-colors duration-300',
                       pathname === link.href || pathname.startsWith(`${link.href}/`)
-                        ? 'text-charcoal'
-                        : 'text-stone hover:text-charcoal'
+                        ? 'text-white'
+                        : 'text-subtle hover:text-white'
                     )}
                   >
                     {link.label}
@@ -156,10 +151,18 @@ export function Navigation() {
               >
                 <Link
                   href="/contact"
-                  className="text-h2 font-serif text-stone hover:text-charcoal transition-colors duration-300"
+                  className="text-h2 font-serif text-subtle hover:text-white transition-colors duration-300"
                 >
                   Contact
                 </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
+                className="mt-8 font-mono text-micro text-muted tracking-widest uppercase"
+              >
+                #DESIGN #BUILD #BRAND
               </motion.div>
             </nav>
           </motion.div>
@@ -181,14 +184,14 @@ function NavLink({ href, isActive, children }: NavLinkProps) {
       href={href}
       className={cn(
         'relative text-small font-medium transition-colors duration-300',
-        isActive ? 'text-charcoal' : 'text-stone hover:text-charcoal'
+        isActive ? 'text-white' : 'text-subtle hover:text-white'
       )}
     >
       {children}
       <span
         className={cn(
-          'absolute -bottom-1 left-0 h-px bg-charcoal transition-all duration-300',
-          isActive ? 'w-full' : 'w-0'
+          'absolute -bottom-1 left-0 h-px transition-all duration-300',
+          isActive ? 'w-full bg-violet' : 'w-0 bg-violet'
         )}
       />
     </Link>

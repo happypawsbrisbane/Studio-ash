@@ -6,8 +6,8 @@ import { ServicesOverview } from '@/components/ServicesOverview'
 import { ContactCTA } from '@/components/ContactCTA'
 
 export const metadata: Metadata = {
-  title: 'Studio Ash — Premium Brand Studio, Brisbane',
-  description: 'Studio Ash is a premium creative and brand studio based in Brisbane, Australia. We craft extraordinary brands for extraordinary people through strategy, design, and digital experiences.',
+  title: 'HexStudio — Brand & Design Studio, Brisbane',
+  description: 'HexStudio is a premium brand and design studio in Brisbane. We craft brands that command attention through strategy, design, and digital experiences.',
 }
 
 export default function HomePage() {

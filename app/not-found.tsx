@@ -12,7 +12,7 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: smoothOut }}
-          className="block text-display font-serif text-line-grey mb-4"
+          className="block text-display font-serif text-gradient mb-4"
         >
           404
         </motion.span>
@@ -20,7 +20,7 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: smoothOut }}
-          className="text-h1 font-serif text-charcoal mb-4"
+          className="text-h1 font-serif text-white mb-4"
         >
           Page not found
         </motion.h1>
@@ -28,10 +28,9 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
-          className="text-body-lg text-stone mb-8"
+          className="text-body-lg text-subtle mb-8"
         >
-          The page you're looking for doesn't exist or has been moved.
-          Let's get you back on track.
+          This page doesn&apos;t exist. Let&apos;s get you back on track.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
