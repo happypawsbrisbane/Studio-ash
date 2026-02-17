@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
     // if (process.env.RESEND_API_KEY) {
     //   const resend = new Resend(process.env.RESEND_API_KEY)
     //   await resend.emails.send({
-    //     from: 'Studio Ash <noreply@studioash.com.au>',
-    //     to: process.env.CONTACT_EMAIL || 'hello@studioash.com.au',
+    //     from: 'HexStudio <noreply@hexstudio.com.au>',
+    //     to: process.env.CONTACT_EMAIL || 'hello@hexstudio.com.au',
     //     subject: `New inquiry from ${body.name}`,
     //     text: `
     //       Name: ${body.name}

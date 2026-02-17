@@ -42,7 +42,7 @@ const results = [
 ]
 
 const testimonial = {
-  quote: "Studio Ash understood that our brand needed to feel like one of our buildings — considered, refined, and deeply connected to its environment. The result exceeded every expectation.",
+  quote: "HexStudio understood that our brand needed to feel like one of our buildings — considered, refined, and deeply connected to its environment. The result exceeded every expectation.",
   author: 'James & Olivia Ward',
   role: 'Principals, Stillwater Studio',
 }
@@ -107,7 +107,7 @@ export default function StillwaterStudioPage() {
           >
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 text-stone hover:text-charcoal transition-colors"
+              className="inline-flex items-center gap-2 text-subtle hover:text-white transition-colors"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -130,7 +130,7 @@ export default function StillwaterStudioPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: smoothOut }}
-                className="text-h1 md:text-display font-serif text-charcoal mb-4"
+                className="text-h1 md:text-display font-serif text-white mb-4"
               >
                 {projectInfo.title}
               </motion.h1>
@@ -138,7 +138,7 @@ export default function StillwaterStudioPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
-                className="text-h3 font-serif text-stone italic mb-8"
+                className="text-h3 font-serif text-subtle italic mb-8"
               >
                 {projectInfo.tagline}
               </motion.p>
@@ -150,20 +150,20 @@ export default function StillwaterStudioPage() {
                 className="grid grid-cols-2 gap-6"
               >
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Year</span>
-                  <span className="text-body text-charcoal">{projectInfo.year}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Year</span>
+                  <span className="text-body text-white">{projectInfo.year}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Duration</span>
-                  <span className="text-body text-charcoal">{projectInfo.duration}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Duration</span>
+                  <span className="text-body text-white">{projectInfo.duration}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Industry</span>
-                  <span className="text-body text-charcoal">{projectInfo.industry}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Industry</span>
+                  <span className="text-body text-white">{projectInfo.industry}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Services</span>
-                  <span className="text-body text-charcoal">{projectInfo.services.slice(0, 2).join(', ')}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Services</span>
+                  <span className="text-body text-white">{projectInfo.services.slice(0, 2).join(', ')}</span>
                 </div>
               </motion.div>
             </div>
@@ -203,7 +203,7 @@ export default function StillwaterStudioPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Experience the design
           </motion.h2>
@@ -218,14 +218,14 @@ export default function StillwaterStudioPage() {
       </Section>
 
       {/* Overview Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="max-w-3xl mx-auto text-center">
           <motion.p
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h3 font-serif text-charcoal leading-relaxed"
+            className="text-h3 font-serif text-white leading-relaxed"
           >
             Stillwater Studio is an award-winning architecture practice known for creating spaces
             that harmonize with their natural surroundings. They approached us to develop a brand
@@ -269,7 +269,7 @@ export default function StillwaterStudioPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             A considered approach
           </motion.h2>
@@ -287,8 +287,8 @@ export default function StillwaterStudioPage() {
               <span className="block text-[5rem] font-serif text-[#4A7C6F]/10 leading-none mb-4">
                 {step.number}
               </span>
-              <h3 className="text-h4 font-serif text-charcoal mb-2">{step.title}</h3>
-              <p className="text-body text-stone">{step.description}</p>
+              <h3 className="text-h4 font-serif text-white mb-2">{step.title}</h3>
+              <p className="text-body text-subtle">{step.description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -304,10 +304,10 @@ export default function StillwaterStudioPage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#7BA99A] mb-4">The Challenge</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Elevating perception</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Elevating perception</h2>
             <ul className="space-y-4">
               {challenges.map((challenge, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#7BA99A] flex-shrink-0" />
                   {challenge}
                 </li>
@@ -322,10 +322,10 @@ export default function StillwaterStudioPage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#7BA99A] mb-4">The Solution</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Refined simplicity</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Refined simplicity</h2>
             <ul className="space-y-4">
               {solutions.map((solution, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#7BA99A] flex-shrink-0" />
                   {solution}
                 </li>
@@ -388,7 +388,7 @@ export default function StillwaterStudioPage() {
       </Section>
 
       {/* Color Palette Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="text-center mb-12">
           <motion.span
             variants={fadeUp}
@@ -404,7 +404,7 @@ export default function StillwaterStudioPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Grounded in nature
           </motion.h2>
@@ -423,7 +423,7 @@ export default function StillwaterStudioPage() {
                 className="w-24 h-24 rounded-sm mb-3 shadow-lg"
                 style={{ backgroundColor: color }}
               />
-              <span className="text-small text-stone uppercase tracking-wider">{color}</span>
+              <span className="text-small text-subtle uppercase tracking-wider">{color}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -446,7 +446,7 @@ export default function StillwaterStudioPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Architectural impact
           </motion.h2>
@@ -464,7 +464,7 @@ export default function StillwaterStudioPage() {
               <span className="block text-display font-serif text-[#4A7C6F] mb-2">
                 {result.metric}
               </span>
-              <span className="text-small text-stone uppercase tracking-wider">
+              <span className="text-small text-subtle uppercase tracking-wider">
                 {result.description}
               </span>
             </motion.div>
@@ -473,7 +473,7 @@ export default function StillwaterStudioPage() {
       </Section>
 
       {/* Testimonial Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <motion.blockquote
           variants={fadeUp}
           initial="hidden"
@@ -481,13 +481,13 @@ export default function StillwaterStudioPage() {
           viewport={viewportSettings}
           className="max-w-4xl mx-auto text-center"
         >
-          <p className="text-h2 md:text-h1 font-serif text-charcoal leading-tight mb-8">
+          <p className="text-h2 md:text-h1 font-serif text-white leading-tight mb-8">
             "{testimonial.quote}"
           </p>
           <footer>
             <cite className="not-italic">
-              <span className="block text-body font-medium text-charcoal">{testimonial.author}</span>
-              <span className="text-small text-stone">{testimonial.role}</span>
+              <span className="block text-body font-medium text-white">{testimonial.author}</span>
+              <span className="text-small text-subtle">{testimonial.role}</span>
             </cite>
           </footer>
         </motion.blockquote>
@@ -501,7 +501,7 @@ export default function StillwaterStudioPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-stone mb-4"
+            className="block text-caption uppercase tracking-widest text-subtle mb-4"
           >
             Next Project
           </motion.span>
@@ -510,7 +510,7 @@ export default function StillwaterStudioPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h1 font-serif text-charcoal mb-8"
+            className="text-h1 font-serif text-white mb-8"
           >
             Bloom Floristry
           </motion.h2>

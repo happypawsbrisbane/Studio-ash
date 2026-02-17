@@ -9,23 +9,25 @@ import { fadeUp, smoothOut, staggerContainer, viewportSettings } from '@/lib/ani
 const values = [
   {
     title: 'Strategy First',
-    description: 'Every visual decision is rooted in strategic thinking. We understand your market, your audience, and your ambitions before we design.',
+    hex: '#7C3AED',
+    description: 'Every visual decision rooted in research and strategic thinking.',
   },
   {
     title: 'Craft Obsessed',
-    description: 'Details matter. We sweat the small stuff because excellence lives in the margins. Every pixel, every word, every interaction is considered.',
+    hex: '#6366F1',
+    description: 'Every pixel, word, and interaction considered with precision.',
   },
   {
-    title: 'Partnership Approach',
-    description: 'The best work emerges from true collaboration. We embed ourselves in your vision, becoming an extension of your team.',
+    title: 'True Partnership',
+    hex: '#06B6D4',
+    description: 'We embed in your vision. Your brand becomes our mission.',
   },
 ]
 
 const stats = [
-  { number: '5+', label: 'Years of Experience' },
-  { number: '50+', label: 'Brands Created' },
-  { number: '100%', label: 'Client Satisfaction' },
-  { number: '∞', label: 'Cups of Coffee' },
+  { number: '5+', label: 'Years' },
+  { number: '50+', label: 'Brands' },
+  { number: '100%', label: 'Satisfaction' },
 ]
 
 const skills = {
@@ -36,7 +38,6 @@ const skills = {
 export default function StudioPage() {
   return (
     <>
-      {/* Hero Section */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-12 lg:px-20">
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -45,47 +46,46 @@ export default function StudioPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: smoothOut }}
-                className="block text-caption uppercase tracking-widest text-stone mb-6"
+                className="block font-mono text-micro uppercase tracking-[0.15em] text-muted mb-6"
               >
-                About Me
+                About
               </motion.span>
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: smoothOut }}
-                className="text-h1 md:text-display font-serif text-charcoal"
+                className="text-h1 md:text-display font-serif text-white"
               >
-                I'm Ash — designer, creative, <em className="text-gold">brand obsessive</em>
+                Designer, creative, <em className="text-gradient not-italic">brand obsessive.</em>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
-                className="mt-6 text-body-lg text-stone"
+                className="mt-6 text-body-lg text-subtle"
               >
-                I'm a Brisbane-based designer with a mission to help businesses look as good
-                as they actually are. No more blending in with forgettable visuals.
+                Brisbane-based designer on a mission to help businesses look as good
+                as they actually are. No more blending in.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3, ease: smoothOut }}
-                className="mt-4 text-body-lg text-stone"
+                className="mt-4 text-body-lg text-subtle"
               >
-                <strong className="text-charcoal">I believe great design isn't just about looking pretty</strong>
-                — it's about positioning you as the premium choice and attracting clients
-                who value quality over price.
+                <strong className="text-white">Great design isn&apos;t just aesthetics</strong>
+                &mdash; it&apos;s positioning you as the premium choice.
               </motion.p>
             </div>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: smoothOut }}
-              className="relative aspect-[3/4] bg-line-grey rounded-t-[200px] rounded-b-[20px] overflow-hidden"
+              className="relative aspect-[3/4] rounded-3xl overflow-hidden border border-white/[0.06]"
             >
               <Image
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop"
-                alt="Ash, designer at Studio Ash"
+                alt="Ash, designer at HexStudio"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -96,21 +96,20 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <Section size="small" variant="cream">
+      <Section size="small" variant="elevated">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportSettings}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+          className="grid grid-cols-3 gap-8 text-center"
         >
           {stats.map((stat) => (
             <motion.div key={stat.label} variants={fadeUp}>
-              <span className="block text-display font-serif text-gold mb-2">
+              <span className="block text-h1 md:text-display font-serif text-gradient mb-2">
                 {stat.number}
               </span>
-              <span className="text-small text-stone uppercase tracking-wider">
+              <span className="font-mono text-micro text-muted uppercase tracking-widest">
                 {stat.label}
               </span>
             </motion.div>
@@ -118,7 +117,6 @@ export default function StudioPage() {
         </motion.div>
       </Section>
 
-      {/* Story Section */}
       <Section>
         <div className="max-w-3xl mx-auto">
           <SectionHeader
@@ -131,38 +129,28 @@ export default function StudioPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="space-y-6 text-body-lg text-stone text-center"
+            className="space-y-6 text-body-lg text-subtle text-center"
           >
             <p>
-              Design wasn't always the plan. I started out studying something completely
-              different, but kept finding myself drawn to the creative side of everything
-              I touched. Eventually, I stopped fighting it and leaned all the way in.
+              Design wasn&apos;t always the plan. But I kept getting drawn to the creative side of everything.
+              Eventually, I stopped fighting it.
             </p>
             <p>
-              I spent years working in agencies, learning the craft, and getting frustrated
-              watching businesses get handed cookie-cutter solutions that did nothing to set
-              them apart. Templates with different colors. Stock photos with different faces.
-              The same story, told the same way.
+              Years in agencies taught me the craft&mdash;and the frustration of watching businesses
+              get cookie-cutter solutions. Templates with different colors. Stock photos with different faces.
             </p>
             <p>
-              That frustration became my purpose. I started Studio Ash to do things differently
-              — to create brands that actually mean something, that tell unique stories, and
-              that position businesses as the premium choice in their market.
-            </p>
-            <p>
-              Today, I work with businesses who are ready to stop blending in. Whether it's a
-              complete brand overhaul or a website that finally matches your vision, every
-              project gets my full attention and creative energy.
+              That frustration became purpose. HexStudio exists to create brands that actually mean something.
+              Unique stories. Premium positioning.
             </p>
           </motion.div>
         </div>
       </Section>
 
-      {/* Values Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <SectionHeader
-          eyebrow="What I Believe"
-          title="Values that guide everything."
+          eyebrow="Values"
+          title="What guides everything."
           align="center"
         />
         <motion.div
@@ -170,18 +158,22 @@ export default function StudioPage() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportSettings}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
           {values.map((value) => (
             <motion.div
               key={value.title}
               variants={fadeUp}
-              className="p-8 bg-off-white text-center"
+              className="p-8 rounded-2xl border border-white/[0.06] bg-surface/30 text-center"
             >
-              <h3 className="text-h3 font-serif text-charcoal mb-4">
+              <div
+                className="w-3 h-3 rounded-full mx-auto mb-4"
+                style={{ backgroundColor: value.hex }}
+              />
+              <h3 className="text-h3 font-serif text-white mb-4">
                 {value.title}
               </h3>
-              <p className="text-body text-stone">
+              <p className="text-body text-subtle">
                 {value.description}
               </p>
             </motion.div>
@@ -189,24 +181,13 @@ export default function StudioPage() {
         </motion.div>
       </Section>
 
-      {/* Skills Section */}
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <div>
             <SectionHeader
-              eyebrow="What I Do"
-              title="Tools & expertise."
+              eyebrow="Expertise"
+              title="Tools & skills."
             />
-            <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportSettings}
-              className="text-body-lg text-stone mb-8"
-            >
-              From initial concept to final delivery, I handle every aspect of your
-              brand and web design project with care and precision.
-            </motion.p>
             <motion.div
               variants={staggerContainer}
               initial="hidden"
@@ -215,26 +196,26 @@ export default function StudioPage() {
               className="grid grid-cols-2 gap-8"
             >
               <motion.div variants={fadeUp}>
-                <h4 className="text-caption uppercase tracking-wider text-gold mb-4">
+                <h4 className="font-mono text-micro uppercase tracking-widest text-violet mb-4">
                   Brand Design
                 </h4>
                 <ul className="space-y-2">
                   {skills.brand.map((skill) => (
-                    <li key={skill} className="text-body text-charcoal flex items-center gap-2">
-                      <span className="w-1 h-1 rounded-full bg-gold" />
+                    <li key={skill} className="text-body text-white flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-violet" />
                       {skill}
                     </li>
                   ))}
                 </ul>
               </motion.div>
               <motion.div variants={fadeUp}>
-                <h4 className="text-caption uppercase tracking-wider text-gold mb-4">
+                <h4 className="font-mono text-micro uppercase tracking-widest text-cyan mb-4">
                   Web Design
                 </h4>
                 <ul className="space-y-2">
                   {skills.web.map((skill) => (
-                    <li key={skill} className="text-body text-charcoal flex items-center gap-2">
-                      <span className="w-1 h-1 rounded-full bg-gold" />
+                    <li key={skill} className="text-body text-white flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-cyan" />
                       {skill}
                     </li>
                   ))}
@@ -249,16 +230,16 @@ export default function StudioPage() {
             viewport={viewportSettings}
             className="grid grid-cols-2 gap-4"
           >
-            <div className="aspect-square bg-line-grey/50 rounded-lg flex items-center justify-center">
-              <svg className="w-12 h-12 text-stone/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="aspect-square rounded-2xl border border-white/[0.06] bg-surface/30 flex items-center justify-center">
+              <svg className="w-12 h-12 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M12 19l7-7 3 3-7 7-3-3z"/>
                 <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
                 <path d="M2 2l7.586 7.586"/>
                 <circle cx="11" cy="11" r="2"/>
               </svg>
             </div>
-            <div className="aspect-square bg-line-grey/50 rounded-lg flex items-center justify-center translate-y-8">
-              <svg className="w-12 h-12 text-stone/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="aspect-square rounded-2xl border border-white/[0.06] bg-surface/30 flex items-center justify-center translate-y-8">
+              <svg className="w-12 h-12 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                 <line x1="3" y1="9" x2="21" y2="9"/>
                 <line x1="9" y1="21" x2="9" y2="9"/>

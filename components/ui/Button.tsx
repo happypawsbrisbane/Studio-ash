@@ -9,21 +9,21 @@ type ButtonVariant = 'primary' | 'secondary' | 'ghost'
 type ButtonSize = 'default' | 'sm' | 'lg'
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-charcoal text-off-white hover:bg-charcoal/90',
-  secondary: 'bg-transparent border border-charcoal text-charcoal hover:bg-charcoal hover:text-off-white',
-  ghost: 'bg-transparent text-charcoal hover:bg-charcoal/5',
+  primary: 'bg-violet text-white hover:bg-violet/90',
+  secondary: 'bg-transparent border border-white/10 text-white/80 hover:border-violet/50 hover:bg-violet/10 hover:text-white',
+  ghost: 'bg-transparent text-white/80 hover:bg-white/5',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
   sm: 'px-4 py-2 text-small',
   default: 'px-6 py-3 text-body',
-  lg: 'px-8 py-4 text-body-lg',
+  lg: 'px-8 py-3.5 text-body-lg',
 }
 
 const baseStyles = cn(
-  'relative inline-flex items-center justify-center font-sans font-medium',
-  'transition-colors duration-300 ease-smooth-out',
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze focus-visible:ring-offset-2',
+  'relative inline-flex items-center justify-center font-sans font-medium rounded-full',
+  'transition-all duration-300 ease-smooth-out',
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet focus-visible:ring-offset-2 focus-visible:ring-offset-void',
   'disabled:pointer-events-none disabled:opacity-50'
 )
 

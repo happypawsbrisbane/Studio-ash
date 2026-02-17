@@ -8,18 +8,18 @@ import { fadeUp } from '@/lib/animations'
 const services = [
   {
     title: 'Brand Strategy',
-    description: 'Defining your position in the market through research, positioning, and strategic frameworks that guide every decision.',
-    items: ['Brand Positioning', 'Market Research', 'Brand Architecture', 'Naming & Messaging'],
+    hex: '#7C3AED',
+    items: ['Positioning', 'Research', 'Architecture', 'Messaging'],
   },
   {
     title: 'Identity Design',
-    description: 'Creating visual systems that communicate your brand\'s essence across every touchpoint, from logo to complete identity.',
-    items: ['Visual Identity', 'Logo Design', 'Typography Systems', 'Colour & Art Direction'],
+    hex: '#6366F1',
+    items: ['Visual Identity', 'Logo Design', 'Typography', 'Colour Direction'],
   },
   {
     title: 'Digital Experience',
-    description: 'Building digital products and websites that blend form and function, creating meaningful connections with your audience.',
-    items: ['Web Design', 'UX/UI Design', 'Development', 'E-commerce'],
+    hex: '#06B6D4',
+    items: ['Web Design', 'UX/UI', 'Development', 'E-commerce'],
   },
 ]
 
@@ -28,34 +28,37 @@ export function ServicesOverview() {
     <Section variant="dark">
       <SectionHeader
         eyebrow="Services"
-        title="From strategic foundation to creative execution."
-        description="We deliver comprehensive brand solutions that transform how businesses present themselves to the world."
+        title="Strategy to execution."
         dark
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
         {services.map((service, index) => (
           <motion.div
             key={service.title}
             variants={fadeUp}
-            className="border-t border-off-white/20 pt-8"
+            className="group relative p-8 rounded-2xl border border-white/[0.06] bg-surface/50 hover:border-white/[0.12] transition-all duration-500"
           >
-            <span className="text-caption text-off-white/40 mb-4 block">
+            <div
+              className="w-2 h-2 rounded-full mb-6"
+              style={{ backgroundColor: service.hex }}
+            />
+            <span className="block font-mono text-micro text-muted tracking-widest mb-3">
               0{index + 1}
             </span>
-            <h3 className="text-h3 font-serif text-off-white mb-4">
+            <h3 className="text-h3 font-serif text-white mb-6">
               {service.title}
             </h3>
-            <p className="text-body text-off-white/70 mb-6">
-              {service.description}
-            </p>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {service.items.map((item) => (
                 <li
                   key={item}
-                  className="text-small text-off-white/50 flex items-center gap-2"
+                  className="text-small text-subtle flex items-center gap-3"
                 >
-                  <span className="w-1 h-1 rounded-full bg-gold" />
+                  <span
+                    className="w-1 h-1 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: service.hex }}
+                  />
                   {item}
                 </li>
               ))}
@@ -68,9 +71,9 @@ export function ServicesOverview() {
         <ButtonLink
           href="/services"
           variant="secondary"
-          className="border-off-white text-off-white hover:bg-off-white hover:text-charcoal"
+          className="border-white/10 text-white/80 hover:border-violet/50 hover:bg-violet/10 hover:text-white"
         >
-          Explore Our Services
+          All Services
         </ButtonLink>
       </motion.div>
     </Section>

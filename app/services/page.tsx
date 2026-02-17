@@ -9,7 +9,8 @@ import { fadeUp, smoothOut, staggerContainer, viewportSettings } from '@/lib/ani
 const services = [
   {
     title: 'Brand Strategy',
-    description: 'We uncover what makes you unique and translate that into a strategic foundation that guides every decision.',
+    hex: '#7C3AED',
+    description: 'Uncover what makes you unique. Translate that into strategy.',
     features: [
       'Brand Discovery & Research',
       'Competitive Analysis',
@@ -21,7 +22,8 @@ const services = [
   },
   {
     title: 'Visual Identity',
-    description: 'We create distinctive visual systems that communicate your brand\'s essence across every touchpoint.',
+    hex: '#6366F1',
+    description: 'Distinctive visual systems across every touchpoint.',
     features: [
       'Logo & Brandmark Design',
       'Visual Identity System',
@@ -33,7 +35,8 @@ const services = [
   },
   {
     title: 'Digital Experience',
-    description: 'We build digital products and websites that blend form and function, creating meaningful connections.',
+    hex: '#06B6D4',
+    description: 'Digital products that blend form and function.',
     features: [
       'Website Design',
       'UX/UI Design',
@@ -45,7 +48,8 @@ const services = [
   },
   {
     title: 'Brand Collateral',
-    description: 'We extend your brand across all touchpoints with cohesive, beautifully crafted materials.',
+    hex: '#F43F5E',
+    description: 'Extend your brand across all touchpoints.',
     features: [
       'Business Stationery',
       'Marketing Materials',
@@ -61,36 +65,39 @@ const process = [
   {
     number: '01',
     title: 'Discovery',
-    description: 'We immerse ourselves in your world—your business, your audience, your ambitions. Through workshops, interviews, and research, we uncover the insights that will shape your brand.',
+    hex: '#7C3AED',
+    description: 'Immerse in your world. Workshops, interviews, research. Uncover insights that shape your brand.',
   },
   {
     number: '02',
     title: 'Strategy',
-    description: 'With insights in hand, we craft your brand\'s strategic foundation. We define your positioning, articulate your story, and create the framework that guides all creative decisions.',
+    hex: '#6366F1',
+    description: 'Define positioning, articulate your story, create the framework for all creative decisions.',
   },
   {
     number: '03',
     title: 'Creation',
-    description: 'Strategy becomes reality. We design, iterate, and refine until every element of your brand works in harmony—from your visual identity to your digital presence.',
+    hex: '#06B6D4',
+    description: 'Design, iterate, and refine until every element works in harmony.',
   },
   {
     number: '04',
     title: 'Launch',
-    description: 'We prepare your brand for the world with comprehensive guidelines, asset libraries, and launch support. Your team is equipped to maintain brand consistency as you grow.',
+    hex: '#10B981',
+    description: 'Comprehensive guidelines, asset libraries, and launch support.',
   },
 ]
 
 export default function ServicesPage() {
   return (
     <>
-      {/* Hero Section */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-12 lg:px-20">
         <div className="container-wide">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: smoothOut }}
-            className="block text-caption uppercase tracking-widest text-stone mb-6"
+            className="block font-mono text-micro uppercase tracking-[0.15em] text-muted mb-6"
           >
             Services
           </motion.span>
@@ -98,37 +105,33 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: smoothOut }}
-            className="text-h1 md:text-display font-serif text-charcoal max-w-4xl"
+            className="text-h1 md:text-display font-serif text-white max-w-4xl"
           >
-            From strategic foundation to creative execution.
+            Strategy to execution.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
-            className="mt-6 text-body-lg text-stone max-w-xl"
+            className="mt-6 text-body-lg text-subtle max-w-xl"
           >
-            We deliver comprehensive brand solutions that transform how businesses
-            present themselves to the world.
+            Comprehensive brand solutions that transform how businesses present themselves.
           </motion.p>
         </div>
       </section>
 
-      {/* Services Grid */}
       <Section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {services.map((service) => (
             <ServiceCard key={service.title} {...service} />
           ))}
         </div>
       </Section>
 
-      {/* Process Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <SectionHeader
-          eyebrow="Our Process"
-          title="A proven approach to brand building."
-          description="Every project follows our four-phase methodology, ensuring strategic rigour and creative excellence at every step."
+          eyebrow="Process"
+          title="Four phases. One standard."
         />
 
         <motion.div
@@ -136,21 +139,25 @@ export default function ServicesPage() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportSettings}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {process.map((step) => (
             <motion.div
               key={step.number}
               variants={fadeUp}
-              className="relative"
+              className="relative p-6 rounded-2xl border border-white/[0.06] bg-surface/30"
             >
-              <span className="text-display font-serif text-gold/30 block mb-4">
+              <div
+                className="w-2 h-2 rounded-full mb-4"
+                style={{ backgroundColor: step.hex }}
+              />
+              <span className="block font-mono text-micro text-muted tracking-widest mb-3">
                 {step.number}
               </span>
-              <h3 className="text-h3 font-serif text-charcoal mb-3">
+              <h3 className="text-h3 font-serif text-white mb-3">
                 {step.title}
               </h3>
-              <p className="text-body text-stone">
+              <p className="text-body text-subtle">
                 {step.description}
               </p>
             </motion.div>
@@ -158,7 +165,6 @@ export default function ServicesPage() {
         </motion.div>
       </Section>
 
-      {/* Investment Section */}
       <Section>
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
@@ -167,31 +173,30 @@ export default function ServicesPage() {
             whileInView="visible"
             viewport={viewportSettings}
           >
-            <span className="block text-caption uppercase tracking-widest text-stone mb-6">
+            <span className="block font-mono text-micro uppercase tracking-[0.15em] text-muted mb-6">
               Investment
             </span>
-            <h2 className="text-h2 md:text-h1 font-serif text-charcoal mb-6">
+            <h2 className="text-h2 md:text-h1 font-serif text-white mb-6">
               Tailored to your needs.
             </h2>
-            <p className="text-body-lg text-stone mb-8">
-              Every project is unique, and we tailor our approach to match your specific
-              requirements. Our engagements typically start from:
+            <p className="text-body-lg text-subtle mb-8">
+              Every project is unique. Our engagements typically start from:
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-              <div className="p-6 border border-line-grey">
-                <h4 className="text-h4 font-serif text-charcoal mb-2">Brand Identity</h4>
-                <p className="text-body-lg text-gold mb-2">From $15,000</p>
-                <p className="text-small text-stone">Logo, visual identity system, and brand guidelines.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+              <div className="p-6 rounded-2xl border border-white/[0.06] bg-surface/30">
+                <h4 className="text-h4 font-serif text-white mb-2">Brand Identity</h4>
+                <p className="text-body-lg text-violet mb-2">From $15,000</p>
+                <p className="text-small text-subtle">Logo, visual identity, brand guidelines.</p>
               </div>
-              <div className="p-6 border border-line-grey">
-                <h4 className="text-h4 font-serif text-charcoal mb-2">Website Design</h4>
-                <p className="text-body-lg text-gold mb-2">From $20,000</p>
-                <p className="text-small text-stone">Custom website design and development.</p>
+              <div className="p-6 rounded-2xl border border-white/[0.06] bg-surface/30">
+                <h4 className="text-h4 font-serif text-white mb-2">Website Design</h4>
+                <p className="text-body-lg text-indigo mb-2">From $20,000</p>
+                <p className="text-small text-subtle">Custom design and development.</p>
               </div>
-              <div className="p-6 border border-line-grey">
-                <h4 className="text-h4 font-serif text-charcoal mb-2">Full Package</h4>
-                <p className="text-body-lg text-gold mb-2">From $35,000</p>
-                <p className="text-small text-stone">Complete brand strategy, identity, and digital presence.</p>
+              <div className="p-6 rounded-2xl border border-white/[0.06] bg-surface/30">
+                <h4 className="text-h4 font-serif text-white mb-2">Full Package</h4>
+                <p className="text-body-lg text-cyan mb-2">From $35,000</p>
+                <p className="text-small text-subtle">Strategy, identity, digital presence.</p>
               </div>
             </div>
           </motion.div>

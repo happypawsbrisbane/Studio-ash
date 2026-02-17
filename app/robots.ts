@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/studio/'],
     },
-    sitemap: 'https://studioash.com.au/sitemap.xml',
+    sitemap: 'https://hexstudio.com.au/sitemap.xml',
   }
 }

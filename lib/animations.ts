@@ -1,7 +1,5 @@
-// Smooth easing curve for natural animations
-export const smoothOut = [0.22, 1, 0.36, 1]
+export const smoothOut = [0.16, 1, 0.3, 1]
 
-// Fade up animation variant
 export const fadeUp = {
   hidden: {
     opacity: 0,
@@ -11,13 +9,12 @@ export const fadeUp = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.7,
       ease: smoothOut,
     },
   },
 }
 
-// Fade in animation variant
 export const fadeIn = {
   hidden: {
     opacity: 0,
@@ -25,24 +22,12 @@ export const fadeIn = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.6,
+      duration: 0.7,
       ease: smoothOut,
     },
   },
 }
 
-// Stagger container for children animations
-export const staggerContainer = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
-  },
-}
-
-// Scale up animation
 export const scaleUp = {
   hidden: {
     opacity: 0,
@@ -52,14 +37,53 @@ export const scaleUp = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.6,
       ease: smoothOut,
     },
   },
 }
 
-// Viewport settings for triggering animations
+export const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+}
+
 export const viewportSettings = {
   once: true,
-  margin: '-100px',
+  margin: '-80px',
+}
+
+export const slideInLeft = {
+  hidden: {
+    opacity: 0,
+    x: -40,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: smoothOut,
+    },
+  },
+}
+
+export const slideInRight = {
+  hidden: {
+    opacity: 0,
+    x: 40,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: smoothOut,
+    },
+  },
 }

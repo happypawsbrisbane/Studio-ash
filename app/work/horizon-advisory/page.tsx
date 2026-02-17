@@ -42,7 +42,7 @@ const results = [
 ]
 
 const testimonial = {
-  quote: "Studio Ash helped us break free from the stuffy financial advisor stereotype. Our new brand attracts exactly the kind of forward-thinking clients we want to work with, while still conveying the expertise and trust that matters in our industry.",
+  quote: "HexStudio helped us break free from the stuffy financial advisor stereotype. Our new brand attracts exactly the kind of forward-thinking clients we want to work with, while still conveying the expertise and trust that matters in our industry.",
   author: 'David Chen',
   role: 'Managing Partner, Horizon Advisory',
 }
@@ -203,7 +203,7 @@ export default function HorizonAdvisoryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Experience the design
           </motion.h2>
@@ -218,14 +218,14 @@ export default function HorizonAdvisoryPage() {
       </Section>
 
       {/* Overview Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="max-w-3xl mx-auto text-center">
           <motion.p
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h3 font-serif text-charcoal leading-relaxed"
+            className="text-h3 font-serif text-white leading-relaxed"
           >
             Horizon Advisory is a boutique financial planning firm with a refreshing approach to
             wealth management. They wanted a brand that would attract a new generation of clients
@@ -251,7 +251,7 @@ export default function HorizonAdvisoryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Foundation for growth
           </motion.h2>
@@ -273,8 +273,8 @@ export default function HorizonAdvisoryPage() {
               <span className="text-caption uppercase tracking-wider text-[#C9A227] mb-2 block">
                 0{index + 1}
               </span>
-              <h3 className="text-h4 font-serif text-charcoal mb-3">{principle.title}</h3>
-              <p className="text-body text-stone">{principle.description}</p>
+              <h3 className="text-h4 font-serif text-white mb-3">{principle.title}</h3>
+              <p className="text-body text-subtle">{principle.description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -298,7 +298,7 @@ export default function HorizonAdvisoryPage() {
               initial="hidden"
               whileInView="visible"
               viewport={viewportSettings}
-              className="text-h2 font-serif text-charcoal mb-6"
+              className="text-h2 font-serif text-white mb-6"
             >
               Clarity in every offering
             </motion.h2>
@@ -307,7 +307,7 @@ export default function HorizonAdvisoryPage() {
               initial="hidden"
               whileInView="visible"
               viewport={viewportSettings}
-              className="text-body-lg text-stone mb-8"
+              className="text-body-lg text-subtle mb-8"
             >
               We developed a clear visual system to communicate Horizon's service offerings,
               making complex financial concepts accessible without sacrificing sophistication.
@@ -324,10 +324,10 @@ export default function HorizonAdvisoryPage() {
                 <motion.div
                   key={service.title}
                   variants={fadeUp}
-                  className="p-4 border border-line-grey hover:border-[#C9A227] transition-colors"
+                  className="p-4 border border-white/[0.06] hover:border-[#C9A227] transition-colors"
                 >
-                  <h4 className="text-body font-medium text-charcoal mb-1">{service.title}</h4>
-                  <p className="text-small text-stone">{service.description}</p>
+                  <h4 className="text-body font-medium text-white mb-1">{service.title}</h4>
+                  <p className="text-small text-subtle">{service.description}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -360,10 +360,10 @@ export default function HorizonAdvisoryPage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#C9A227] mb-4">The Challenge</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Beyond the boardroom</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Beyond the boardroom</h2>
             <ul className="space-y-4">
               {challenges.map((challenge, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#C9A227] flex-shrink-0" />
                   {challenge}
                 </li>
@@ -378,10 +378,10 @@ export default function HorizonAdvisoryPage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#C9A227] mb-4">The Solution</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Modern authority</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Modern authority</h2>
             <ul className="space-y-4">
               {solutions.map((solution, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#C9A227] flex-shrink-0" />
                   {solution}
                 </li>
@@ -444,7 +444,7 @@ export default function HorizonAdvisoryPage() {
       </Section>
 
       {/* Color Palette Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="text-center mb-12">
           <motion.span
             variants={fadeUp}
@@ -460,7 +460,7 @@ export default function HorizonAdvisoryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Commanding presence
           </motion.h2>
@@ -476,10 +476,10 @@ export default function HorizonAdvisoryPage() {
           {['#0A1628', '#1A2744', '#C9A227', '#E8E4DC', '#FFFFFF'].map((color) => (
             <motion.div key={color} variants={fadeUp} className="text-center">
               <div
-                className="w-24 h-24 rounded-sm mb-3 shadow-lg border border-line-grey"
+                className="w-24 h-24 rounded-sm mb-3 shadow-lg border border-white/[0.06]"
                 style={{ backgroundColor: color }}
               />
-              <span className="text-small text-stone uppercase tracking-wider">{color}</span>
+              <span className="text-small text-subtle uppercase tracking-wider">{color}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -502,7 +502,7 @@ export default function HorizonAdvisoryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Measured success
           </motion.h2>
@@ -520,7 +520,7 @@ export default function HorizonAdvisoryPage() {
               <span className="block text-display font-serif text-[#1A2744] mb-2">
                 {result.metric}
               </span>
-              <span className="text-small text-stone uppercase tracking-wider">
+              <span className="text-small text-subtle uppercase tracking-wider">
                 {result.description}
               </span>
             </motion.div>
@@ -557,7 +557,7 @@ export default function HorizonAdvisoryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-stone mb-4"
+            className="block text-caption uppercase tracking-widest text-subtle mb-4"
           >
             Next Project
           </motion.span>
@@ -566,7 +566,7 @@ export default function HorizonAdvisoryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h1 font-serif text-charcoal mb-8"
+            className="text-h1 font-serif text-white mb-8"
           >
             Paws & Peace
           </motion.h2>

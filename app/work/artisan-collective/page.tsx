@@ -42,7 +42,7 @@ const results = [
 ]
 
 const testimonial = {
-  quote: "Studio Ash created something truly special — a digital space that honors the human hands behind every piece. Our makers finally have a platform that tells their stories as beautifully as they deserve.",
+  quote: "HexStudio created something truly special — a digital space that honors the human hands behind every piece. Our makers finally have a platform that tells their stories as beautifully as they deserve.",
   author: 'Mira & Tom Ashworth',
   role: 'Founders, Artisan Collective',
 }
@@ -107,7 +107,7 @@ export default function ArtisanCollectivePage() {
           >
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 text-stone hover:text-charcoal transition-colors"
+              className="inline-flex items-center gap-2 text-subtle hover:text-white transition-colors"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -130,7 +130,7 @@ export default function ArtisanCollectivePage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: smoothOut }}
-                className="text-h1 md:text-display font-serif text-charcoal mb-4"
+                className="text-h1 md:text-display font-serif text-white mb-4"
               >
                 {projectInfo.title}
               </motion.h1>
@@ -138,7 +138,7 @@ export default function ArtisanCollectivePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
-                className="text-h3 font-serif text-stone italic mb-8"
+                className="text-h3 font-serif text-subtle italic mb-8"
               >
                 {projectInfo.tagline}
               </motion.p>
@@ -150,20 +150,20 @@ export default function ArtisanCollectivePage() {
                 className="grid grid-cols-2 gap-6"
               >
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Year</span>
-                  <span className="text-body text-charcoal">{projectInfo.year}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Year</span>
+                  <span className="text-body text-white">{projectInfo.year}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Duration</span>
-                  <span className="text-body text-charcoal">{projectInfo.duration}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Duration</span>
+                  <span className="text-body text-white">{projectInfo.duration}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Industry</span>
-                  <span className="text-body text-charcoal">{projectInfo.industry}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Industry</span>
+                  <span className="text-body text-white">{projectInfo.industry}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Services</span>
-                  <span className="text-body text-charcoal">{projectInfo.services.slice(0, 2).join(', ')}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Services</span>
+                  <span className="text-body text-white">{projectInfo.services.slice(0, 2).join(', ')}</span>
                 </div>
               </motion.div>
             </div>
@@ -203,7 +203,7 @@ export default function ArtisanCollectivePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Experience the design
           </motion.h2>
@@ -218,14 +218,14 @@ export default function ArtisanCollectivePage() {
       </Section>
 
       {/* Overview Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="max-w-3xl mx-auto text-center">
           <motion.p
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h3 font-serif text-charcoal leading-relaxed"
+            className="text-h3 font-serif text-white leading-relaxed"
           >
             Artisan Collective began as a passion project by two former gallery curators who wanted
             to connect Australia's finest craftspeople directly with appreciative buyers. They needed
@@ -235,7 +235,7 @@ export default function ArtisanCollectivePage() {
       </Section>
 
       {/* Craft Categories */}
-      <Section variant="cream" className="bg-[#F5F0EB]">
+      <Section variant="elevated">
         <div className="text-center mb-12">
           <motion.span
             variants={fadeUp}
@@ -251,7 +251,7 @@ export default function ArtisanCollectivePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Celebrating every craft
           </motion.h2>
@@ -270,8 +270,8 @@ export default function ArtisanCollectivePage() {
               variants={fadeUp}
               className="px-8 py-4 bg-white rounded-full border border-[#D4C4B0] hover:border-[#8B6F47] transition-colors"
             >
-              <span className="text-body text-charcoal">{category.name}</span>
-              <span className="text-small text-stone ml-2">({category.count})</span>
+              <span className="text-body text-white">{category.name}</span>
+              <span className="text-small text-subtle ml-2">({category.count})</span>
             </motion.div>
           ))}
         </motion.div>
@@ -321,7 +321,7 @@ export default function ArtisanCollectivePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Designed for connection
           </motion.h2>
@@ -339,8 +339,8 @@ export default function ArtisanCollectivePage() {
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#F5F0EB] flex items-center justify-center">
                 <span className="text-h3 font-serif text-[#8B6F47]">{String(index + 1).padStart(2, '0')}</span>
               </div>
-              <h3 className="text-h4 font-serif text-charcoal mb-4">{feature.title}</h3>
-              <p className="text-body text-stone">{feature.description}</p>
+              <h3 className="text-h4 font-serif text-white mb-4">{feature.title}</h3>
+              <p className="text-body text-subtle">{feature.description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -356,10 +356,10 @@ export default function ArtisanCollectivePage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#C9A87C] mb-4">The Challenge</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Unity in diversity</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Unity in diversity</h2>
             <ul className="space-y-4">
               {challenges.map((challenge, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#C9A87C] flex-shrink-0" />
                   {challenge}
                 </li>
@@ -374,10 +374,10 @@ export default function ArtisanCollectivePage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#C9A87C] mb-4">The Solution</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Stories that sell</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Stories that sell</h2>
             <ul className="space-y-4">
               {solutions.map((solution, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#C9A87C] flex-shrink-0" />
                   {solution}
                 </li>
@@ -440,7 +440,7 @@ export default function ArtisanCollectivePage() {
       </Section>
 
       {/* Color Palette Section */}
-      <Section variant="cream" className="bg-[#F5F0EB]">
+      <Section variant="elevated">
         <div className="text-center mb-12">
           <motion.span
             variants={fadeUp}
@@ -456,7 +456,7 @@ export default function ArtisanCollectivePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Rooted in raw materials
           </motion.h2>
@@ -475,7 +475,7 @@ export default function ArtisanCollectivePage() {
                 className="w-24 h-24 rounded-lg mb-3 shadow-lg"
                 style={{ backgroundColor: color }}
               />
-              <span className="text-small text-stone uppercase tracking-wider">{color}</span>
+              <span className="text-small text-subtle uppercase tracking-wider">{color}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -498,7 +498,7 @@ export default function ArtisanCollectivePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Handcrafted success
           </motion.h2>
@@ -516,7 +516,7 @@ export default function ArtisanCollectivePage() {
               <span className="block text-display font-serif text-[#8B6F47] mb-2">
                 {result.metric}
               </span>
-              <span className="text-small text-stone uppercase tracking-wider">
+              <span className="text-small text-subtle uppercase tracking-wider">
                 {result.description}
               </span>
             </motion.div>
@@ -525,7 +525,7 @@ export default function ArtisanCollectivePage() {
       </Section>
 
       {/* Testimonial Section */}
-      <Section variant="cream" className="bg-[#F5F0EB]">
+      <Section variant="elevated">
         <motion.blockquote
           variants={fadeUp}
           initial="hidden"
@@ -533,13 +533,13 @@ export default function ArtisanCollectivePage() {
           viewport={viewportSettings}
           className="max-w-4xl mx-auto text-center"
         >
-          <p className="text-h2 md:text-h1 font-serif text-charcoal leading-tight mb-8">
+          <p className="text-h2 md:text-h1 font-serif text-white leading-tight mb-8">
             "{testimonial.quote}"
           </p>
           <footer>
             <cite className="not-italic">
-              <span className="block text-body font-medium text-charcoal">{testimonial.author}</span>
-              <span className="text-small text-stone">{testimonial.role}</span>
+              <span className="block text-body font-medium text-white">{testimonial.author}</span>
+              <span className="text-small text-subtle">{testimonial.role}</span>
             </cite>
           </footer>
         </motion.blockquote>
@@ -553,7 +553,7 @@ export default function ArtisanCollectivePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-stone mb-4"
+            className="block text-caption uppercase tracking-widest text-subtle mb-4"
           >
             Next Project
           </motion.span>
@@ -562,7 +562,7 @@ export default function ArtisanCollectivePage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h1 font-serif text-charcoal mb-8"
+            className="text-h1 font-serif text-white mb-8"
           >
             Horizon Advisory
           </motion.h2>

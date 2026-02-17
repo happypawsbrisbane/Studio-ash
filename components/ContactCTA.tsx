@@ -7,25 +7,27 @@ import { fadeUp } from '@/lib/animations'
 
 export function ContactCTA() {
   return (
-    <Section variant="cream" size="large">
-      <div className="text-center max-w-3xl mx-auto">
+    <Section variant="elevated" size="large">
+      <div className="text-center max-w-3xl mx-auto relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] bg-violet/6 rounded-full blur-[80px] pointer-events-none" />
+
         <motion.span
           variants={fadeUp}
-          className="block text-caption uppercase tracking-widest text-stone mb-6"
+          className="block font-mono text-micro uppercase tracking-[0.2em] text-muted mb-6"
         >
           Ready to begin?
         </motion.span>
 
         <motion.h2
           variants={fadeUp}
-          className="text-h2 md:text-h1 font-serif text-charcoal mb-6"
+          className="text-h2 md:text-h1 font-serif text-white mb-6 relative"
         >
-          Let's create something extraordinary together.
+          Let&apos;s create something{' '}
+          <span className="text-gradient">extraordinary.</span>
         </motion.h2>
 
-        <motion.p variants={fadeUp} className="text-body-lg text-stone mb-10">
-          Whether you're launching a new venture, repositioning an established brand,
-          or seeking ongoing creative partnership—we'd love to hear from you.
+        <motion.p variants={fadeUp} className="text-body-lg text-subtle mb-10">
+          New venture, repositioning, or creative partnership &mdash; we&apos;d love to hear from you.
         </motion.p>
 
         <motion.div
@@ -35,23 +37,16 @@ export function ContactCTA() {
           <ButtonLink href="/contact" size="lg">
             Start a Conversation
           </ButtonLink>
-          <span className="text-small text-stone">
-            or email us at{' '}
+          <span className="text-small text-muted">
+            or{' '}
             <a
-              href="mailto:hello@studioash.com.au"
-              className="text-charcoal underline underline-offset-4 hover:text-bronze transition-colors"
+              href="mailto:hello@hexstudio.com.au"
+              className="text-subtle underline underline-offset-4 hover:text-violet transition-colors"
             >
-              hello@studioash.com.au
+              hello@hexstudio.com.au
             </a>
           </span>
         </motion.div>
-
-        <motion.p
-          variants={fadeUp}
-          className="mt-8 text-small text-stone"
-        >
-          Currently accepting new projects for Q2 2026
-        </motion.p>
       </div>
     </Section>
   )

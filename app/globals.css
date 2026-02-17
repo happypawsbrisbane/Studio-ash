@@ -16,20 +16,17 @@
   }
 
   body {
-    @apply bg-off-white text-charcoal font-sans text-body;
+    @apply bg-void text-white font-sans text-body;
   }
 
-  /* Typography defaults */
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-medium;
   }
 
-  /* Focus styles for accessibility */
   :focus-visible {
-    @apply outline-none ring-2 ring-bronze ring-offset-2 ring-offset-off-white;
+    @apply outline-none ring-2 ring-violet ring-offset-2 ring-offset-void;
   }
 
-  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -41,20 +38,17 @@
     }
   }
 
-  /* Custom selection */
   ::selection {
-    @apply bg-gold/30 text-charcoal;
+    @apply bg-violet/30 text-white;
   }
 }
 
 @layer components {
-  /* Skip link for accessibility */
   .skip-link {
-    @apply absolute -top-full left-4 z-[100] bg-charcoal text-off-white px-4 py-2 text-small font-medium;
+    @apply absolute -top-full left-4 z-[100] bg-violet text-white px-4 py-2 text-small font-medium;
     @apply focus:top-4 transition-all duration-200;
   }
 
-  /* Section wrapper */
   .section {
     @apply px-6 md:px-12 lg:px-20 py-20 md:py-28 lg:py-36;
   }
@@ -63,7 +57,6 @@
     @apply px-6 md:px-12 lg:px-20 py-12 md:py-16 lg:py-20;
   }
 
-  /* Container */
   .container-wide {
     @apply max-w-[1440px] mx-auto;
   }
@@ -72,12 +65,10 @@
     @apply max-w-[960px] mx-auto;
   }
 
-  /* Text utilities */
   .text-balance {
     text-wrap: balance;
   }
 
-  /* Image container with aspect ratio */
   .aspect-project {
     @apply aspect-[4/3];
   }
@@ -86,18 +77,68 @@
     @apply aspect-[16/9];
   }
 
+  /* Gradient text utility */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #7C3AED, #6366F1, #06B6D4);
+  }
+
+  .text-gradient-warm {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #F43F5E, #F59E0B);
+  }
+
+  /* Glow effects */
+  .glow-violet {
+    box-shadow: 0 0 60px -12px rgba(124, 58, 237, 0.4);
+  }
+
+  .glow-indigo {
+    box-shadow: 0 0 60px -12px rgba(99, 102, 241, 0.4);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 60px -12px rgba(6, 182, 212, 0.4);
+  }
+
+  /* Glass morphism */
+  .glass {
+    @apply bg-surface/60 backdrop-blur-xl border border-white/[0.06];
+  }
+
+  .glass-strong {
+    @apply bg-surface/80 backdrop-blur-2xl border border-white/[0.08];
+  }
+
   /* Gradient overlays */
   .gradient-fade-b {
-    background: linear-gradient(to bottom, transparent, rgba(26, 26, 26, 0.6));
+    background: linear-gradient(to bottom, transparent, rgba(6, 6, 10, 0.8));
   }
 
   .gradient-fade-t {
-    background: linear-gradient(to top, transparent, rgba(250, 250, 249, 0.8));
+    background: linear-gradient(to top, transparent, rgba(6, 6, 10, 0.8));
+  }
+
+  /* Noise texture overlay */
+  .noise {
+    position: relative;
+  }
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Hex code styling */
+  .hex-tag {
+    @apply font-mono text-micro uppercase tracking-widest text-muted;
   }
 }
 
 @layer utilities {
-  /* Animation delays for staggered reveals */
   .animation-delay-100 {
     animation-delay: 100ms;
   }
@@ -114,16 +155,17 @@
     animation-delay: 500ms;
   }
 
-  /* Hover image scale */
   .hover-scale {
     @apply transition-transform duration-600 ease-smooth-out;
   }
-
   .hover-scale:hover {
     @apply scale-[1.03];
   }
 
-  /* Line clamp */
+  .hover-glow:hover {
+    box-shadow: 0 0 40px -8px rgba(124, 58, 237, 0.3);
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -139,7 +181,6 @@
   }
 }
 
-/* Font face declarations */
 @font-face {
   font-family: 'Cormorant Garamond';
   font-style: normal;

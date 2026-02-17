@@ -42,7 +42,7 @@ const results = [
 ]
 
 const testimonial = {
-  quote: "Studio Ash breathed new life into our brand while respecting everything we'd built over 15 years. Our customers constantly comment on our beautiful new look — it finally matches the quality of our flowers.",
+  quote: "HexStudio breathed new life into our brand while respecting everything we'd built over 15 years. Our customers constantly comment on our beautiful new look — it finally matches the quality of our flowers.",
   author: 'Emma Richardson',
   role: 'Owner & Lead Florist, Bloom Floristry',
 }
@@ -99,7 +99,7 @@ export default function BloomFloristryPage() {
           >
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 text-stone hover:text-charcoal transition-colors"
+              className="inline-flex items-center gap-2 text-subtle hover:text-white transition-colors"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -122,7 +122,7 @@ export default function BloomFloristryPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: smoothOut }}
-                className="text-h1 md:text-display font-serif text-charcoal mb-4"
+                className="text-h1 md:text-display font-serif text-white mb-4"
               >
                 {projectInfo.title}
               </motion.h1>
@@ -130,7 +130,7 @@ export default function BloomFloristryPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
-                className="text-h3 font-serif text-stone italic mb-8"
+                className="text-h3 font-serif text-subtle italic mb-8"
               >
                 {projectInfo.tagline}
               </motion.p>
@@ -142,20 +142,20 @@ export default function BloomFloristryPage() {
                 className="grid grid-cols-2 gap-6"
               >
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Year</span>
-                  <span className="text-body text-charcoal">{projectInfo.year}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Year</span>
+                  <span className="text-body text-white">{projectInfo.year}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Duration</span>
-                  <span className="text-body text-charcoal">{projectInfo.duration}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Duration</span>
+                  <span className="text-body text-white">{projectInfo.duration}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Industry</span>
-                  <span className="text-body text-charcoal">{projectInfo.industry}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Industry</span>
+                  <span className="text-body text-white">{projectInfo.industry}</span>
                 </div>
                 <div>
-                  <span className="block text-caption uppercase tracking-wider text-stone mb-1">Services</span>
-                  <span className="text-body text-charcoal">{projectInfo.services.slice(0, 2).join(', ')}</span>
+                  <span className="block text-caption uppercase tracking-wider text-subtle mb-1">Services</span>
+                  <span className="text-body text-white">{projectInfo.services.slice(0, 2).join(', ')}</span>
                 </div>
               </motion.div>
             </div>
@@ -195,7 +195,7 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Experience the design
           </motion.h2>
@@ -210,14 +210,14 @@ export default function BloomFloristryPage() {
       </Section>
 
       {/* Overview Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="max-w-3xl mx-auto text-center">
           <motion.p
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h3 font-serif text-charcoal leading-relaxed"
+            className="text-h3 font-serif text-white leading-relaxed"
           >
             For 15 years, Bloom Floristry has been creating stunning arrangements for Brisbane's
             most memorable moments. When they came to us, they needed a brand refresh that would
@@ -241,7 +241,7 @@ export default function BloomFloristryPage() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/30 to-transparent" />
         </motion.div>
       </section>
 
@@ -262,7 +262,7 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             The details that matter
           </motion.h2>
@@ -277,8 +277,8 @@ export default function BloomFloristryPage() {
         >
           {brandElements.map((element) => (
             <motion.div key={element.title} variants={fadeUp} className="text-center">
-              <h3 className="text-h4 font-serif text-charcoal mb-4">{element.title}</h3>
-              <p className="text-body text-stone">{element.description}</p>
+              <h3 className="text-h4 font-serif text-white mb-4">{element.title}</h3>
+              <p className="text-body text-subtle">{element.description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -294,10 +294,10 @@ export default function BloomFloristryPage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#D4A84B] mb-4">The Challenge</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Honoring heritage</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Honoring heritage</h2>
             <ul className="space-y-4">
               {challenges.map((challenge, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#D4A84B] flex-shrink-0" />
                   {challenge}
                 </li>
@@ -312,10 +312,10 @@ export default function BloomFloristryPage() {
             viewport={viewportSettings}
           >
             <span className="block text-caption uppercase tracking-widest text-[#D4A84B] mb-4">The Solution</span>
-            <h2 className="text-h2 font-serif text-off-white mb-6">Timeless elegance</h2>
+            <h2 className="text-h2 font-serif text-white mb-6">Timeless elegance</h2>
             <ul className="space-y-4">
               {solutions.map((solution, index) => (
-                <li key={index} className="flex items-start gap-3 text-body text-off-white/80">
+                <li key={index} className="flex items-start gap-3 text-body text-white/80">
                   <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#D4A84B] flex-shrink-0" />
                   {solution}
                 </li>
@@ -378,7 +378,7 @@ export default function BloomFloristryPage() {
       </Section>
 
       {/* Color Palette Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <div className="text-center mb-12">
           <motion.span
             variants={fadeUp}
@@ -394,7 +394,7 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             A palette of warmth
           </motion.h2>
@@ -413,7 +413,7 @@ export default function BloomFloristryPage() {
                 className="w-24 h-24 rounded-full mb-3 shadow-lg"
                 style={{ backgroundColor: color }}
               />
-              <span className="text-small text-stone uppercase tracking-wider">{color}</span>
+              <span className="text-small text-subtle uppercase tracking-wider">{color}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -436,7 +436,7 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h2 font-serif text-charcoal"
+            className="text-h2 font-serif text-white"
           >
             Blooming success
           </motion.h2>
@@ -454,7 +454,7 @@ export default function BloomFloristryPage() {
               <span className="block text-display font-serif text-[#B8860B] mb-2">
                 {result.metric}
               </span>
-              <span className="text-small text-stone uppercase tracking-wider">
+              <span className="text-small text-subtle uppercase tracking-wider">
                 {result.description}
               </span>
             </motion.div>
@@ -463,7 +463,7 @@ export default function BloomFloristryPage() {
       </Section>
 
       {/* Testimonial Section */}
-      <Section variant="cream">
+      <Section variant="elevated">
         <motion.blockquote
           variants={fadeUp}
           initial="hidden"
@@ -471,13 +471,13 @@ export default function BloomFloristryPage() {
           viewport={viewportSettings}
           className="max-w-4xl mx-auto text-center"
         >
-          <p className="text-h2 md:text-h1 font-serif text-charcoal leading-tight mb-8">
+          <p className="text-h2 md:text-h1 font-serif text-white leading-tight mb-8">
             "{testimonial.quote}"
           </p>
           <footer>
             <cite className="not-italic">
-              <span className="block text-body font-medium text-charcoal">{testimonial.author}</span>
-              <span className="text-small text-stone">{testimonial.role}</span>
+              <span className="block text-body font-medium text-white">{testimonial.author}</span>
+              <span className="text-small text-subtle">{testimonial.role}</span>
             </cite>
           </footer>
         </motion.blockquote>
@@ -491,7 +491,7 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="block text-caption uppercase tracking-widest text-stone mb-4"
+            className="block text-caption uppercase tracking-widest text-subtle mb-4"
           >
             Next Project
           </motion.span>
@@ -500,7 +500,7 @@ export default function BloomFloristryPage() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportSettings}
-            className="text-h1 font-serif text-charcoal mb-8"
+            className="text-h1 font-serif text-white mb-8"
           >
             Artisan Collective
           </motion.h2>

@@ -14,6 +14,7 @@ interface ProjectCardProps {
   image: string
   href: string
   description?: string
+  hex?: string
   className?: string
 }
 
@@ -25,6 +26,7 @@ export function ProjectCard({
   image,
   href,
   description,
+  hex = '#7C3AED',
   className,
 }: ProjectCardProps) {
   return (
@@ -36,7 +38,7 @@ export function ProjectCard({
       className={cn('group', className)}
     >
       <Link href={href} className="block">
-        <div className="relative aspect-[4/3] overflow-hidden bg-line-grey mb-6">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-surface mb-5">
           <Image
             src={image}
             alt={`${client} - ${title}`}
@@ -45,25 +47,30 @@ export function ProjectCard({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           {/* Hover overlay */}
-          <div className="absolute inset-0 bg-charcoal/0 transition-colors duration-300 group-hover:bg-charcoal/40">
+          <div className="absolute inset-0 bg-void/0 transition-colors duration-300 group-hover:bg-void/50">
             {description && (
               <div className="absolute inset-0 flex items-center justify-center p-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <p className="text-off-white text-body text-center line-clamp-3">
+                <p className="text-white text-body text-center line-clamp-3">
                   {description}
                 </p>
               </div>
             )}
           </div>
+          {/* Hex color accent bar */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{ backgroundColor: hex }}
+          />
         </div>
         <div className="space-y-1">
-          <div className="flex items-center justify-between text-small text-stone">
-            <span>{category}</span>
-            <span>{year}</span>
+          <div className="flex items-center justify-between text-small">
+            <span className="text-subtle">{category}</span>
+            <span className="font-mono text-micro text-muted">{year}</span>
           </div>
-          <h3 className="text-h4 font-serif text-charcoal group-hover:text-stone transition-colors duration-300">
+          <h3 className="text-h4 font-serif text-white group-hover:text-subtle transition-colors duration-300">
             {client}
           </h3>
-          <p className="text-body text-stone">{title}</p>
+          <p className="text-body text-subtle">{title}</p>
         </div>
       </Link>
     </motion.article>
@@ -74,6 +81,7 @@ interface ServiceCardProps {
   title: string
   description: string
   features?: string[]
+  hex?: string
   icon?: React.ReactNode
   className?: string
 }
@@ -82,6 +90,7 @@ export function ServiceCard({
   title,
   description,
   features,
+  hex = '#7C3AED',
   icon,
   className,
 }: ServiceCardProps) {
@@ -92,23 +101,30 @@ export function ServiceCard({
       whileInView="visible"
       viewport={viewportSettings}
       className={cn(
-        'p-8 md:p-10 border border-line-grey',
-        'transition-colors duration-300 hover:border-stone',
+        'p-8 md:p-10 rounded-2xl border border-white/[0.06] bg-surface/30',
+        'transition-all duration-500 hover:border-white/[0.12] hover:bg-surface/50',
         className
       )}
     >
       {icon && (
-        <div className="w-12 h-12 mb-6 text-stone">
+        <div className="w-12 h-12 mb-6 text-subtle">
           {icon}
         </div>
       )}
-      <h3 className="text-h3 font-serif text-charcoal mb-4">{title}</h3>
-      <p className="text-body text-stone mb-6">{description}</p>
+      <div
+        className="w-2 h-2 rounded-full mb-4"
+        style={{ backgroundColor: hex }}
+      />
+      <h3 className="text-h3 font-serif text-white mb-4">{title}</h3>
+      <p className="text-body text-subtle mb-6">{description}</p>
       {features && features.length > 0 && (
         <ul className="space-y-2">
           {features.map((feature, index) => (
-            <li key={index} className="text-small text-stone flex items-start gap-3">
-              <span className="w-1.5 h-1.5 mt-2 rounded-full bg-gold flex-shrink-0" />
+            <li key={index} className="text-small text-subtle flex items-start gap-3">
+              <span
+                className="w-1 h-1 mt-2 rounded-full flex-shrink-0"
+                style={{ backgroundColor: hex }}
+              />
               {feature}
             </li>
           ))}
@@ -141,13 +157,13 @@ export function TestimonialCard({
       viewport={viewportSettings}
       className={cn('max-w-3xl mx-auto text-center', className)}
     >
-      <p className="text-h2 md:text-h1 font-serif text-charcoal leading-tight mb-8">
-        "{quote}"
+      <p className="text-h2 md:text-h1 font-serif text-white leading-tight mb-8">
+        &ldquo;{quote}&rdquo;
       </p>
       <footer>
         <cite className="not-italic">
-          <span className="block text-body font-medium text-charcoal">{author}</span>
-          <span className="text-small text-stone">
+          <span className="block text-body font-medium text-white">{author}</span>
+          <span className="text-small text-subtle">
             {role}, {company}
           </span>
         </cite>
