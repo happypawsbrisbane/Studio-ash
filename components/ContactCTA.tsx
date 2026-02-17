@@ -22,12 +22,12 @@ export function ContactCTA() {
           variants={fadeUp}
           className="text-h2 md:text-h1 font-serif text-white mb-6 relative"
         >
-          Let&apos;s create something{' '}
-          <span className="text-gradient">extraordinary.</span>
+          Let&apos;s build something{' '}
+          <span className="text-gradient">that lasts.</span>
         </motion.h2>
 
         <motion.p variants={fadeUp} className="text-body-lg text-subtle mb-10">
-          New venture, repositioning, or creative partnership &mdash; we&apos;d love to hear from you.
+          Whether you&apos;re launching, repositioning, or ready to look as good as you actually are&mdash;let&apos;s talk.
         </motion.p>
 
         <motion.div

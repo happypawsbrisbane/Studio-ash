@@ -24,7 +24,7 @@ const variantStyles: Record<SectionVariant, string> = {
 const sizeStyles = {
   small: 'section-sm',
   default: 'section',
-  large: 'py-28 md:py-36 lg:py-44 px-6 md:px-12 lg:px-20',
+  large: 'py-20 md:py-28 lg:py-32 px-6 md:px-12 lg:px-20',
 }
 
 const containerStyles = {
@@ -88,7 +88,7 @@ export function SectionHeader({
         visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
       }}
       className={cn(
-        'mb-12 md:mb-16',
+        'mb-10 md:mb-12',
         align === 'center' && 'text-center max-w-3xl mx-auto',
         className
       )}

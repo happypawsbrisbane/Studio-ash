@@ -99,7 +99,7 @@ export default function WorkPage() {
 
   return (
     <>
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-12 lg:px-20">
+      <section className="pt-32 pb-10 md:pt-40 md:pb-16 px-6 md:px-12 lg:px-20">
         <div className="container-wide">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -123,7 +123,7 @@ export default function WorkPage() {
             transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
             className="mt-6 text-body-lg text-subtle max-w-xl"
           >
-            Strategy, identity, and digital experiences.
+            Each project starts with a problem and ends with a brand that works harder.
           </motion.p>
         </div>
       </section>
@@ -232,7 +232,7 @@ export default function WorkPage() {
                 onClick={() => handleSelect(project)}
               >
                 <div className={`
-                  relative rounded-xl overflow-hidden transition-all duration-300
+                  relative rounded-xl overflow-hidden transition-all duration-500
                   ${selectedProject?.href === project.href
                     ? 'ring-2 ring-violet glow-violet'
                     : 'border border-white/[0.06] hover:border-white/[0.12]'
@@ -243,8 +243,13 @@ export default function WorkPage() {
                       src={project.image}
                       alt={`${project.client} - ${project.title}`}
                       fill
-                      className="object-cover transition-transform duration-600 ease-smooth-out group-hover:scale-[1.03]"
+                      className="object-cover transition-all duration-700 ease-smooth-out group-hover:scale-[1.05]"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-void/0 to-transparent transition-all duration-500 group-hover:from-void/50" />
+                    <div
+                      className="absolute bottom-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
+                      style={{ backgroundColor: project.hex }}
                     />
                   </div>
                 </div>

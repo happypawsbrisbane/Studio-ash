@@ -43,22 +43,22 @@ export function ProjectCard({
             src={image}
             alt={`${client} - ${title}`}
             fill
-            className="object-cover transition-transform duration-600 ease-smooth-out group-hover:scale-[1.03]"
+            className="object-cover transition-all duration-700 ease-smooth-out group-hover:scale-[1.05]"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-void/0 transition-colors duration-300 group-hover:bg-void/50">
+          {/* Hover overlay - smooth gradient fade */}
+          <div className="absolute inset-0 bg-gradient-to-t from-void/0 via-void/0 to-transparent transition-all duration-500 group-hover:from-void/70 group-hover:via-void/30">
             {description && (
-              <div className="absolute inset-0 flex items-center justify-center p-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <p className="text-white text-body text-center line-clamp-3">
+              <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                <p className="text-white text-small leading-relaxed">
                   {description}
                 </p>
               </div>
             )}
           </div>
-          {/* Hex color accent bar */}
+          {/* Accent bar */}
           <div
-            className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute bottom-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
             style={{ backgroundColor: hex }}
           />
         </div>

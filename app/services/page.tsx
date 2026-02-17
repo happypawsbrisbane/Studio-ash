@@ -91,7 +91,7 @@ const process = [
 export default function ServicesPage() {
   return (
     <>
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-12 lg:px-20">
+      <section className="pt-32 pb-10 md:pt-40 md:pb-16 px-6 md:px-12 lg:px-20">
         <div className="container-wide">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -115,7 +115,7 @@ export default function ServicesPage() {
             transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
             className="mt-6 text-body-lg text-subtle max-w-xl"
           >
-            Comprehensive brand solutions that transform how businesses present themselves.
+            From research to launch. Every service is designed to work together&mdash;or stand alone.
           </motion.p>
         </div>
       </section>

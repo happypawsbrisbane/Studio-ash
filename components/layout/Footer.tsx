@@ -46,7 +46,7 @@ export function Footer() {
                 that command attention.
               </p>
               <p className="font-mono text-micro text-muted tracking-widest">
-                #DESIGN #BUILD #BRAND
+                Strategy. Identity. Digital.
               </p>
             </motion.div>
 

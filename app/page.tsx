@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import { Hero } from '@/components/Hero'
 import { Philosophy } from '@/components/Philosophy'
 import { WorkPreview } from '@/components/WorkPreview'
+import { Testimonials } from '@/components/Testimonial'
 import { ServicesOverview } from '@/components/ServicesOverview'
 import { ContactCTA } from '@/components/ContactCTA'
 
 export const metadata: Metadata = {
   title: 'HexStudio — Brand & Design Studio, Brisbane',
-  description: 'HexStudio is a premium brand and design studio in Brisbane. We craft brands that command attention through strategy, design, and digital experiences.',
+  description: 'Brisbane brand and design studio helping businesses close the gap between how good they are and how good they look. Strategy, identity, and digital.',
 }
 
 export default function HomePage() {
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Hero />
       <Philosophy />
       <WorkPreview />
+      <Testimonials />
       <ServicesOverview />
       <ContactCTA />
     </>

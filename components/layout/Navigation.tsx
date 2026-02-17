@@ -160,9 +160,9 @@ export function Navigation() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
-                className="mt-8 font-mono text-micro text-muted tracking-widest uppercase"
+                className="mt-8 font-mono text-micro text-muted tracking-widest"
               >
-                #DESIGN #BUILD #BRAND
+                Brisbane Brand Studio
               </motion.div>
             </nav>
           </motion.div>

@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { ContactCTA } from '@/components/ContactCTA'
@@ -10,17 +9,17 @@ const values = [
   {
     title: 'Strategy First',
     hex: '#7C3AED',
-    description: 'Every visual decision rooted in research and strategic thinking.',
+    description: 'The logo is the last thing we design. First, we figure out what your brand needs to say and to whom.',
   },
   {
     title: 'Craft Obsessed',
     hex: '#6366F1',
-    description: 'Every pixel, word, and interaction considered with precision.',
+    description: 'The spacing between letters. The exact weight of a border. The details most people never consciously notice\u2014but always feel.',
   },
   {
     title: 'True Partnership',
     hex: '#06B6D4',
-    description: 'We embed in your vision. Your brand becomes our mission.',
+    description: 'No account managers. No juniors. You work with me directly from kickoff to launch, every time.',
   },
 ]
 
@@ -38,7 +37,7 @@ const skills = {
 export default function StudioPage() {
   return (
     <>
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 md:px-12 lg:px-20">
+      <section className="pt-32 pb-12 md:pt-40 md:pb-16 px-6 md:px-12 lg:px-20">
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
@@ -64,8 +63,8 @@ export default function StudioPage() {
                 transition={{ duration: 0.6, delay: 0.2, ease: smoothOut }}
                 className="mt-6 text-body-lg text-subtle"
               >
-                Brisbane-based designer on a mission to help businesses look as good
-                as they actually are. No more blending in.
+                I&apos;m Ash&mdash;a Brisbane-based designer who helps businesses
+                close the gap between how good they are and how good they look.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -73,24 +72,33 @@ export default function StudioPage() {
                 transition={{ duration: 0.6, delay: 0.3, ease: smoothOut }}
                 className="mt-4 text-body-lg text-subtle"
               >
-                <strong className="text-white">Great design isn&apos;t just aesthetics</strong>
-                &mdash; it&apos;s positioning you as the premium choice.
+                <strong className="text-white">Great design isn&apos;t decoration</strong>
+                &mdash; it&apos;s positioning you as the obvious choice.
               </motion.p>
             </div>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: smoothOut }}
-              className="relative aspect-[3/4] rounded-3xl overflow-hidden border border-white/[0.06]"
+              className="relative aspect-[3/4] rounded-3xl overflow-hidden border border-white/[0.06] bg-surface"
             >
-              <Image
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop"
-                alt="Ash, designer at HexStudio"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
+              {/* Abstract creative portrait - replace with real photo */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative w-full h-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-violet/20 via-indigo/10 to-cyan/20" />
+                  <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-violet/20 blur-3xl" />
+                  <div className="absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-cyan/15 blur-3xl" />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-8">
+                    <div className="w-24 h-24 rounded-full border-2 border-white/10 flex items-center justify-center">
+                      <span className="text-h1 font-serif text-white/80">A</span>
+                    </div>
+                    <span className="text-small text-subtle text-center">
+                      Your photo goes here.<br />
+                      <span className="text-muted text-micro">Real &gt; Stock. Always.</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -132,16 +140,19 @@ export default function StudioPage() {
             className="space-y-6 text-body-lg text-subtle text-center"
           >
             <p>
-              Design wasn&apos;t always the plan. But I kept getting drawn to the creative side of everything.
-              Eventually, I stopped fighting it.
+              I spent four years at a Brisbane agency watching small businesses get handed
+              the same Canva template with different colours. The work was fast, it was cheap,
+              and it looked exactly like that.
             </p>
             <p>
-              Years in agencies taught me the craft&mdash;and the frustration of watching businesses
-              get cookie-cutter solutions. Templates with different colors. Stock photos with different faces.
+              The turning point was a cafe owner who cried when she saw her &ldquo;rebrand&rdquo;&mdash;
+              a generic coffee bean logo she&apos;d seen on three other shops. She deserved better.
+              They all did.
             </p>
             <p>
-              That frustration became purpose. HexStudio exists to create brands that actually mean something.
-              Unique stories. Premium positioning.
+              HexStudio started at my dining table in 2020 with one client and one belief:
+              <strong className="text-white"> every business has a story worth designing properly.</strong>
+              {' '}Five years and 50+ brands later, that belief hasn&apos;t changed.
             </p>
           </motion.div>
         </div>
@@ -150,7 +161,7 @@ export default function StudioPage() {
       <Section variant="elevated">
         <SectionHeader
           eyebrow="Values"
-          title="What guides everything."
+          title="What guides every project."
           align="center"
         />
         <motion.div
